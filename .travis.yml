@@ -18,18 +18,18 @@ deploy:
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
-    bucket: "sp-messaging-tools-ui-uat"
-    skip_cleanup: true
-    local_dir: build
-    on:
-      branch: develop
-      node: "6"
-  - provider: s3
-    access_key_id: $ENG_AWS_ACCESS_KEY_ID
-    secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-staging"
     skip_cleanup: true
     local_dir: build
     on:
       branch: master
+      node: "6"
+  - provider: s3
+    access_key_id: $ENG_AWS_ACCESS_KEY_ID
+    secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
+    bucket: "sp-messaging-tools-ui-production"
+    skip_cleanup: true
+    local_dir: build
+    on:
+      tags: true
       node: "6"
