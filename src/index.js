@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Redirect, browserHistory } from 'react-router';
 import App from './components/App';
-import DKIMHome from './components/dkim/Home';
-import DKIMResults from './components/dkim/Results';
+import DKIMHome from './pages/dkim/HomePage';
+import DKIMResults from './pages/dkim/ResultListPage';
+import DKIMDetail from './pages/dkim/ResultDetailPage';
+
+// Not sure how to import modular styles yet
 import '../node_modules/@sparkpost/styles/src/assets/css/styles.css';
 
 ReactDOM.render((
@@ -11,7 +14,9 @@ ReactDOM.render((
     <Redirect from='/' to='/dkim' />
     <Route path='/' component={App}>
       <Route path='dkim' component={DKIMHome} />
+      <Redirect from='/dkim/results' to='/dkim' />
       <Route path='dkim/results/:email' component={DKIMResults} />
+      <Route path='dkim/results/:email/:detailId' component={DKIMDetail} />
     </Route>
   </Router>
 ), document.getElementById('root'));
