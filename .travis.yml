@@ -4,6 +4,14 @@ node_js:
   - "4"
   - "5"
   - "6"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 install: npm install
 script: "npm run build"
 deploy:
@@ -12,18 +20,20 @@ deploy:
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-uat"
     acl: public_read
-    region: us-east-1
+    region: us-west-2
     skip_cleanup: true
     local_dir: build
     on:
       branch: develop
+      node: "6"
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-staging"
     acl: public_read
-    region: us-east-1
+    region: us-west-2
     skip_cleanup: true
     local_dir: build
     on:
       branch: master
+      node: "6"
