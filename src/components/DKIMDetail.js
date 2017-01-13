@@ -14,7 +14,7 @@ export default class DKIMDetail extends Component {
       error: null,
       detail: null,
       loading: false // should this just be true at first?
-    }
+    };
   }
 
   componentDidMount() {
@@ -51,6 +51,6 @@ export default class DKIMDetail extends Component {
         <HeaderTable detail={detail} />
         <SignatureTable sigs={detail && detail.sigs} />
       </div>
-    )
+    );
   }
 }

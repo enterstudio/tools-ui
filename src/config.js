@@ -3,8 +3,10 @@ const config = {
   development: {
     apiBase: 'http://api.sparkpost.dev/api/v1'
   }
-}
+};
 
-module.exports = ((env) => {
-  return Object.assign({}, config.default, config[env]);
-})(process.env.NODE_ENV);
+const getConfig = (env) => (
+  Object.assign({}, config.default, config[env])
+);
+
+export default getConfig(process.env.NODE_ENV);

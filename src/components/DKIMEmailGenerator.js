@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 import cookie from 'js-cookie';
-import config from '../config'
+import config from '../config';
 
 const cookieName = '_dkimTestEmail';
 
@@ -33,14 +33,14 @@ export default class extends Component {
           loading: false
         });
       }, () => {
-        this.setState({ error: true })
+        this.setState({ error: true });
       });
   }
 
   renderGenerateEmail() {
     const buttonClasses = ['button', 'button--muted'];
     const { error } = this.state;
-    if (error) buttonClasses.push('has-error')
+    if (error) {buttonClasses.push('has-error');}
     return (
       <div>
         <h6>To get started, click on the button below to generate an email address.</h6>
@@ -70,7 +70,7 @@ export default class extends Component {
         <br/><br/><br/>
         <button onClick={() => this.deleteCookie()}>Delete my email cookie and start over</button>
       </div>
-    )
+    );
   }
 
   render() {

@@ -1,9 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "4"
   - "6"
-  - "7"
 env:
   - CXX=g++-4.8
 addons:
@@ -24,7 +22,7 @@ deploy:
     skip_cleanup: true
     local_dir: build
     on:
-      branch: develop
+      branch: feature/FAD-4223
       node: "6"
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID

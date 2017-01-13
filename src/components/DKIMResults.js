@@ -10,7 +10,7 @@ export default class extends Component {
       error: null,
       results: [],
       loading: false // should this just be true at first?
-    }
+    };
   }
 
   componentDidMount() {
@@ -37,13 +37,13 @@ export default class extends Component {
 
   renderError() {
     const { error } = this.state;
-    if (!error) return null;
+    if (!error) {return null;}
     return (
       <div className='error'>
         <i className='fa fa-exclamation-circle'></i>
         {error.message}
       </div>
-    )
+    );
   }
 
   renderHeader() {
@@ -62,7 +62,7 @@ export default class extends Component {
 
   renderTable() {
     const { loading, results } = this.state;
-    if (loading) return null;
+    if (loading) {return null;}
     return (
       <table>
         <thead>
@@ -75,9 +75,9 @@ export default class extends Component {
         </thead>
         <tbody>
         {
-          (results.length === 0)
-          ? this.renderNoMessages()
-          : results.map(this.renderRow.bind(this))
+          (results.length === 0) ?
+          this.renderNoMessages() :
+          results.map(this.renderRow.bind(this))
         }
         </tbody>
       </table>
@@ -109,6 +109,6 @@ export default class extends Component {
         {this.renderHeader()}
         {error ? this.renderError() : this.renderTable()}
       </div>
-    )
+    );
   }
 }

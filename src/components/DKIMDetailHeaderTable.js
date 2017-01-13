@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({ detail }) => {
-  if (!detail) return null;
+  if (!detail) {return null;}
   return (
     <table>
       <tbody>
@@ -23,5 +23,5 @@ export default ({ detail }) => {
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};

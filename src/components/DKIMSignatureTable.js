@@ -13,7 +13,7 @@ const Row = ({ sig }) => {
 };
 
 export default ({ sigs = null }) => {
-  if (!sigs) return null;
+  if (!sigs) {return null;}
 
   return (
     <table>
