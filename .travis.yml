@@ -19,8 +19,6 @@ deploy:
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-uat"
-    acl: public_read
-    region: us-west-2
     skip_cleanup: true
     local_dir: build
     on:
@@ -30,8 +28,6 @@ deploy:
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-staging"
-    acl: public_read
-    region: us-west-2
     skip_cleanup: true
     local_dir: build
     on:
