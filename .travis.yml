@@ -17,7 +17,7 @@ deploy:
     local_dir: build
     on:
       branch: develop
-   - provider: s3
+  - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
     bucket: "sp-messaging-tools-ui-staging"
@@ -26,4 +26,4 @@ deploy:
     skip_cleanup: true
     local_dir: build
     on:
-    	branch: master
+      branch: master
