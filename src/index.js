@@ -6,8 +6,7 @@ import DKIMHome from './pages/dkim/HomePage';
 import DKIMResults from './pages/dkim/ResultListPage';
 import DKIMDetail from './pages/dkim/ResultDetailPage';
 
-// Not sure how to import modular styles yet
-import '../node_modules/@sparkpost/styles/src/assets/css/styles.css';
+import './styles/tools.scss';
 
 ReactDOM.render((
   <Router history={browserHistory}>
