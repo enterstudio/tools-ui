@@ -4,13 +4,16 @@ import axios from 'axios';
 import config from '../../config';
 
 import Table from '../../components/Table';
+import { ActionButton } from '../../components/Button';
+import Icon from '../../components/Icon';
 
 export default class ResultListPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      results: [],
+      tableHeaders: ['Subject', 'DKIM Status', 'Sender', 'Time Delivered'],
+      tableRows: [],
       loading: false // should this just be true at first?
     };
   }
@@ -26,7 +29,14 @@ export default class ResultListPage extends Component {
       .then(({ data }) => {
         const { results } = data;
         this.setState({
-          results,
+          tableRows: results.map(({ id, subject, result, header_from, received }) => (
+            [
+              <Link to={`/dkim/results/${this.props.params.email}/${id}`}>{subject}</Link>,
+              result ? 'Passed' : 'Failed',
+              header_from,
+              new Date(received).toLocaleString()
+            ]
+          )),
           loading: false
         });
       }, ({ response }) => {
@@ -39,10 +49,10 @@ export default class ResultListPage extends Component {
 
   renderError() {
     const { error } = this.state;
-    if (!error) {return null;}
+    if (!error) { return null; }
     return (
       <div className='error'>
-        <i className='fa fa-exclamation-circle'></i>
+        <Icon name='exclamation-circle' />
         {error.message}
       </div>
     );
@@ -52,43 +62,21 @@ export default class ResultListPage extends Component {
     const { email } = this.props.params;
     return (
       <div>
-        <p>
-          <strong>Results for Test Address:</strong>
-          <br/>{email}
-        </p>
-        <button onClick={() => this.getResults()}>Refresh</button>
-        <button>Share</button>
+        <p><strong>Results for Test Address:</strong> {email}</p>
+        <ActionButton action={() => this.getResults()}>Refresh</ActionButton>
+        <ActionButton>Share</ActionButton>
       </div>
     );
   }
 
-  renderTable() {
-    const { loading, results } = this.state;
-    if (loading) {return null;}
-
-    if (results.length === 0) {
-      return <p>No messages have been recieved to this test address.</p>;
-    }
-
-    const headers = ['Subject', 'DKIM Status', 'Sender', 'Time Delivered'];
-    const rows = results.map(({ id, subject, result, header_from, received }) => (
-      [
-        <Link to={`/dkim/results/${this.props.params.email}/${id}`}>{subject}</Link>,
-        result ? 'Passed' : 'Failed',
-        header_from,
-        new Date(received).toLocaleString()
-      ]
-    ));
-
-    return <Table headers={headers} rows={rows} />;
-  }
-
   render() {
-    const { error } = this.state;
+    const { error, tableHeaders, tableRows } = this.state;
     return (
       <div>
         {this.renderHeader()}
-        {error ? this.renderError() : this.renderTable()}
+        {error && this.renderError()}
+        <Table className='dkim-list-table' headers={tableHeaders} rows={tableRows} />
+        {(tableRows.length === 0) && <p>No messages have been recieved to this test address.</p>}
       </div>
     );
   }

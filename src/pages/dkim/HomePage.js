@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import axios from 'axios';
 import cookie from 'js-cookie';
 import config from '../../config';
 import { DKIM_INTRO_TEXT, DKIM_COOKIE_NAME } from '../../constants/text';
+import { ActionButton, LinkButton } from '../../components/Button';
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -37,13 +37,14 @@ export default class HomePage extends Component {
   }
 
   renderGenerateEmail() {
-    const buttonClasses = ['button', 'button--muted'];
+    const extraClasses = [];
     const { error } = this.state;
-    if (error) {buttonClasses.push('has-error');}
+    if (error) { extraClasses.push('has-error'); }
+
     return (
       <div>
         <h6>To get started, click on the button below to generate an email address.</h6>
-        <button className={buttonClasses.join(' ')} onClick={() => this.generate()}>Generate Email Address</button>
+        <ActionButton type='muted' accent='magenta' action={() => this.generate()} extraClasses={extraClasses}>Generate Email Address</ActionButton>
       </div>
     );
   }
@@ -53,7 +54,7 @@ export default class HomePage extends Component {
       <div>
         <h6>Use your email client to send test emails to this generated test address.</h6>
         <div><input className='input__text' type="text" readOnly={true} value={this.state.email} /></div>
-        <Link className="button button--blue" to={`/dkim/results/${this.state.email}`}>View Results</Link>
+        <LinkButton type='blue' to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
       </div>
     );
   }
@@ -66,8 +67,8 @@ export default class HomePage extends Component {
   renderDeleteCookie() {
     return (
       <div className={'for-testing-only-DUH'}>
-        <br/><br/><br/>
-        <button onClick={() => this.deleteCookie()}>Delete my email cookie and start over</button>
+        <br/><br/>
+        <ActionButton type='red' size='s' action={() => this.deleteCookie()}>Delete my email cookie and start over</ActionButton>
       </div>
     );
   }
