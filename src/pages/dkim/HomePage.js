@@ -51,10 +51,12 @@ export default class HomePage extends Component {
 
   renderShowEmail() {
     return (
-      <div>
-        <h6>Use your email client to send test emails to this generated test address.</h6>
-        <div><input className='input__text' type="text" readOnly={true} value={this.state.email} /></div>
-        <LinkButton type='blue' to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
+      <div className='panel panel--accent'>
+        <div className='panel__body'>
+          <h6>Use your email client to send test emails to this generated test address.</h6>
+          <div><input className='input__text' type="text" readOnly={true} value={this.state.email} /></div>
+          <LinkButton type='blue' to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
+        </div>
       </div>
     );
   }
@@ -76,10 +78,12 @@ export default class HomePage extends Component {
   render() {
     const { email } = this.state;
     return (
-      <div className="email-generator">
-        <p>{DKIM_INTRO_TEXT}</p>
-        {email ? this.renderShowEmail() : this.renderGenerateEmail()}
-        {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
+      <div className='flex center-xs'>
+        <div className='col-xs-12 col-md-7'>
+          <p>{DKIM_INTRO_TEXT}</p>
+          {email ? this.renderShowEmail() : this.renderGenerateEmail()}
+          {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
+        </div>
       </div>
     );
   }

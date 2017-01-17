@@ -1,0 +1,17 @@
+html {
+  background: grayscale(9);
+}
+
+$footer-height: 9rem; // Change this later
+
+.pageWrapper {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: $footer-height;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: break(xl);
+}
