@@ -16,7 +16,7 @@ deploy:
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
-    bucket: "sp-messaging-tools-ui-uat"
+    bucket: "sp-messaging-tools-ui-staging"
     acl: public_read
     region: us-west-2
     skip_cleanup: true
@@ -27,11 +27,11 @@ deploy:
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID
     secret_access_key: $ENG_AWS_SECRET_ACCESS_KEY
-    bucket: "sp-messaging-tools-ui-staging"
+    bucket: "sp-messaging-tools-ui-prod"
     acl: public_read
     region: us-west-2
     skip_cleanup: true
     local_dir: build
     on:
-      branch: master
+      branch: feature/FAD-4223
       node: "6"

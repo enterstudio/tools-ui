@@ -1,0 +1,6 @@
+exports[`test App renders correctly 1`] = `
+<div
+  className="tools-container">
+  This is my app
+</div>
+`;

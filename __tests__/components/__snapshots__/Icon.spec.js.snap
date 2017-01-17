@@ -1,0 +1,9 @@
+exports[`Icon should render correctly with all options 1`] = `
+<i
+  className="fa fa-awesome-icon fa-lg fa-spin fa-big fa-super-special" />
+`;
+
+exports[`Icon should render correctly with no options 1`] = `
+<i
+  className="fa " />
+`;

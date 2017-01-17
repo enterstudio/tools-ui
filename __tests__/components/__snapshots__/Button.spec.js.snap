@@ -1,0 +1,33 @@
+exports[`snapshot tests ActionButton will render correctly with all options 1`] = `
+<button
+  className="button button--muted button--l button--magentaAccent button--full button--icon is-disabled is-awesome has-error best-button-ever"
+  onClick={[Function]}>
+  This is an action button
+</button>
+`;
+
+exports[`snapshot tests ActionButton will render correctly with no options 1`] = `
+<button
+  className="button"
+  onClick={[Function]}>
+  ACTION
+</button>
+`;
+
+exports[`snapshot tests LinkButton will render correctly with all options 1`] = `
+<a
+  className="button button--muted button--l button--magentaAccent button--full button--icon is-disabled is-awesome has-error best-button-ever"
+  onClick={[Function]}
+  style={Object {}}>
+  This is a link button
+</a>
+`;
+
+exports[`snapshot tests LinkButton will render correctly with no options 1`] = `
+<a
+  className="button"
+  onClick={[Function]}
+  style={Object {}}>
+  LINK
+</a>
+`;
