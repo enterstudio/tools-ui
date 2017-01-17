@@ -1,13 +1,29 @@
-// Vendor
+/*
+ * Vendor
+ */
+$fa-font-path: "~@sparkpost/styles/src/assets/fonts";
 @import "~@sparkpost/styles/src/assets/scss/vendor/normalize";
+@import url("//cloud.typography.com/6240112/781206/css/fonts.css");
+@import "~@sparkpost/styles/src/assets/scss/vendor/fa/font-awesome";
 
-// Base
-@import "~@sparkpost/styles/src/assets/scss/foundation/config";
-@import "~@sparkpost/styles/src/assets/scss/foundation/functions";
+/*
+ *  Shared
+ *  These are global vars and functions - does not compile into css
+ */
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+/*
+ *  Base
+ */
 @import "~@sparkpost/styles/src/assets/scss/foundation/base";
 @import "~@sparkpost/styles/src/assets/scss/foundation/grid";
 @import "~@sparkpost/styles/src/assets/scss/foundation/typography";
+@import "~@sparkpost/styles/src/assets/scss/foundation/helpers";
 
-// Components
+/*
+ *  Components
+ *  These can be imported within react components
+ */
 @import "~@sparkpost/styles/src/assets/scss/components/button";
 @import "~@sparkpost/styles/src/assets/scss/components/table";
