@@ -8,4 +8,16 @@
   .fillTwo {
     fill: color(orange);
   }
+
+  &.logo--muted {
+    .fillOne, .fillTwo {
+      fill: grayscale(2);
+    }
+  }
+
+  &.logo--white {
+    .fillOne, .fillTwo {
+      fill: grayscale(white);
+    }
+  }
 }

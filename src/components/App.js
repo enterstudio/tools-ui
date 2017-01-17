@@ -4,10 +4,10 @@ import Footer from './footer/Footer';
 
 export default (props) => (
   <div className='pageWrapper'>
-    <Nav path={props.location.pathname}></Nav>
     <div className='container paddingTop--xxl paddingBottom--xxl'>
       {props.children}
     </div>
     <Footer></Footer>
+    <Nav path={props.location.pathname}></Nav>
   </div>
 );

@@ -3,11 +3,13 @@ html {
 }
 
 $footer-height: 9rem; // Change this later
+$nav-height: rem(57);
 
 .pageWrapper {
   position: relative;
   min-height: 100vh;
   padding-bottom: $footer-height;
+  padding-top: $nav-height;
 }
 
 .container {
