@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Logo } from '../logo/Logo';
-
+import { throttle } from '../../utils';
 import './Nav.scss';
 
 class Nav extends Component {
@@ -13,16 +13,16 @@ class Nav extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', (event) => this.handleScroll(event));
+    window.addEventListener('scroll', throttle((e) => this.handleScroll(e)), 400);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', (event) => this.handleScroll(event));
+    window.removeEventListener('scroll', throttle((e) => this.handleScroll(e)), 400);
   }
 
-  handleScroll(event) {
+  handleScroll(e) {
     this.setState({
-      sticky: event.srcElement.body.scrollTop !== 0
+      sticky: e.srcElement.body.scrollTop !== 0
     });
   }
 
