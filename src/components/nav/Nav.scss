@@ -1,0 +1,83 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+$nav-height: rem(57);
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: 0.25s;
+  z-index: 1;
+
+  &.nav--sticky {
+    background: grayscale(white);
+    box-shadow: shadow(1);
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 0 rem(30);
+
+    // font-family: $gotham-regular
+    font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+    font-size: rem(12);
+    line-height: $nav-height;
+    color: grayscale(4);
+    font-weight: 400;
+
+    &.is-active {
+      position: relative;
+      color: grayscale(2);
+
+      &:after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: rem(27);
+        right: rem(27);
+        height: 3px;
+        background: color(orange);
+      }
+    }
+
+    &:hover {
+      color: grayscale(2);
+      text-decoration: none;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 0 1rem;
+    margin: 0;
+    background: color(blue);
+
+    color: grayscale(white);
+    font-size: rem(12);
+    font-weight: 600;
+    line-height: $nav-height;
+    text-transform: uppercase;
+
+    &:hover {
+      color: grayscale(white);
+      background: color(blue--dark);
+      text-decoration: none;
+    }
+  }
+
+  &__logoLink {
+    display: inline-block;
+    margin-right: 1rem;
+    height: $nav-height;
+  }
+
+  .logo {
+    position: relative;
+    top: 6px;
+    height: rem(33);
+    width: auto;
+  }
+}

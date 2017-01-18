@@ -1,0 +1,23 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+.logo {
+  .fillOne {
+    fill: grayscale(2);
+  }
+  .fillTwo {
+    fill: color(orange);
+  }
+
+  &.logo--muted {
+    .fillOne, .fillTwo {
+      fill: grayscale(2);
+    }
+  }
+
+  &.logo--white {
+    .fillOne, .fillTwo {
+      fill: grayscale(white);
+    }
+  }
+}

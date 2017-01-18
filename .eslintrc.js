@@ -4,7 +4,7 @@ module.exports = {
     phantomjs: true
   },
   rules: {
-    'max-lines': ['warn', { max: 100, skipComments: true }]
+    'max-lines': ['warn', { max: 150, skipComments: true }]
   },
   extends: ['react-app', 'sparkpost']
 };

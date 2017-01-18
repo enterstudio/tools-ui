@@ -42,19 +42,30 @@ export default class HomePage extends Component {
     if (error) { extraClasses.push('has-error'); }
 
     return (
-      <div>
-        <h6>To get started, click on the button below to generate an email address.</h6>
-        <ActionButton type='muted' accent='magenta' action={() => this.generate()} extraClasses={extraClasses}>Generate Email Address</ActionButton>
+      <div className='panel panel--accent'>
+        <div className='panel__body paddingTop--xl paddingBottom--xl text--center'>
+          <h4>To get started, click on the button below to generate an email address.</h4>
+          <ActionButton type='blue' action={() => this.generate()} extraClasses={extraClasses}>Generate Email Address</ActionButton>
+        </div>
       </div>
     );
   }
 
   renderShowEmail() {
     return (
-      <div>
-        <h6>Use your email client to send test emails to this generated test address.</h6>
-        <div><input className='input__text' type="text" readOnly={true} value={this.state.email} /></div>
-        <LinkButton type='blue' to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
+      <div className='panel panel--accent text--left'>
+        <div className='panel__body'>
+          <h4>Validate your DKIM Signature</h4>
+          <p className='paddingBottom--md'>Send an email to this generated email address, then view your results.</p>
+          <div className='flex'>
+            <div className='col-xs-8'>
+              <input className='input__text input--full' type="text" readOnly={true} value={this.state.email} />
+            </div>
+            <div className='col-xs-4'>
+              <LinkButton type='blue' fullWidth={true} to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -76,10 +87,13 @@ export default class HomePage extends Component {
   render() {
     const { email } = this.state;
     return (
-      <div className="email-generator">
-        <p>{DKIM_INTRO_TEXT}</p>
-        {email ? this.renderShowEmail() : this.renderGenerateEmail()}
-        {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
+      <div className='flex center-xs'>
+        <div className='col-xs-12 col-md-7'>
+          <h1>DKIM Validator</h1>
+          <p className='marginBottom--lg'>{DKIM_INTRO_TEXT}</p>
+          {email ? this.renderShowEmail() : this.renderGenerateEmail()}
+          {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
+        </div>
       </div>
     );
   }

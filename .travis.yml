@@ -3,9 +3,11 @@ language: node_js
 node_js:
   - "6"
 env:
-  - CXX=g++-4.8
-  - NODE_ENV=staging
-  - NODE_ENV=production
+  global:
+    - CXX=g++-4.8
+  matrix:
+    - NODE_ENV=staging
+    - NODE_ENV=production
 addons:
   apt:
     sources:

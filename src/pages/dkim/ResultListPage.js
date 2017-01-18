@@ -61,10 +61,15 @@ export default class ResultListPage extends Component {
   renderHeader() {
     const { email } = this.props.params;
     return (
-      <div>
-        <p><strong>Results for Test Address:</strong> {email}</p>
-        <ActionButton action={() => this.getResults()}>Refresh</ActionButton>
-        <ActionButton>Share</ActionButton>
+      <div className='panel panel--accent'>
+        <div className='panel__body'>
+          <div className='float--right'>
+            <ActionButton action={() => this.getResults()}>Refresh</ActionButton>
+            <ActionButton>Share</ActionButton>
+          </div>
+          <p>Generated Test Address:</p>
+          <h5>{email}</h5>
+        </div>
       </div>
     );
   }
@@ -72,11 +77,18 @@ export default class ResultListPage extends Component {
   render() {
     const { error, tableHeaders, tableRows } = this.state;
     return (
-      <div>
-        {this.renderHeader()}
-        {error && this.renderError()}
-        <Table className='dkim-list-table' headers={tableHeaders} rows={tableRows} />
-        {(tableRows.length === 0) && <p>No messages have been recieved to this test address.</p>}
+      <div className='flex center-xs'>
+        <div className='col-xs-12 col-md-7'>
+          {this.renderHeader()}
+          {error && this.renderError()}
+
+          <div className='panel'>
+            <div className='panel__body'>
+              <Table className='dkim-list-table' headers={tableHeaders} rows={tableRows} />
+              {(tableRows.length === 0) && <p>No messages have been recieved to this test address.</p>}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
