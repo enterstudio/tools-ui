@@ -64,6 +64,7 @@
   },
   "scripts": {
     "start": "npm run fix && node scripts/start.js",
+    "set-env": "scripts/set-env.sh",
     "build": "node scripts/build.js",
     "test": "npm run lint && node scripts/test.js --env=jsdom",
     "lint": "eslint \"src/**/*.js\"",
