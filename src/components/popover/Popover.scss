@@ -1,0 +1,35 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+.copyPopover {
+  &__label {
+    margin-bottom: 0;
+
+    color: grayscale(1);
+    font-family: $gotham-regular;
+    font-size: rem(12);
+    font-weight: 500;
+
+    line-height: rem(18);
+
+    .fa {
+      display: inline-block;
+      font-size: rem(15);
+      color: color(green);
+      width: rem(15);
+    }
+  }
+
+  &__input.input__text {
+    border: none;
+    padding: 0 0 0 rem(21);
+
+    font-size: rem(12);
+    color: grayscale(5);
+    line-height: rem(18);
+
+    &:hover, &:active, &:focus {
+      border: none;
+    }
+  }
+}
