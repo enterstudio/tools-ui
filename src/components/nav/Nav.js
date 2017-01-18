@@ -52,7 +52,7 @@ class Nav extends Component {
       <nav className={`nav ${sticky && 'nav--sticky'}`}>
         <div className='container'>
           <a href='http://sparkpost.com' className='nav__logoLink' title='SparkPost'>
-            <Logo></Logo>
+            <Logo/>
           </a>
 
           <Link
