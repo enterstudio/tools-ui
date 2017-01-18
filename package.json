@@ -96,9 +96,21 @@
   "babel": {
     "presets": [
       "react-app"
+    ],
+    "plugins": [
+      ["module-resolver", {
+        "root": ["./src"]
+      }]
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "env": {
+      "browser": true,
+      "phantomjs": true
+    },
+    "rules": {
+      "max-lines": ["warn", { "max": 150, "skipComments": true }]
+    },
+    "extends": ["react-app", "sparkpost"]
   }
 }

@@ -44,8 +44,7 @@ export default class ResultListPage extends Component {
       });
   }
 
-  renderResultListRow(values) {
-    const { id, subject, result, header_from, received } = values;
+  renderResultListRow({ id, subject, result, header_from, received }) {
     const { email } = this.props.params;
     return (
       <ResultListRow key={id}

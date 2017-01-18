@@ -15,7 +15,7 @@ addons:
     packages:
       - g++-4.8
 install: npm install
-script: "npm run build"
+script: "npm test && npm run build"
 deploy:
   - provider: s3
     access_key_id: $ENG_AWS_ACCESS_KEY_ID

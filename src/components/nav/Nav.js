@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+
 import { Logo } from 'components/logo/Logo';
 import { throttle } from 'utils';
 
