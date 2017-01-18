@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 import Icon from '../Icon';
 import { CopyPopover } from '../popover/Popover';
+import { ActionLink } from '../button/Button';
 
 // TODO Finish styling error
 const Error = (props) => {
@@ -23,11 +23,11 @@ const ResultListHeader = (props) => {
       <div className='panel__body'>
 
         <div className='float--right'>
-          {!loggedIn && <Link className='actionLink' to='/'>Save Results</Link>}
+          {!loggedIn && <ActionLink to='/'>Save Results</ActionLink>}
           <CopyPopover>
             <a className='actionLink' title='Share'>Share</a>
           </CopyPopover>
-          <a className='actionLink' onClick={getResults} title='Refresh Messages'>Refresh</a>
+          <ActionLink onClick={getResults} title='Refresh Messages'>Refresh</ActionLink>
         </div>
 
         <p className='text--muted marginBottom--xs'>Generated Test Address</p>

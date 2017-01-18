@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import classNames from 'classnames';
 const noop = () => {};
 
+import './Button.scss';
+
 const mapPropsToClasses = ({ type, size, accent, fullWidth, icon, states, extraClasses }) => (
   classNames('button', {
     [`button--${type}`]: type,
@@ -35,4 +37,14 @@ const LinkButton = (props) => {
   );
 };
 
-export { ActionButton, LinkButton };
+const ActionLink = (props) => {
+  const { to = null, onClick = null, title = '', children } = props;
+
+  return (
+    <Link to={to} onClick={onClick} className='actionLink' title={title}>
+      {children}
+    </Link>
+  );
+};
+
+export { ActionButton, LinkButton, ActionLink };

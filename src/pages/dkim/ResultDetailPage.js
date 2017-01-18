@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '../../config';
 
 import Table, { VerticalTable } from '../../components/Table';
-import { ActionButton, LinkButton } from '../../components/Button';
+import { ActionButton, LinkButton } from '../../components/button/Button';
 import Icon from '../../components/Icon';
 
 export default class ResultDetailPage extends Component {

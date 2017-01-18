@@ -3,7 +3,7 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 import config from '../../config';
 import { DKIM_INTRO_TEXT, DKIM_COOKIE_NAME } from '../../constants/text';
-import { ActionButton } from '../../components/Button';
+import { ActionButton } from '../../components/button/Button';
 import ShowEmail from '../../components/dkim/ShowEmail';
 import GenerateEmail from '../../components/dkim/GenerateEmail';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { LinkButton } from '../Button';
+import { LinkButton } from '../button/Button';
 
 export default (props) => {
   const { email } = props;
