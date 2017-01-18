@@ -20,10 +20,7 @@ $nav-height: rem(57);
     display: inline-block;
     padding: 0 rem(30);
 
-    // TODO Move font family vars into shared - @sparkpost/styles:
-    // $gotham-narrow: 'Gotham Narrow SSm A', 'Gotham Narrow SSm B', sans-serif;
-    // $gotham-regular: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
-
+    // font-family: $gotham-regular
     font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
     font-size: rem(12);
     line-height: $nav-height;
