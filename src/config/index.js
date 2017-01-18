@@ -8,4 +8,4 @@ const getConfig = (env) => (
   Object.assign({}, defaultConfig, envs[env])
 );
 
-export default getConfig(process.env.NODE_ENV);
+export default getConfig(process.env.REACT_APP_ENV);
