@@ -39,9 +39,9 @@ export default class ResultListPage extends Component {
           )),
           loading: false
         });
-      }, ({ response }) => {
+      }, ({ response: { data: { errors = [] }}}) => {
         this.setState({
-          error: response.data.errors[0],
+          error: errors[0],
           loading: false
         });
       });

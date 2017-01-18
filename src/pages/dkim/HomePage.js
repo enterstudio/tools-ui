@@ -3,7 +3,9 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 import config from '../../config';
 import { DKIM_INTRO_TEXT, DKIM_COOKIE_NAME } from '../../constants/text';
-import { ActionButton, LinkButton } from '../../components/Button';
+import { ActionButton } from '../../components/Button';
+import ShowEmail from '../../components/dkim/ShowEmail';
+import GenerateEmail from '../../components/dkim/GenerateEmail';
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -36,40 +38,6 @@ export default class HomePage extends Component {
       });
   }
 
-  renderGenerateEmail() {
-    const extraClasses = [];
-    const { error } = this.state;
-    if (error) { extraClasses.push('has-error'); }
-
-    return (
-      <div className='panel panel--accent'>
-        <div className='panel__body paddingTop--xl paddingBottom--xl text--center'>
-          <h4>To get started, click on the button below to generate an email address.</h4>
-          <ActionButton type='blue' action={() => this.generate()} extraClasses={extraClasses}>Generate Email Address</ActionButton>
-        </div>
-      </div>
-    );
-  }
-
-  renderShowEmail() {
-    return (
-      <div className='panel panel--accent text--left'>
-        <div className='panel__body'>
-          <h4>Validate your DKIM Signature</h4>
-          <p className='paddingBottom--md'>Send an email to this generated email address, then view your results.</p>
-          <div className='flex'>
-            <div className='col-xs-8'>
-              <input className='input__text input--full' type="text" readOnly={true} value={this.state.email} />
-            </div>
-            <div className='col-xs-4'>
-              <LinkButton type='blue' fullWidth={true} to={`/dkim/results/${this.state.email}`}>View Results</LinkButton>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   deleteCookie() {
     cookie.remove(DKIM_COOKIE_NAME);
     this.setState({ email: null });
@@ -91,7 +59,7 @@ export default class HomePage extends Component {
         <div className='col-xs-12 col-md-7'>
           <h1>DKIM Validator</h1>
           <p className='marginBottom--lg'>{DKIM_INTRO_TEXT}</p>
-          {email ? this.renderShowEmail() : this.renderGenerateEmail()}
+          {email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} />}
           {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
         </div>
       </div>

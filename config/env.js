@@ -3,6 +3,10 @@
 
 var REACT_APP = /^REACT_APP_/i;
 
+// Default REACT_APP_ENV to 'development' if not already set
+// Note: this is the env value used for config
+process.env.REACT_APP_ENV = process.env.REACT_APP_ENV || 'development';
+
 function getClientEnvironment(publicUrl) {
   var processEnv = Object
     .keys(process.env)
