@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { ActionButton, LinkButton } from '../../src/components/Button';
+import { ActionButton, LinkButton } from 'components/button/Button';
 
 describe('snapshot tests', () => {
   test('ActionButton will render correctly with all options', () => {

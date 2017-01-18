@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionButton } from '../button/Button';
+import { ActionButton } from 'components/button/Button';
 
 export default (props) => (
   <div className='panel panel--accent'>

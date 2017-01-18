@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
-import App from './components/App';
-import DKIMHome from './pages/dkim/HomePage';
-import DKIMResults from './pages/dkim/ResultListPage';
-import DKIMDetail from './pages/dkim/ResultDetailPage';
+import App from 'components/App';
+import DKIMHome from 'pages/dkim/HomePage';
+import DKIMResults from 'pages/dkim/ResultListPage';
+import DKIMDetail from 'pages/dkim/ResultDetailPage';
 
 export default (
   <Route>

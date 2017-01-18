@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from './nav/Nav';
-import Footer from './footer/Footer';
+import Nav from 'components/nav/Nav';
+import Footer from 'components/footer/Footer';
 
 export default (props) => (
   <div className='pageWrapper'>

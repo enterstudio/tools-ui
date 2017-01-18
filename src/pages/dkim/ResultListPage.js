@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import config from '../../config';
+import config from 'config/index';
 
-import MessageRow from '../../components/dkim/MessageRow';
-import ResultListHeader from '../../components/dkim/ResultListHeader';
+import MessageRow from 'components/dkim/MessageRow';
+import ResultListHeader from 'components/dkim/ResultListHeader';
 
 export default class ResultListPage extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ export default class ResultListPage extends Component {
     this.getResults();
   }
 
+  // TODO move this to redux
   getResults() {
     const { email } = this.props.params;
     this.setState({ loading: true });

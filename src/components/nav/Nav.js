@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Logo } from '../logo/Logo';
 import { throttle } from '../../utils';
+
 import './Nav.scss';
 
 class Nav extends Component {

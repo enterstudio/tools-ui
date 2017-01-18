@@ -1,19 +1,7 @@
 import React from 'react';
-
-import Icon from '../Icon';
-import { CopyPopover } from '../popover/Popover';
-import { ActionLink } from '../button/Button';
-
-// TODO Finish styling error
-const Error = (props) => {
-  const { error } = props;
-  return (
-    <div className='panel__body'>
-      <Icon name='exclamation-circle' />
-      {error.message}
-    </div>
-  );
-};
+import { CopyPopover } from 'components/popover/Popover';
+import { ActionLink } from 'components/button/Button';
+import Error from 'components/errors/ErrorMessage';
 
 const ResultListHeader = (props) => {
   const { email, getResults, error, loggedIn } = props;

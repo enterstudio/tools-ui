@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Icon from '../../src/components/Icon';
+import Icon from 'components/Icon';
 
 describe('Icon', () => {
 
-  it('should render correctly with all options', () => {
+  test('should render correctly with all options', () => {
     expect(renderer.create(<Icon
       name='awesome-icon'
       size='lg'
@@ -13,7 +13,7 @@ describe('Icon', () => {
     />)).toMatchSnapshot();
   });
 
-  it('should render correctly with no options', () => {
+  test('should render correctly with no options', () => {
     const someFunction = () => {};
     expect(renderer.create(<Icon />)).toMatchSnapshot();
   });

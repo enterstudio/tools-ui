@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import config from '../../config';
-
-import Table, { VerticalTable } from '../../components/Table';
-import { ActionButton, LinkButton } from '../../components/button/Button';
-import Icon from '../../components/Icon';
+import config from 'config/index';
+import Table, { VerticalTable } from 'components/Table';
+import { ActionButton, LinkButton } from 'components/button/Button';
+import Icon from 'components/Icon';
+import ErrorMessage from 'components/errors/ErrorMessage';
 
 export default class ResultDetailPage extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ export default class ResultDetailPage extends Component {
           <LinkButton to={to} type='muted'><Icon name='arrow-left' /> Back</LinkButton>
           <ActionButton type='muted'><Icon name='share-alt' /> Share</ActionButton>
         </div>
-        {error && <p>An error occurred getting details</p>}
+        <ErrorMessage error={error} />
         <VerticalTable rows={detailTableRows} />
         <Table headers={sigTableHeaders} rows={sigTableRows} />
       </div>
