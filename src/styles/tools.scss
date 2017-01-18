@@ -31,3 +31,17 @@ $fa-font-path: "~@sparkpost/styles/src/assets/fonts";
 @import "~@sparkpost/styles/src/assets/scss/components/formelements";
 
 @import "./layout";
+
+.actionLink {
+  display: inline-block;
+  padding: 0 rem(9);
+
+  color: color(orange);
+  font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: color(orange--dark);
+  }
+}

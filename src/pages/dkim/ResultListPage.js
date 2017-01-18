@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import config from '../../config';
 
-import { ActionButton } from '../../components/Button';
-import Icon from '../../components/Icon';
 import MessageRow from '../../components/dkim/MessageRow';
+import ResultListHeader from '../../components/dkim/ResultListHeader';
 
 export default class ResultListPage extends Component {
   constructor(props) {
@@ -44,33 +43,6 @@ export default class ResultListPage extends Component {
       });
   }
 
-  renderError() {
-    const { error } = this.state;
-    if (!error) { return null; }
-    return (
-      <div className='error'>
-        <Icon name='exclamation-circle' />
-        {error.message}
-      </div>
-    );
-  }
-
-  renderHeader() {
-    const { email } = this.props.params;
-    return (
-      <div className='panel panel--accent'>
-        <div className='panel__body'>
-          <div className='float--right'>
-            <ActionButton action={() => this.getResults()}>Refresh</ActionButton>
-            <ActionButton>Share</ActionButton>
-          </div>
-          <p>Generated Test Address:</p>
-          <h5>{email}</h5>
-        </div>
-      </div>
-    );
-  }
-
   renderMessageRow(values) {
     const { id, subject, result, header_from, received } = values;
     const { email } = this.props.params;
@@ -97,11 +69,12 @@ export default class ResultListPage extends Component {
 
   render() {
     const { error, tableRows } = this.state;
+    const { email } = this.props.params;
+
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-7'>
-          {this.renderHeader()}
-          {error && this.renderError()}
+          <ResultListHeader email={email} error={error} getResults={() => this.getResults()}/>
           {tableRows.map((values) => this.renderMessageRow(values))}
           {tableRows.length === 0 && this.renderEmptyTable()}
         </div>

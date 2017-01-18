@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "devDependencies": {
-    "@sparkpost/styles": "^1.5.2",
+    "@sparkpost/styles": "^1.5.3",
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.1.1",
