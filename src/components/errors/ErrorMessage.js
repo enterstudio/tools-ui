@@ -1,13 +1,14 @@
 import React from 'react';
 import Icon from 'components/Icon';
+import _ from 'lodash';
 
-export default (props) => {
-  const { error, icon = 'exclamation-circle' } = props;
-  if (!error) { return null; }
+export default ({ error = {}, message = false, icon = 'exclamation-circle' }) => {
+  const errorMessage = _.get(error, 'message', message);
+  if (!errorMessage) { return null; }
   return (
     <div className='error'>
       {icon && <Icon name={icon} />}
-      {error.message}
+      {errorMessage}
     </div>
   );
 };

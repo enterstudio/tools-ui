@@ -4,7 +4,7 @@ import { CTA, LINKS } from 'components/footer/constants';
 
 import './Footer.scss';
 
-const Footer = (props) => (
+const Footer = () => (
   <div className='footer'>
     <div className='container'>
 
