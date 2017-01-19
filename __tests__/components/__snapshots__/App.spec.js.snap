@@ -122,7 +122,7 @@ exports[`test App renders correctly 1`] = `
           Login
         </a>
         <a
-          className="nav__button"
+          className="button button--blue nav__button"
           href="http://app.sparkpost.com/sign-up">
           Sign Up
         </a>
