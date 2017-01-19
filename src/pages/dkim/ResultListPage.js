@@ -12,7 +12,7 @@ export default class ResultListPage extends Component {
     this.state = {
       error: null,
       tableRows: [],
-      loading: false // should this just be true at first?
+      loading: true
     };
   }
 
@@ -58,26 +58,42 @@ export default class ResultListPage extends Component {
     );
   }
 
-  renderEmptyTable() {
+  renderEmpty() {
     return (
-      <div className='panel'>
-        <div className='panel__body text--center'>
-          <p>No messages have been recieved to this test address.</p>
-        </div>
+      <div className='text--center paddingTop--md'>
+        <p className='text--regular text--muted marginBottom--none'>No Messages Received</p>
+        <p className='text--regular text--muted'>Send an email to your generated test address!</p>
       </div>
     );
   }
 
+  renderLoading() {
+    return (
+      <div className='text--center paddingTop--md'>
+        <p className='text--regular text--muted'>Loading Messages...</p>
+      </div>
+    );
+  }
+
+  renderResults() {
+    const { tableRows } = this.state;
+
+    if (tableRows.length === 0) {
+      return this.renderEmpty();
+    }
+
+    return tableRows.map((values) => this.renderResultListRow(values));
+  }
+
   render() {
-    const { error, tableRows } = this.state;
+    const { error, loading } = this.state;
     const { email } = this.props.params;
 
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10 col-lg-8'>
           <ResultListHeader email={email} error={error} getResults={() => this.getResults()}/>
-          {tableRows.map((values) => this.renderResultListRow(values))}
-          {tableRows.length === 0 && this.renderEmptyTable()}
+          {loading ? this.renderLoading() : this.renderResults()}
         </div>
       </div>
     );

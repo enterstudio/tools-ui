@@ -2,7 +2,7 @@ html {
   background: grayscale(9);
 }
 
-$footer-height: 28rem; // Change this later
+$footer-height: 24rem; // Change this later
 $nav-height: rem(57);
 
 .pageWrapper {
@@ -16,4 +16,8 @@ $nav-height: rem(57);
   margin: 0 auto;
   width: 90%;
   max-width: break(xl);
+
+  &--tool {
+    min-height: 70vh;
+  }
 }

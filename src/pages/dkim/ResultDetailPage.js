@@ -16,7 +16,7 @@ export default class ResultDetailPage extends Component {
       detailTableRows: [],
       sigTableHeaders: ['Status', 'DKIM Selector (s=)', 'Signing Domain (d=)', 'Timestamp (t=)'],
       sigTableRows: [],
-      loading: false // should this just be true at first?
+      loading: true
     };
   }
 
@@ -48,20 +48,37 @@ export default class ResultDetailPage extends Component {
       });
   }
 
-  render() {
+  renderLoading() {
+    return (
+      <div className='text--center paddingTop--xl paddingBottom--xl'>
+        <p className='text--regular text--muted'>Loading Message Details...</p>
+      </div>
+    );
+  }
+
+  renderDetails() {
     const { error, detailTableRows, sigTableHeaders, sigTableRows } = this.state;
+    return (
+      <div>
+        <ErrorMessage error={error} />
+        <ResultDetailHeader rows={detailTableRows} error={error} />
+        <div className='panel'>
+          <div className='panel__body padding--none'>
+            <Table headers={sigTableHeaders} rows={sigTableRows} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  render() {
+    const { loading } = this.state;
     const back = `/dkim/results/${this.props.params.email}`;
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10'>
           <div className='text--left'><BackLink to={back} title='DKIM Results' /></div>
-          <ErrorMessage error={error} />
-          <ResultDetailHeader rows={detailTableRows} error={error} />
-          <div className='panel'>
-            <div className='panel__body padding--none'>
-              <Table headers={sigTableHeaders} rows={sigTableRows} />
-            </div>
-          </div>
+          {loading ? this.renderLoading() : this.renderDetails()}
         </div>
       </div>
     );

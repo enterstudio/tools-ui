@@ -4,7 +4,7 @@ import Footer from 'components/footer/Footer';
 
 export default (props) => (
   <div className='pageWrapper'>
-    <div className='container paddingTop--xxl paddingBottom--xxl'>
+    <div className='container container--tool paddingTop--xl paddingBottom--xl'>
       {props.children}
     </div>
     <Footer></Footer>

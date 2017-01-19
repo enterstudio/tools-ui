@@ -53,14 +53,29 @@ export default class HomePage extends Component {
     );
   }
 
-  render() {
+  renderLoading() {
+    return (
+      <div className='panel panel--accent'>
+        <div className='panel__body text--center'>
+          <p className='text--regular text--muted paddingTop--xl paddingBottom--xl'>Generating Email Address...</p>
+        </div>
+      </div>
+    );
+  }
+
+  renderGenerateOrEmail() {
     const { email } = this.state;
+    return email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} />;
+  }
+
+  render() {
+    const { loading } = this.state;
     return (
       <div className='flex center-xs'>
-        <div className='col-xs-12 col-md-7'>
+        <div className='col-xs-12 col-md-10 col-lg-7'>
           <h1>DKIM Validator</h1>
           <p className='marginBottom--lg'>{INTRO_TEXT}</p>
-          {email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} />}
+          {loading ? this.renderLoading() : this.renderGenerateOrEmail()}
           {process.env.NODE_ENV === 'development' && this.renderDeleteCookie()}
         </div>
       </div>
