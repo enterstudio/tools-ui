@@ -1,0 +1,226 @@
+exports[`ResultListHeader component should render 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="">
+        Save Results
+      </a>
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Refresh Messages">
+        Refresh
+      </a>
+    </div>
+    <p
+      className="text--muted marginBottom--xs">
+      Generated Test Address
+    </p>
+    <h3>
+      some@email.com
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`ResultListHeader component should render when logged in 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Refresh Messages">
+        Refresh
+      </a>
+    </div>
+    <p
+      className="text--muted marginBottom--xs">
+      Generated Test Address
+    </p>
+    <h3>
+      some@email.com
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`ResultListHeader component should render when not logged in 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="">
+        Save Results
+      </a>
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Refresh Messages">
+        Refresh
+      </a>
+    </div>
+    <p
+      className="text--muted marginBottom--xs">
+      Generated Test Address
+    </p>
+    <h3>
+      some@email.com
+    </h3>
+  </div>
+</div>
+`;
+
+exports[`ResultListHeader component should render with an error present 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="">
+        Save Results
+      </a>
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="Refresh Messages">
+        Refresh
+      </a>
+    </div>
+    <p
+      className="text--muted marginBottom--xs">
+      Generated Test Address
+    </p>
+    <h3>
+      some@email.com
+    </h3>
+    <div
+      className="error">
+      <i
+        className="fa fa-exclamation-circle" />
+      oops
+    </div>
+  </div>
+</div>
+`;
