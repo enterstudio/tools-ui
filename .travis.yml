@@ -26,7 +26,7 @@ deploy:
     skip_cleanup: true
     local_dir: build
     on:
-      branch: feature/FAD-4223
+      branch: master
       condition: $REACT_APP_ENV = staging
       node: "6"
   - provider: s3
@@ -38,6 +38,6 @@ deploy:
     skip_cleanup: true
     local_dir: build
     on:
-      branch: feature/FAD-4223
+      tags: true
       condition: $REACT_APP_ENV = production
       node: "6"

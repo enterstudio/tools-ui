@@ -32,8 +32,7 @@ exports[`ResultListRow component should render 1`] = `
         </div>
         <div
           className="dkimResultListRow__received">
-          Delivered on 
-          Sat Dec 31 2016 19:00:00 GMT-0500 (EST)
+          Sun Jan 01 2017 00:00:00 GMT+0000 (UTC)
            
           <i
             className="fa fa-chevron-right" />
