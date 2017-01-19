@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
-import Table, { VerticalTable } from 'components/Table';
-import { ActionButton, LinkButton } from 'components/button/Button';
+
+import Table from 'components/Table';
+import ResultDetailHeader from 'components/dkim/ResultDetailHeader';
+import { ActionLink } from 'components/button/Button';
 import Icon from 'components/Icon';
 import ErrorMessage from 'components/errors/ErrorMessage';
 
@@ -33,7 +35,7 @@ export default class ResultDetailPage extends Component {
             ['Subject', results.subject],
             ['Sender', results.header_from],
             ['Date', new Date(results.received).toLocaleString()],
-            ['DKIM Status', results.result ? 'Passed' : 'Failed']
+            ['Status', results.result ? 'Passed' : 'Failed']
           ],
           sigTableRows: results.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A'])),
           loading: false
@@ -48,16 +50,19 @@ export default class ResultDetailPage extends Component {
 
   render() {
     const { error, detailTableRows, sigTableHeaders, sigTableRows } = this.state;
-    const to = `/dkim/results/${this.props.params.email}`;
+    const back = `/dkim/results/${this.props.params.email}`;
     return (
-      <div>
-        <div className='button-header'>
-          <LinkButton to={to} type='muted'><Icon name='arrow-left' /> Back</LinkButton>
-          <ActionButton type='muted'><Icon name='share-alt' /> Share</ActionButton>
+      <div className='flex center-xs'>
+        <div className='col-xs-12 col-md-10'>
+          <div className='text--left'><ActionLink to={back}><Icon name='arrow-left' /> Back</ActionLink></div>
+          <ErrorMessage error={error} />
+          <ResultDetailHeader rows={detailTableRows} error={error} />
+          <div className='panel'>
+            <div className='panel__body padding--none'>
+              <Table headers={sigTableHeaders} rows={sigTableRows} />
+            </div>
+          </div>
         </div>
-        <ErrorMessage error={error} />
-        <VerticalTable rows={detailTableRows} />
-        <Table headers={sigTableHeaders} rows={sigTableRows} />
       </div>
     );
   }

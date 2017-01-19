@@ -20,8 +20,7 @@ $nav-height: rem(57);
     display: inline-block;
     padding: 0 rem(30);
 
-    // font-family: $gotham-regular
-    font-family: 'Gotham SSm A', 'Gotham SSm B', sans-serif;
+    font-family: $gotham-regular;
     font-size: rem(12);
     line-height: $nav-height;
     color: grayscale(4);
@@ -49,21 +48,16 @@ $nav-height: rem(57);
     }
   }
 
-  &__button {
+  &__button.button {
     display: inline-block;
     padding: 0 1rem;
     margin: 0;
-    background: color(blue);
 
-    color: grayscale(white);
-    font-size: rem(12);
-    font-weight: 600;
+    border: none;
     line-height: $nav-height;
-    text-transform: uppercase;
 
-    &:hover {
-      color: grayscale(white);
-      background: color(blue--dark);
+    &:hover, &:active, &:focus {
+      border: none;
       text-decoration: none;
     }
   }

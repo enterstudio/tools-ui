@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
 
-import MessageRow from 'components/dkim/MessageRow';
+import ResultListRow from 'components/dkim/ResultListRow';
 import ResultListHeader from 'components/dkim/ResultListHeader';
 
 export default class ResultListPage extends Component {
@@ -44,11 +44,11 @@ export default class ResultListPage extends Component {
       });
   }
 
-  renderMessageRow(values) {
+  renderResultListRow(values) {
     const { id, subject, result, header_from, received } = values;
     const { email } = this.props.params;
     return (
-      <MessageRow key={id}
+      <ResultListRow key={id}
         id={id}
         subject={subject}
         result={result}
@@ -76,7 +76,7 @@ export default class ResultListPage extends Component {
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-7'>
           <ResultListHeader email={email} error={error} getResults={() => this.getResults()}/>
-          {tableRows.map((values) => this.renderMessageRow(values))}
+          {tableRows.map((values) => this.renderResultListRow(values))}
           {tableRows.length === 0 && this.renderEmptyTable()}
         </div>
       </div>

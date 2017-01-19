@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Logo } from '../logo/Logo';
-import { throttle } from '../../utils';
+import { Logo } from 'components/logo/Logo';
+import { throttle } from 'utils';
 
 import './Nav.scss';
 
@@ -11,14 +11,16 @@ class Nav extends Component {
     this.state = {
       sticky: false
     };
+
+    this.handleScroll = throttle(this.handleScroll.bind(this), 400);
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', throttle((e) => this.handleScroll(e)), 400);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', throttle((e) => this.handleScroll(e)), 400);
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   handleScroll(e) {
@@ -31,7 +33,7 @@ class Nav extends Component {
     return (
       <div className='float--right'>
         <a href='http://app.sparkpost.com/auth' className='nav__link'>Login</a>
-        <a href='http://app.sparkpost.com/sign-up' className='nav__button'>Sign Up</a>
+        <a href='http://app.sparkpost.com/sign-up' className='button button--blue nav__button'>Sign Up</a>
       </div>
     );
   }
@@ -40,7 +42,7 @@ class Nav extends Component {
     return (
       <div className='float--right'>
         <a href='' className='nav__link'>Logout</a>
-        <a href='http://app.sparkpost.com/dashboard' className='nav__button'>SparkPost Dashboard</a>
+        <a href='http://app.sparkpost.com/dashboard' className='button button--blue nav__button'>SparkPost Dashboard</a>
       </div>
     );
   }
@@ -50,7 +52,7 @@ class Nav extends Component {
     const { sticky } = this.state;
 
     return (
-      <nav className={`nav ${sticky && 'nav--sticky'}`}>
+      <nav className={`nav ${sticky === true && 'nav--sticky'}`}>
         <div className='container'>
           <a href='http://sparkpost.com' className='nav__logoLink' title='SparkPost'>
             <Logo/>

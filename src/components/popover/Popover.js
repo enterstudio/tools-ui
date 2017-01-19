@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Icon from '../../components/Icon';
+import Icon from 'components/Icon';
 import './Popover.scss';
 
-// This is a popover that copies window.location.href
+/**
+ * Produces a popover that copies url to clipboard on click
+ */
 class CopyPopover extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false
     };
+
+    // Cannot use an arrow function in this case or it will not unmount
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener('click', (e) => this.handleClickOutside(e));
+    window.addEventListener('click', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', (e) => this.handleClickOutside(e));
+    window.removeEventListener('click', this.handleClickOutside);
   }
 
   handleClickOutside(e) {

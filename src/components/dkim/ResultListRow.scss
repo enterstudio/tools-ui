@@ -2,7 +2,7 @@
 @import "~@sparkpost/styles/src/assets/scss/shared/functions";
 
 // TODO Make responsive
-.messageRow {
+.dkimResultListRow {
   position: relative;
 
   .panel { transition: box-shadow 0.15s; }
@@ -17,7 +17,7 @@
       box-shadow: shadow(2), 0 0 36px rgba(#000, 0.05);
     }
 
-    .messageRow__received .fa {
+    .dkimResultListRow__received .fa {
       color: color(blue);
     }
   }
