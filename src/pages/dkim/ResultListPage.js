@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
+import moment from 'moment';
 
 import ResultListRow from 'components/dkim/ResultListRow';
 import ResultListHeader from 'components/dkim/ResultListHeader';
@@ -31,7 +32,7 @@ export default class ResultListPage extends Component {
             {
               id, header_from, subject,
               result: result ? 'Passed' : 'Failed',
-              received: new Date(received).toLocaleString()
+              received: moment(received).local().format('[Delivered on] MMM D YYYY[, at] h:mm A')
             }
           )),
           loading: false
@@ -73,7 +74,7 @@ export default class ResultListPage extends Component {
 
     return (
       <div className='flex center-xs'>
-        <div className='col-xs-12 col-md-7'>
+        <div className='col-xs-12 col-md-10 col-lg-8'>
           <ResultListHeader email={email} error={error} getResults={() => this.getResults()}/>
           {tableRows.map((values) => this.renderResultListRow(values))}
           {tableRows.length === 0 && this.renderEmptyTable()}

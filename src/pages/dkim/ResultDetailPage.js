@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
+import moment from 'moment';
 
 import Table from 'components/Table';
 import ResultDetailHeader from 'components/dkim/ResultDetailHeader';
-import { ActionLink } from 'components/button/Button';
-import Icon from 'components/Icon';
+import { BackLink } from 'components/button/Button';
 import ErrorMessage from 'components/errors/ErrorMessage';
 
 export default class ResultDetailPage extends Component {
@@ -33,8 +33,8 @@ export default class ResultDetailPage extends Component {
         this.setState({
           detailTableRows: [
             ['Subject', results.subject],
-            ['Sender', results.header_from],
-            ['Date', new Date(results.received).toLocaleString()],
+            ['From', results.header_from],
+            ['On', moment(results.received).local().format('MMM D YYYY[, at] h:mm A')],
             ['Status', results.result ? 'Passed' : 'Failed']
           ],
           sigTableRows: results.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A'])),
@@ -54,7 +54,7 @@ export default class ResultDetailPage extends Component {
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10'>
-          <div className='text--left'><ActionLink to={back}><Icon name='arrow-left' /> Back</ActionLink></div>
+          <div className='text--left'><BackLink to={back} title='DKIM Results' /></div>
           <ErrorMessage error={error} />
           <ResultDetailHeader rows={detailTableRows} error={error} />
           <div className='panel'>

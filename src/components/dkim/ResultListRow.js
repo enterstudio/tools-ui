@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Icon from 'components/Icon';
-
 import './ResultListRow.scss';
 
 const ResultListRow = (props) => {
@@ -23,7 +22,7 @@ const ResultListRow = (props) => {
               <span className='dkimResultListRow__label'>from</span>
               {header_from}
             </div>
-            <div className='dkimResultListRow__received'>Delivered on {received} <Icon name='chevron-right' /></div>
+            <div className='dkimResultListRow__received'>{received} <Icon name='chevron-right' /></div>
           </div>
         </div>
       </div>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import classNames from 'classnames';
+import _ from 'lodash';
 
 import { Logo } from 'components/logo/Logo';
-import { throttle } from 'utils';
 
 import './Nav.scss';
 
@@ -13,7 +14,7 @@ class Nav extends Component {
       sticky: false
     };
 
-    this.handleScroll = throttle(this.handleScroll.bind(this), 400);
+    this.handleScroll = _.throttle(this.handleScroll.bind(this), 400);
   }
 
   componentDidMount() {
@@ -51,9 +52,12 @@ class Nav extends Component {
   render() {
     const { loggedIn, path } = this.props;
     const { sticky } = this.state;
+    const navClasses = classNames('nav', {
+      'nav--sticky': sticky
+    });
 
     return (
-      <nav className={`nav ${sticky === true && 'nav--sticky'}`}>
+      <nav className={navClasses}>
         <div className='container'>
           <a href='http://sparkpost.com' className='nav__logoLink' title='SparkPost'>
             <Logo/>

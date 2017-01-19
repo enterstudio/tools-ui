@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Icon from 'components/Icon';
 import classNames from 'classnames';
 const noop = () => {};
 
@@ -37,6 +38,10 @@ const LinkButton = (props) => {
   );
 };
 
+/**
+ * Produces an orange link
+ * Can be used to link or execute an action
+ */
 const ActionLink = (props) => {
   const { to = null, onClick = null, title = '', children } = props;
 
@@ -47,4 +52,15 @@ const ActionLink = (props) => {
   );
 };
 
-export { ActionButton, LinkButton, ActionLink };
+/**
+ * Produces a blue link to indicate browser back
+ */
+const BackLink = (props) => {
+  const { to = null, title = '' } = props;
+
+  return (
+    <Link to={to} className='backLink' title={title}><Icon name='chevron-left' /> Back</Link>
+  );
+};
+
+export { ActionButton, LinkButton, ActionLink, BackLink };

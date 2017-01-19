@@ -7,11 +7,29 @@
 
   color: color(orange);
   font-weight: 400;
-  font-size: rem(12);
+  font-size: rem(15);
 
   &:hover {
     cursor: pointer;
     text-decoration: none;
     color: color(orange--dark);
+  }
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: rem(9);
+  font-size: rem(15);
+
+  .fa {
+    transition: 0.15s;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    .fa {
+      transform: translate(-1px, 0);
+    }
   }
 }

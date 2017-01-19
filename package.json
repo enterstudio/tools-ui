@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "devDependencies": {
-    "@sparkpost/styles": "^1.5.3",
+    "@sparkpost/styles": "^1.5.4",
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.1.1",
@@ -35,6 +35,7 @@
     "http-proxy-middleware": "0.17.2",
     "jest": "17.0.2",
     "json-loader": "0.5.4",
+    "moment": "^2.17.1",
     "node-sass": "^4.3.0",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
@@ -92,7 +93,9 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["<rootDir>/src/"]
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
   },
   "babel": {
     "presets": [
@@ -105,8 +108,17 @@
       "phantomjs": true
     },
     "rules": {
-      "max-lines": ["warn", { "max": 150, "skipComments": true }]
+      "max-lines": [
+        "warn",
+        {
+          "max": 150,
+          "skipComments": true
+        }
+      ]
     },
-    "extends": ["react-app", "sparkpost"]
+    "extends": [
+      "react-app",
+      "sparkpost"
+    ]
   }
 }
