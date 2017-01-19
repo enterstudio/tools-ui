@@ -76,7 +76,7 @@ exports[`test App renders correctly 1`] = `
     </div>
   </div>
   <nav
-    className="nav false">
+    className="nav">
     <div
       className="container">
       <a
