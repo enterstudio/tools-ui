@@ -7,7 +7,7 @@ const mapPropsToClasses = ({ name, size, extras = [] }) => (
   classNames('fa', {
     [`${iconPrefix}${name}`]: name,
     [`${iconPrefix}${size}`]: size
-  }, extras.map((extra) => `${iconPrefix}${extra}`))
+  }, extras.map((extra) => `${iconPrefix}${extra}`)).trim()
 );
 
 export default (props) => <i className={mapPropsToClasses(props)} />;

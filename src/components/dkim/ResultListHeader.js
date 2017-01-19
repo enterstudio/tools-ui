@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CopyPopover } from 'components/popover/Popover';
 import { ActionLink } from 'components/button/Button';
-import Error from 'components/errors/Error';
+import ErrorMessage from 'components/errors/ErrorMessage';
 
 class ResultListHeader extends Component {
   render() {
@@ -22,7 +22,7 @@ class ResultListHeader extends Component {
           <p className='text--muted marginBottom--xs'>Generated Test Address</p>
           <h3>{email}</h3>
 
-          <Error error={error} />
+          <ErrorMessage error={error} />
         </div>
       </div>
     );

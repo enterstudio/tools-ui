@@ -8,6 +8,7 @@ import ResultDetailHeader from 'components/dkim/ResultDetailHeader';
 import { BackLink } from 'components/button/Button';
 import ErrorMessage from 'components/errors/ErrorMessage';
 import Icon from 'components/Icon';
+import ErrorMessage from 'components/errors/ErrorMessage';
 
 export default class ResultDetailPage extends Component {
   constructor(props) {

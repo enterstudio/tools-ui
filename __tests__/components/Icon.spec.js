@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import Icon from 'components/Icon';
 
-describe('Icon', () => {
+describe('Icon component', () => {
 
   test('should render correctly with all options', () => {
     expect(renderer.create(<Icon

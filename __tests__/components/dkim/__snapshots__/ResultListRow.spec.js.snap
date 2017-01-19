@@ -1,0 +1,45 @@
+exports[`ResultListRow component should render 1`] = `
+<a
+  className="dkimResultListRow"
+  onClick={[Function]}
+  style={Object {}}>
+  <div
+    className="panel marginBottom--none">
+    <div
+      className="panel__body">
+      <div
+        className="dkimResultListRow__result">
+        <i
+          className="fa fa-check-circle" />
+      </div>
+      <div
+        className="dkimResultListRow__details">
+        <div
+          className="dkimResultListRow__subject">
+          <span
+            className="dkimResultListRow__label">
+            subject
+          </span>
+          subject
+        </div>
+        <div
+          className="dkimResultListRow__from">
+          <span
+            className="dkimResultListRow__label">
+            from
+          </span>
+          some@email.com
+        </div>
+        <div
+          className="dkimResultListRow__received">
+          Delivered on 
+          Sat Dec 31 2016 19:00:00 GMT-0500 (EST)
+           
+          <i
+            className="fa fa-chevron-right" />
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+`;

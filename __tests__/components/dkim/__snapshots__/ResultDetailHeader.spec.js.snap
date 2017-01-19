@@ -1,0 +1,256 @@
+exports[`ResultDetailHeader component should render when logged in 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        1
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        2
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        3
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        a
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        b
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        c
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        cool
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        story
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        bro
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ResultDetailHeader component should render when not logged in 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="">
+        Save Results
+      </a>
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        1
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        2
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        3
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        a
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        b
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        c
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        cool
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        story
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        bro
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ResultDetailHeader component should render with rows 1`] = `
+<div
+  className="panel panel--accent">
+  <div
+    className="panel__body">
+    <div
+      className="float--right">
+      <a
+        className="actionLink"
+        onClick={[Function]}
+        style={Object {}}
+        title="">
+        Save Results
+      </a>
+      <span
+        className="popover__group"
+        onClick={[Function]}>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="Share">
+          Share
+        </a>
+        <div
+          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          <h6
+            className="text--left copyPopover__label">
+            <i
+              className="fa fa-check-circle" />
+             Copied to Clipboard!
+          </h6>
+          <input
+            className="input__text input__text--s copyPopover__input"
+            readOnly={true}
+            value="http://localhost/" />
+        </div>
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        1
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        2
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        3
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        a
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        b
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        c
+      </span>
+    </div>
+    <div
+      className="dkimResultDetailHeader">
+      <span
+        className="dkimResultDetailHeader__label">
+        cool
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        story
+      </span>
+      <span
+        className="dkimResultDetailHeader__value">
+        bro
+      </span>
+    </div>
+  </div>
+</div>
+`;

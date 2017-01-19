@@ -30,8 +30,7 @@ export default class ResultListPage extends Component {
         this.setState({
           tableRows: results.map(({ id, subject, result, header_from, received }) => (
             {
-              id, header_from, subject,
-              result: result ? 'Passed' : 'Failed',
+              id, header_from, subject, result,
               received: moment(received).local().format('[Delivered on] MMM D YYYY[, at] h:mm A')
             }
           )),
@@ -45,16 +44,9 @@ export default class ResultListPage extends Component {
       });
   }
 
-  renderResultListRow({ id, subject, result, header_from, received }) {
-    const { email } = this.props.params;
+  renderResultListRow(row) {
     return (
-      <ResultListRow key={id}
-        id={id}
-        subject={subject}
-        result={result}
-        header_from={header_from}
-        received={received}
-        email={email} />
+      <ResultListRow key={row.id} {...row} email={this.props.params.email} />
     );
   }
 
