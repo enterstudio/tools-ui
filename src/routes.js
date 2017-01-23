@@ -4,6 +4,8 @@ import App from 'components/App';
 import DKIMHome from 'pages/dkim/HomePage';
 import DKIMResults from 'pages/dkim/ResultListPage';
 import DKIMDetail from 'pages/dkim/ResultDetailPage';
+import SPFQuery from 'pages/spf/Query';
+import SPFResults from 'pages/spf/Results';
 
 export default (
   <Route>
@@ -13,6 +15,10 @@ export default (
       <Route path='dkim' component={DKIMHome} />
       <Route path='dkim/results/:email' component={DKIMResults} />
       <Route path='dkim/results/:email/:detailId' component={DKIMDetail} />
+
+      <Route path='spf' component={SPFQuery} />
+      <Redirect from='/spf/results' to='/spf' />
+      <Route path='spf/results/:domain' component={SPFResults} />
     </Route>
   </Route>
 );

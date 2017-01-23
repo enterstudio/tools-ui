@@ -70,6 +70,13 @@ class Nav extends Component {
             DKIM Validator
           </Link>
 
+          <Link
+            to='/spf'
+            title='SPF Inspector'
+            className={`nav__link ${path.includes('/spf') && 'is-active'}`}>
+            SPF Inspector
+          </Link>
+
           {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
         </div>
       </nav>
