@@ -56,6 +56,8 @@ class Nav extends Component {
       'nav--sticky': sticky
     });
 
+    const dkimLink = classNames('nav__link', { 'is-active': path.includes('/dkim')});
+
     return (
       <nav className={navClasses}>
         <div className='container'>
@@ -66,7 +68,7 @@ class Nav extends Component {
           <Link
             to='/dkim'
             title='DKIM Validator'
-            className={`nav__link ${path.includes('/dkim') && 'is-active'}`}>
+            className={dkimLink}>
             DKIM Validator
           </Link>
 
