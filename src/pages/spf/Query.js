@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import classNames from 'classnames';
@@ -19,16 +18,15 @@ class Query extends Component {
     return this.state.domain && this.state.domain.indexOf('.') > 0;
   }
 
-  goToResults(e) {
+  handleSubmit(e) {
+    e.preventDefault();
+
     const validDomain = this.validateDomain(this.state.domain);
     this.setState({domainError: !validDomain});
 
-    console.log(this.state);
     if (validDomain) {
       this.props.router.push(`/spf/results/${this.state.domain}`);
     }
-
-    e.preventDefault();
   }
 
   renderPanel() {
@@ -45,12 +43,12 @@ class Query extends Component {
 
   renderForm() {
     return (
-      <form onSubmit={ (e) => this.goToResults(e) }>
+      <form onSubmit={ (e) => this.handleSubmit(e) }>
         <div className="flex">
 
           <div className={classNames('col-xs-8', {'has-error': this.state.domainError })}>
             <input className='input__text input--full' type='text' onChange={(e) => this.setState({domain: e.target.value}) } placeholder='mydomain.com' />
-            <span className="input__error">Please enter a valid domain.</span>
+            <div className="input__error">Please enter a valid domain.</div>
           </div>
 
           <div className='col-xs-4'>

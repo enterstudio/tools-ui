@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { CopyPopover } from 'components/popover/Popover';
+import { BackLink } from 'components/button/Button';
 
 export default class ResultsHeader extends Component {
   constructor(props) {
@@ -13,18 +14,39 @@ export default class ResultsHeader extends Component {
 
   render() {
     return (
-      <div className='panel panel--accent text--left'>
-        <div className='panel__body'>
-          <div className="flex">
-            <div className="col-xs-10">
-              <h1>{ this.props.domain }</h1>
+      <div>
+        <BackLink to='/spf' title='Back to SPF Inspector'></BackLink>
+        <div className='panel panel--accent text--left'>
+          <div className='panel__body'>
+            <div className="flex">
+              <div className="col-xs-8">
+                <h1>{ this.props.domain }</h1>
+                <small className="text--muted">Tested on { this.props.results ? this.props.results.timestamp : '...' }</small>
+              </div>
+              <div className="col-xs-4 clearfix">
+                <span className="padding--md float--right">
+                  Save Results <i className="fa fa-question-circle-o"></i>
+                </span>
+                <span className="padding--md float--right">
+                 <CopyPopover><span>Share</span></CopyPopover>
+                </span>
+                <span className="padding--md float--right">
+                  <span onClick={ this.props.refresh }>Refresh</span>
+                </span>
+              </div>
             </div>
-            <div className="col-xs-1">
-              <CopyPopover><span className="orange">Share</span></CopyPopover>
+
+            <hr/>
+
+            <div className="flex">
+              <div className="col-xs-3">
+                <b>{ this.props.results.authorized_netblocks }</b> Authorized Netblocks
+              </div>
+              <div className="col-xs-9">
+                <b> { this.props.results.dns_lookups }</b> DNS Lookups
+              </div>
             </div>
-            <div className="col-xs-1">
-              <span onClick={ this.props.refresh }>Refresh</span>
-            </div>
+
           </div>
         </div>
       </div>
