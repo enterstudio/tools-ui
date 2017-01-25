@@ -1,10 +1,8 @@
 /* eslint-disable no-console */
-
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import classNames from 'classnames';
 import { INTRO_TEXT } from './constants';
-import { LinkButton } from 'components/button/Button';
 
 
 class Query extends Component {
@@ -21,12 +19,16 @@ class Query extends Component {
     return this.state.domain && this.state.domain.indexOf('.') > 0;
   }
 
-  componentDidMount() {
-    this.props.router.setRouteLeaveHook(this.props.route, () => {
-      const validDomain = this.validateDomain(this.state.domain);
-      this.setState({domainError: !validDomain});
-      return validDomain;
-    });
+  goToResults(e) {
+    const validDomain = this.validateDomain(this.state.domain);
+    this.setState({domainError: !validDomain});
+
+    console.log(this.state);
+    if (validDomain) {
+      this.props.router.push(`/spf/results/${this.state.domain}`);
+    }
+
+    e.preventDefault();
   }
 
   renderPanel() {
@@ -43,7 +45,7 @@ class Query extends Component {
 
   renderForm() {
     return (
-      <form>
+      <form onSubmit={ (e) => this.goToResults(e) }>
         <div className="flex">
 
           <div className={classNames('col-xs-8', {'has-error': this.state.domainError })}>
@@ -52,9 +54,8 @@ class Query extends Component {
           </div>
 
           <div className='col-xs-4'>
-            <LinkButton type='orange' fullWidth={true} to={ `/spf/results/${this.state.domain}` }>View Results</LinkButton>
+            <button type='submit' className='button button--orange button--full'>View Results</button>
           </div>
-
         </div>
       </form>
     );
