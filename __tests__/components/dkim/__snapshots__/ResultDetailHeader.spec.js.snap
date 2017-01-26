@@ -16,15 +16,19 @@ exports[`ResultDetailHeader component should render when logged in 1`] = `
           Share
         </a>
         <div
-          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          className="popover copyPopover popover--l popover--rightAligned popover--bottom">
           <h6
             className="text--left copyPopover__label">
             <i
               className="fa fa-check-circle" />
              Copied to Clipboard!
           </h6>
+          <p
+            className="copyPopover__copiedString">
+            http://localhost/
+          </p>
           <input
-            className="input__text input__text--s copyPopover__input"
+            className="copyPopover__hidden"
             readOnly={true}
             value="http://localhost/" />
         </div>
@@ -97,15 +101,19 @@ exports[`ResultDetailHeader component should render when not logged in 1`] = `
           Share
         </a>
         <div
-          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          className="popover copyPopover popover--l popover--rightAligned popover--bottom">
           <h6
             className="text--left copyPopover__label">
             <i
               className="fa fa-check-circle" />
              Copied to Clipboard!
           </h6>
+          <p
+            className="copyPopover__copiedString">
+            http://localhost/
+          </p>
           <input
-            className="input__text input__text--s copyPopover__input"
+            className="copyPopover__hidden"
             readOnly={true}
             value="http://localhost/" />
         </div>
@@ -178,15 +186,19 @@ exports[`ResultDetailHeader component should render with rows 1`] = `
           Share
         </a>
         <div
-          className="popover copyPopover popover--l popover--bottom popover--rightAligned false">
+          className="popover copyPopover popover--l popover--rightAligned popover--bottom">
           <h6
             className="text--left copyPopover__label">
             <i
               className="fa fa-check-circle" />
              Copied to Clipboard!
           </h6>
+          <p
+            className="copyPopover__copiedString">
+            http://localhost/
+          </p>
           <input
-            className="input__text input__text--s copyPopover__input"
+            className="copyPopover__hidden"
             readOnly={true}
             value="http://localhost/" />
         </div>
