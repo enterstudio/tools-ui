@@ -1,0 +1,22 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+.spf-child-record {
+  margin-left: 1rem;
+}
+
+.spf-child-record--redirect {
+  border-left: 3px solid color(blue);
+}
+
+.spf-child-record--include {
+  border-left: 3px solid color(magenta);
+}
+
+.spf-child-record__type--redirect {
+  color: color(blue);
+}
+
+.spf-child-record__type--include {
+  color: color(magenta);
+}

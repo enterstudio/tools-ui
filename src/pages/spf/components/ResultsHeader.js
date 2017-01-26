@@ -24,9 +24,9 @@ export default class ResultsHeader extends Component {
                 <small className="text--muted">Tested on { this.props.results ? this.props.results.timestamp : '...' }</small>
               </div>
               <div className="col-xs-4 clearfix">
-                <span className="padding--md float--right">
-                  Save Results <i className="fa fa-question-circle-o"></i>
-                </span>
+                {/*<span className="padding--md float--right">*/}
+                  {/*Save Results <i className="fa fa-question-circle-o"></i>*/}
+                {/*</span>*/}
                 <span className="padding--md float--right">
                  <CopyPopover><span>Share</span></CopyPopover>
                 </span>
