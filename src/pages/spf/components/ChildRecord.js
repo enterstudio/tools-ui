@@ -44,7 +44,7 @@ export default class ChildRecord extends Component {
       return null;
     }
 
-    return children.map((child) => <ChildRecord record={ child } level={ this.props.level + 1 } collapsed={ this.state.childrenCollapsed }></ChildRecord>);
+    return children.map((child, idx) => <ChildRecord key={ idx } record={ child } level={ this.props.level + 1 } collapsed={ this.state.childrenCollapsed }></ChildRecord>);
   }
 
   render() {
@@ -59,10 +59,10 @@ export default class ChildRecord extends Component {
           <div className='panel__body'>
             <div className="flex">
               <div className="col-xs-11">
-                <h6 className={ classNames(`spf-child-record__type--${this.props.record.type}`)}>{ this.props.record.type }:{ this.props.record.value }</h6>
+                <div className={ classNames(`spf-child-record__type--${this.props.record.type}`)}>{ this.props.record.type }:{ this.props.record.value }</div>
                 <span>{ this.props.record.record }</span>
               </div>
-              <div className="col-xs-1 clearfix">
+              <div className="col-xs-1">
                 { this.renderExpandToggle() }
               </div>
             </div>

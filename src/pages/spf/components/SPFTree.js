@@ -13,7 +13,7 @@ export default class SPFTree extends Component {
       return null;
     }
 
-    return children.map((child) => <ChildRecord record={ child } level={ 1 } collapsed={ false }></ChildRecord>);
+    return children.map((child, idx) => <ChildRecord key={ idx } record={ child } level={ 1 } collapsed={ false }></ChildRecord>);
   }
 
   render() {

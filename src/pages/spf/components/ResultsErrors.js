@@ -16,7 +16,7 @@ export default class ResultsErrors extends Component {
               {/*TODO warnings*/}
               <span>{ this.props.results ? this.props.results.errors.length : '¯\\_(ツ)_/¯'} Errors Found</span>
               <ul>
-                { this.props.results.errors.map((error) => <li>{error.message}</li>) }
+                { this.props.results.errors.map((error, idx) => <li key={ idx }>{error.message}</li>) }
               </ul>
             </div>
           </div>
