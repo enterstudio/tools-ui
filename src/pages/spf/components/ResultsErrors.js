@@ -1,27 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ResultsErrors extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default (props) => {
+  const { errors = [] } = props.results;
 
+  const errorMessage = `${errors.length} Error${errors.length === 1 ? '' : 's'} Found.`;
 
-
-  render() {
-    return (
-      <div className="panel">
-        <div className="panel__body">
-          <div className="flex">
-            <div className="col-xs-12">
-              {/*TODO warnings*/}
-              <span>{ this.props.results ? this.props.results.errors.length : '¯\\_(ツ)_/¯'} Errors Found</span>
-              <ul>
-                { this.props.results.errors.map((error, idx) => <li key={ idx }>{error.message}</li>) }
-              </ul>
-            </div>
+  return (
+    <div className="panel">
+      <div className="panel__body">
+        <div className="flex">
+          <div className="col-xs-12">
+            {/*TODO warnings*/}
+            <span>{ errorMessage }</span>
+            <ul>
+              { errors.map((error, idx) => <li key={ idx }>{error.message}</li>) }
+            </ul>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
