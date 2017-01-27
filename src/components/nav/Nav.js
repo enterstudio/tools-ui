@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames';
 import _ from 'lodash';
+import { SpLoginLink, SpSignUpLink } from 'components/button/Button';
+import config from 'config/index';
 
 import { Logo } from 'components/logo/Logo';
 
@@ -39,10 +41,11 @@ class Nav extends Component {
   }
 
   renderLoggedOutLinks() {
+    const { location } = this.props;
     return (
       <div className='nav__right'>
-        <a href='http://app.sparkpost.com/auth' className='nav__link'>Login</a>
-        <a href='http://app.sparkpost.com/sign-up' className='button button--blue nav__button'>Sign Up</a>
+        <SpLoginLink location={location} classes='nav__link'>Login</SpLoginLink>
+        <SpSignUpLink location={location} classes='button button--blue nav__button'>Sign Up</SpSignUpLink>
       </div>
     );
   }
@@ -51,20 +54,20 @@ class Nav extends Component {
     return (
       <div className='nav__right'>
         <a href='' className='nav__link'>Logout</a>
-        <a href='http://app.sparkpost.com/dashboard' className='button button--blue nav__button'>SparkPost Dashboard</a>
+        <a href={`${config.appUrl}/dashboard`} className='button button--blue nav__button'>SparkPost Dashboard</a>
       </div>
     );
   }
 
   render() {
-    const { loggedIn, path } = this.props;
+    const { loggedIn, location } = this.props;
     const { sticky, open } = this.state;
     const navClasses = classNames('nav', {
       'is-stickied': sticky,
       'is-open': open
     });
 
-    const dkimLink = classNames('nav__link', { 'is-active': path.includes('/dkim')});
+    const dkimLink = classNames('nav__link', { 'is-active': location.pathname.includes('/dkim')});
 
     return (
       <nav className={navClasses}>
@@ -101,7 +104,7 @@ Nav.defaultProps = {
 
 Nav.propTypes = {
   loggedIn: React.PropTypes.bool.isRequired,
-  path: React.PropTypes.string
+  location: React.PropTypes.object
 };
 
 export default Nav;

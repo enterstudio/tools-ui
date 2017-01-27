@@ -82,13 +82,13 @@ exports[`test App renders correctly 1`] = `
       <div
         className="nav__right">
         <a
-          className="nav__link"
-          href="http://app.sparkpost.com/auth">
+          className="sp-sign-in nav__link"
+          href="no-default-set/auth?return=http://localhostsome/pathundefined">
           Login
         </a>
         <a
-          className="button button--blue nav__button"
-          href="http://app.sparkpost.com/sign-up">
+          className="sp-sign-up button button--blue nav__button"
+          href="no-default-set/sign-up?return=http://localhostsome/pathundefined&src=SP-Tools">
           Sign Up
         </a>
       </div>
