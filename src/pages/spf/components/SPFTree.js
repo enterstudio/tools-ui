@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import ChildRecord from './ChildRecord';
 
 export default class SPFTree extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      childrenCollapsed: false
+    };
+  }
+
+  toggleChildren() {
+    this.setState({childrenCollapsed: !this.state.childrenCollapsed});
   }
 
   renderChildren() {
@@ -13,12 +22,12 @@ export default class SPFTree extends Component {
       return null;
     }
 
-    return children.map((child, idx) => <ChildRecord key={ idx } record={ child } level={ 1 } collapsed={ false }></ChildRecord>);
+    return children.map((child, idx) => <ChildRecord key={ idx } record={ child } level={ 1 } collapsed={ this.state.childrenCollapsed }></ChildRecord>);
   }
 
   render() {
     if (!this.props.results) {
-      return <div>Hold your horses!</div>;
+      return <div>Loading results...</div>;
     }
 
     return (
@@ -40,7 +49,7 @@ export default class SPFTree extends Component {
                 <span>{ this.props.results.spf_tree.record }</span>
               </div>
               <div className="col-xs-1 clearfix">
-                <i className="fa fa-angle-down fa-2x float--right"></i>
+                <i className={ classNames('fa', 'fa-2x', 'float--right', {'fa-angle-down': !this.state.childrenCollapsed, 'fa-angle-up': this.state.childrenCollapsed}) } onClick={ () => this.toggleChildren() }></i>
               </div>
             </div>
           </div>
