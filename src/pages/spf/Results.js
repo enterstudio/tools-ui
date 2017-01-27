@@ -12,7 +12,7 @@ export default class Results extends Component {
     super(props);
     this.state = {
       loading: true,
-      results: { errors: [], spf_tree: {}}
+      results: { errors: [], warnings: [], spf_tree: {}}
     };
   }
 
@@ -40,7 +40,7 @@ export default class Results extends Component {
     return (
       <div>
         <ResultsHeader results={ this.state.results } domain={ this.props.params.domain } refresh={ () => this.getResults(this.props.params.domain) } ></ResultsHeader>
-        <ResultsErrors results={ this.state.results }></ResultsErrors>
+        <ResultsErrors errors={ this.state.results.errors } warnings={ this.state.results.warnings }></ResultsErrors>
         <SPFTree results={ this.state.results } domain={ this.props.params.domain }></SPFTree>
       </div>
     );

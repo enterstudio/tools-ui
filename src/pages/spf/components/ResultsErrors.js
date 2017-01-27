@@ -1,36 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { ActionLink } from 'components/button/Button';
 
-export default class ResultsErrors extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default (props) => {
+  const { errors = [], warnings = [] } = props;
 
-  renderCategory(idx, error) {
-    // TODO figure out friendly error messages and linking to child record
-    return (
-      <div key={idx} className='panel__body'>{error.message}</div>
-    );
-  }
+  const errorIcon = errors.length ? 'fa-exclamation-circle' : 'fa-check-circle';
+  const warningIcon = warnings.length ? 'fa-exclamation-triangle' : 'fa-check-circle';
 
-  renderSummary() {
-    const { results } = this.props;
-    // TODO ¯\_(ツ)_/¯
-    return (
-      <h5>{ results ? results.errors.length : '¯\\_(ツ)_/¯'} Errors Found</h5>
-    );
-  }
+  const errorMessage = `${errors.length} Error${errors.length === 1 ? '' : 's'} Found`;
+  const warningMessage = `${warnings.length} Warning${warnings.length === 1 ? '' : 's'} Found`;
 
-  render() {
-    return (
-      <div className="panel">
-        <div className='panel__heading'>
-          { this.renderSummary() }
-        </div>
+  // TODO type colors
 
-        {/*TODO warnings*/}
-        { this.props.results.errors.map((error, idx) => this.renderCategory(idx, error)) }
-
+  return (
+    <div className="panel">
+      <div className='panel__heading'>
+        <div className='float--right'><ActionLink>How do I fix errors?</ActionLink></div>
+        <h5>
+          <span><i className={ `fa ${errorIcon}` } /> { errorMessage } </span>
+          {warnings.length > 0 && <span><i className={ `fa ${warningIcon}` } /> { warningMessage }</span>}
+        </h5>
       </div>
-    );
-  }
-}
+
+      { errors.map((error, idx) => (
+        <div key={`e-${idx}`} className="body__panel">
+          <i className="fa fa-exclamation-circle"></i>
+          <span>{error.message}</span>
+        </div>
+      )) }
+
+      { errors.map((error, idx) => (
+        <div key={`w-${idx}`} className="body__panel">
+          <i className="fa fa-exclamation-triangle"></i>
+          <span>{error.message}</span>
+        </div>
+      )) }
+    </div>
+  );
+};
