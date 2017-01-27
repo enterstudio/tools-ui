@@ -5,22 +5,31 @@ export default class ResultsErrors extends Component {
     super(props);
   }
 
+  renderCategory(idx, error) {
+    // TODO figure out friendly error messages and linking to child record
+    return (
+      <div key={idx} className='panel__body'>{error.message}</div>
+    );
+  }
 
+  renderSummary() {
+    const { results } = this.props;
+    // TODO ¯\_(ツ)_/¯
+    return (
+      <h5>{ results ? results.errors.length : '¯\\_(ツ)_/¯'} Errors Found</h5>
+    );
+  }
 
   render() {
     return (
       <div className="panel">
-        <div className="panel__body">
-          <div className="flex">
-            <div className="col-xs-12">
-              {/*TODO warnings*/}
-              <span>{ this.props.results ? this.props.results.errors.length : '¯\\_(ツ)_/¯'} Errors Found</span>
-              <ul>
-                { this.props.results.errors.map((error, idx) => <li key={ idx }>{error.message}</li>) }
-              </ul>
-            </div>
-          </div>
+        <div className='panel__heading'>
+          { this.renderSummary() }
         </div>
+
+        {/*TODO warnings*/}
+        { this.props.results.errors.map((error, idx) => this.renderCategory(idx, error)) }
+
       </div>
     );
   }

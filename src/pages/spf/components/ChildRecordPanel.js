@@ -1,24 +1,60 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export default (props) => {
-  const {childrenCollapsed = true, collapsed = false, type = '', value = '', record, children, toggle = () => {}} = props;
-  const icon = childrenCollapsed ? 'fa-angle-up' : 'fa-angle-down';
+const ChildRecordPanel = (props) => {
+  const {childrenCollapsed, type, value, record, children, toggle} = props;
 
-  return <div className={ classNames('spf-child-record', {'h-hide': collapsed}) }>
-    <div className={classNames('panel', 'text--left', `spf-child-record--${type}`) }>
-      <div className='panel__body'>
-        <div className="flex">
-          <div className="col-xs-11">
-            <div className={ classNames(`spf-child-record__type--${type}`)}>{ type }:{ value }</div>
-            <span>{ record }</span>
-          </div>
-          <div className="col-xs-1">
-            <i className={ classNames('fa', icon, 'fa-2x', 'float--right', {'h-hide': !children }) } onClick={ toggle }></i>
-          </div>
+  // Can't check children as they are not passed down if collapsed
+  const isExpandable = type === 'redirect' || type === 'include';
+
+  const panelClasses = classNames('panel spf-tree__child', {
+    [`spf-tree__child--${type}`]: type,
+    'can-expand': isExpandable
+  });
+
+  const iconClasses = classNames('spf-tree__chevron fa fa-chevron-down', {
+    'is-open': childrenCollapsed
+  });
+
+  const labelClasses = classNames('spf-tree__code', {
+    [`spf-tree__code--${type}`]: type,
+    'spf-tree__code--label': record // if record, use label styles
+  });
+
+  return (
+    <div className='spf-tree__childWrapper'>
+      <div className={panelClasses}>
+        <div className='panel__body' onClick={ toggle }>
+
+          {isExpandable && <i className={iconClasses} />}
+          <code className={labelClasses}>{ type }:{ value }</code>
+          { record && <code className='spf-tree__code'>{ record }</code>}
+
         </div>
+        <div className='spf-tree__accent' />
       </div>
+      {children && <div className='spf-tree__children'>{ children }</div>}
     </div>
-    { children }
-  </div>;
+  );
 };
+
+ChildRecordPanel.defaultProps = {
+  childrenCollapsed: true,
+  collapsed: false,
+  type: '',
+  value: '',
+  toggle: () => {}
+};
+
+ChildRecordPanel.propTypes = {
+  childrenCollapsed: React.PropTypes.bool,
+  collapsed: React.PropTypes.bool,
+  type: React.PropTypes.string,
+  value: React.PropTypes.string,
+  record: React.PropTypes.string,
+  children: React.PropTypes.array,
+  toggle: React.PropTypes.func
+};
+
+
+export default ChildRecordPanel;

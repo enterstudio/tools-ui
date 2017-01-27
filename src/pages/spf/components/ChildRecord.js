@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import ChildRecordPanel from './ChildRecordPanel';
-import './ChildRecord.scss';
 
 export default class ChildRecord extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export default class ChildRecord extends Component {
   renderChildren() {
     const children = this.props.record.children;
 
-    if (!children || !children.length) {
+    if (!children || !children.length || this.state.childrenCollapsed) {
       return null;
     }
 
@@ -42,7 +41,7 @@ export default class ChildRecord extends Component {
 
     if (record.type === 'mxParent') {
       // nothing to show for the root mx record... just include children in line
-      return <div className="spf-child-record"> { this.renderChildren() } </div>;
+      return <div className="spf-tree__child"> { this.renderChildren() } </div>;
     }
 
     return (

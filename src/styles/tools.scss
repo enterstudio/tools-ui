@@ -32,3 +32,11 @@ $fa-font-path: "~@sparkpost/styles/src/assets/fonts";
 @import "~@sparkpost/styles/src/assets/scss/components/popover";
 
 @import "./layout";
+
+// This is a global override, we only use one input error
+// TODO change later
+.input__error {
+  display: block;
+  position: static;
+  line-height: 2em;
+}

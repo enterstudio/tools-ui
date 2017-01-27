@@ -46,14 +46,17 @@ class Query extends Component {
       <form onSubmit={ (e) => this.handleSubmit(e) }>
         <div className="flex">
 
-          <div className={classNames('col-xs-8', {'has-error': this.state.domainError })}>
-            <input className='input__text input--full' type='text' onChange={(e) => this.setState({domain: e.target.value}) } placeholder='mydomain.com' />
-            <div className="input__error">Please enter a valid domain.</div>
+          <div className='col-xs-12 col-md-8'>
+            <div className={classNames('input__group', {'has-error': this.state.domainError })}>
+              <input className='input__text input--full' type='text' onChange={(e) => this.setState({domain: e.target.value}) } placeholder='mydomain.com' />
+              <div className="input__error">Please enter a valid domain.</div>
+            </div>
           </div>
 
-          <div className='col-xs-4'>
+          <div className='col-xs-12 col-md-4'>
             <button type='submit' className='button button--orange button--full'>View Results</button>
           </div>
+
         </div>
       </form>
     );
