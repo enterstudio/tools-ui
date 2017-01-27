@@ -38,7 +38,8 @@ export default class SPFTree extends Component {
               <div className="col-xs-10">
                 <h4>SPF Record</h4>
               </div>
-              <div className="col-xs-2 clearfix"><span className="float--right">Expand All</span></div>
+              {/* TODO enable expand/collapse all once we have redux in place */}
+              {/*<div className="col-xs-2 clearfix"><span className="float--right">Expand All</span></div>*/}
             </div>
 
             <hr/>
