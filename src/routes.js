@@ -16,9 +16,9 @@ export default (
       <Route path='dkim/results/:email' component={DKIMResults} />
       <Route path='dkim/results/:email/:detailId' component={DKIMDetail} />
 
-      <Route path='spf' component={SPFQuery} />
-      <Redirect from='/spf/results' to='/spf' />
-      <Route path='spf/results/:domain' component={SPFResults} />
+      <Route path='spf-inspector' component={SPFQuery} />
+      <Redirect from='/spf-inspector/results' to='/spf-inspector' />
+      <Route path='spf-inspector/results/:domain' component={SPFResults} />
     </Route>
   </Route>
 );

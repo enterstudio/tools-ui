@@ -8,7 +8,7 @@ export default (props) => {
 
   return (
     <div>
-      <BackLink to='/spf' title='Back to SPF Inspector'></BackLink>
+      <BackLink to='/spf-inspector' title='Back to SPF Inspector'></BackLink>
       <div className='panel panel--accent text--left'>
         <div className='panel__body'>
           <div className="flex">

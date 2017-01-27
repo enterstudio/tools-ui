@@ -25,7 +25,7 @@ class Query extends Component {
     this.setState({domainError: !validDomain});
 
     if (validDomain) {
-      this.props.router.push(`/spf/results/${this.state.domain}`);
+      this.props.router.push(`/spf-inspector/results/${this.state.domain}`);
     }
   }
 
