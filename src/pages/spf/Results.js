@@ -36,12 +36,27 @@ export default class Results extends Component {
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
   }
 
+  renderLoading() {
+    return (
+      <div className='text--center paddingTop--xxl'>
+        <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
+      </div>
+    );
+  }
+
   render() {
+    const { domain } = this.props.params;
+    const { results, loading } = this.state;
+
+    if (loading) {
+      return this.renderLoading();
+    }
+
     return (
       <div>
-        <ResultsHeader results={ this.state.results } domain={ this.props.params.domain } refresh={ () => this.getResults(this.props.params.domain) } ></ResultsHeader>
-        <ResultsErrors errors={ this.state.results.errors } warnings={ this.state.results.warnings }></ResultsErrors>
-        <SPFTree results={ this.state.results } domain={ this.props.params.domain }></SPFTree>
+        <ResultsHeader results={ results } domain={ domain } refresh={ () => this.getResults(domain) } />
+        <ResultsErrors errors={ results.errors } warnings={ results.warnings } />
+        <SPFTree results={ results } domain={ domain } />
       </div>
     );
   }

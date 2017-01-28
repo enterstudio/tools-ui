@@ -1,0 +1,12 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+.spf-resultsErrors {
+  &__summary {
+    padding-right: rem(9);
+  }
+
+  .is-valid   { color: color(green);   }
+  .has-error   { color: color(alert);   }
+  .has-warning { color: color(mustard); }
+}

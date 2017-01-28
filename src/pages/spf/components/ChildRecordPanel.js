@@ -4,6 +4,9 @@ import classNames from 'classnames';
 const ChildRecordPanel = (props) => {
   const {childrenCollapsed, type, value, record, children, toggle} = props;
 
+  // TODO see if we can anchor link to panel with error
+  // TODO add child type 'error'
+
   // Can't check children as they are not passed down if collapsed
   const isExpandable = type === 'redirect' || type === 'include';
 
