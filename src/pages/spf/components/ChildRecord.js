@@ -6,9 +6,7 @@ export default class ChildRecord extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      childrenCollapsed: true
-    };
+    this.state = { childrenCollapsed: true };
   }
 
   componentWillMount() {
@@ -16,12 +14,8 @@ export default class ChildRecord extends Component {
     this.displayType = record.type === 'mxChild' ? 'mx' : record.type;
   }
 
-  hasChildren() {
-    return this.props.record.children && this.props.record.children.length > 0;
-  }
-
   toggleChildren() {
-    this.setState({childrenCollapsed: !this.state.childrenCollapsed });
+    this.setState({ childrenCollapsed: !this.state.childrenCollapsed });
   }
 
   renderChildren() {
@@ -31,11 +25,12 @@ export default class ChildRecord extends Component {
       return null;
     }
 
+    // Need to render mx children the same time its siblings are (within same div)
     return children.map((child, idx) => {
-      if (child.type === 'mx') {
-        return child.children.map((mxChild, idx) => {
+      if (child.type === 'mx' && child.children) {
+        return child.children.map((mxChild, midx) => {
           mxChild.type = 'mxChild';
-          return <ChildRecord key={ idx } record={ mxChild } />;
+          return <ChildRecord key={ `${idx}-${midx}` } record={ mxChild } />;
         });
       }
       return <ChildRecord key={ idx } record={ child } />;
