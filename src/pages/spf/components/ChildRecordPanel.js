@@ -40,15 +40,13 @@ const ChildRecordPanel = (props) => {
 
 ChildRecordPanel.defaultProps = {
   childrenCollapsed: true,
-  collapsed: false,
   type: '',
   value: '',
-  toggle: () => {}
+  toggle: null
 };
 
 ChildRecordPanel.propTypes = {
   childrenCollapsed: React.PropTypes.bool,
-  collapsed: React.PropTypes.bool,
   type: React.PropTypes.string,
   value: React.PropTypes.string,
   record: React.PropTypes.string,

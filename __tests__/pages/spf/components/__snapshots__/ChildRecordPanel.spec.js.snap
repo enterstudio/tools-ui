@@ -5,7 +5,7 @@ exports[`ChildRecordPanel Snapshots baseline snapshot 1`] = `
     className="panel spf-tree__child spf-tree__child--include can-expand">
     <div
       className="panel__body"
-      onClick={[Function]}>
+      onClick={null}>
       <i
         className="spf-tree__chevron fa fa-chevron-down is-open" />
       <code
@@ -32,7 +32,7 @@ exports[`ChildRecordPanel Snapshots should be hidden if collapsed is true 1`] = 
     className="panel spf-tree__child spf-tree__child--include can-expand">
     <div
       className="panel__body"
-      onClick={[Function]}>
+      onClick={null}>
       <i
         className="spf-tree__chevron fa fa-chevron-down is-open" />
       <code
@@ -59,7 +59,7 @@ exports[`ChildRecordPanel Snapshots should change toggle icon if childrenCollaps
     className="panel spf-tree__child spf-tree__child--include can-expand">
     <div
       className="panel__body"
-      onClick={[Function]}>
+      onClick={null}>
       <i
         className="spf-tree__chevron fa fa-chevron-down" />
       <code
@@ -86,7 +86,7 @@ exports[`ChildRecordPanel Snapshots should not show record if missing 1`] = `
     className="panel spf-tree__child spf-tree__child--include can-expand">
     <div
       className="panel__body"
-      onClick={[Function]}>
+      onClick={null}>
       <i
         className="spf-tree__chevron fa fa-chevron-down is-open" />
       <code

@@ -11,19 +11,9 @@ export default class ChildRecord extends Component {
     };
   }
 
-  componentDidMount() {
-    // A component cannot update its own props
-    //
-    // const { record } = this.props;
-    //
-    // record.displayType = record.type;
-    //
-    // if (record.type === 'mx' && this.hasChildren()) {
-    //   record.children.forEach((child) => {
-    //     child.type = 'mxChild';
-    //     child.displayType = 'mx';
-    //   });
-    // }
+  componentWillMount() {
+    const { record } = this.props;
+    this.displayType = record.type === 'mxChild' ? 'mx' : record.type;
   }
 
   hasChildren() {
@@ -37,28 +27,28 @@ export default class ChildRecord extends Component {
   renderChildren() {
     const children = this.props.record.children;
 
-    if (!children || !children.length || this.state.childrenCollapsed) {
+    if (!children || !children.length) {
       return null;
     }
 
     return children.map((child, idx) => {
-      // skip the mx record, have mxChild records behave like children of parent component
-      const collapsed = child.type === 'mxChild' ? this.props.collapsed : this.state.childrenCollapsed;
-      return (<ChildRecord key={ idx } record={ child } level={ this.props.level + 1 } collapsed={ collapsed }></ChildRecord>);
+      if (child.type === 'mx') {
+        return child.children.map((mxChild, idx) => {
+          mxChild.type = 'mxChild';
+          return <ChildRecord key={ idx } record={ mxChild } />;
+        });
+      }
+      return <ChildRecord key={ idx } record={ child } />;
     });
   }
 
   render() {
-    const {record, collapsed = false} = this.props;
-
-    if (record.type === 'mx') {
-      // nothing to show for the root mx record... just include children in line
-      return this.renderChildren();
-    }
+    const { record } = this.props;
+    const { childrenCollapsed } = this.state;
 
     return (
-      <ChildRecordPanel collapsed={ collapsed } childrenCollapsed={ this.state.childrenCollapsed } type={ record.type } value={ record.value } record={ record.record } toggle={ () => this.toggleChildren() }>
-        { this.renderChildren() }
+      <ChildRecordPanel childrenCollapsed={ childrenCollapsed } type={ this.displayType } value={ record.value } record={ record.record } toggle={ () => this.toggleChildren() }>
+        { childrenCollapsed ? null : this.renderChildren() }
       </ChildRecordPanel>
     );
   }
