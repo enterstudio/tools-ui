@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import _ from 'lodash';
 import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
@@ -31,6 +32,7 @@ export default class Results extends Component {
       .then(({ data }) => {
         const results = data.results;
         results.spf_tree = walkTree(results.spf_tree);
+        setTreeId(results.spf_tree);
         console.log('walked tree:', results.spf_tree); // eslint-disable-line no-console
         results.timestamp = moment().format('MMM D YYYY[, at] h:mm A');
         this.setState({ results });
@@ -68,21 +70,37 @@ export default class Results extends Component {
         <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
         <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
         <ResultsErrors errors={errors} warnings={warnings}></ResultsErrors>
-        <SPFNode {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
+        <SPFNode root={true} {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
     );
   }
 }
 
-function walkTree(node, i = '0') {
-  const walked = Object.assign({}, node, {
-    expanded: false,
-    treeId: i
-  });
+function walkTree(node) {
+  const defaults = {
+    expanded: true,
+    displayType: node.type
+  };
+  const walked = Object.assign(defaults, node);
 
-  if (node.children) {
-    walked.children = node.children.map((child, j) => walkTree(child, `${i}.${j}`));
+  // mx and a records have child records, but no value of their own, flatten them to simplify the tree
+  if (node.type === 'mx' || node.type === 'a') {
+    return node.children.map((child) => {
+      child.displayType = node.type;
+      return walkTree(child);
+    });
+  }
+
+  if (node.children && node.children.length) {
+    walked.children = _.flatten(node.children.map(walkTree));
   }
 
   return walked;
+}
+
+function setTreeId(node, id = '0') {
+  node.treeId = id;
+  if (node.children) {
+    node.children.forEach((child, j) => setTreeId(child, `${id}.${j}`));
+  }
 }
