@@ -5,7 +5,9 @@ import moment from 'moment';
 import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
-import SPFTree from './components/SPFTree';
+// import SPFTree from './components/SPFTree';
+
+import SPFNode from './components/SPFNode';
 
 export default class Results extends Component {
   constructor(props) {
@@ -27,6 +29,8 @@ export default class Results extends Component {
     return axios.get(`${config.apiBase}/messaging-tools/spf/query`, {params: { domain }})
       .then(({ data }) => {
         const results = data.results;
+        results.spf_tree = walkTree(results.spf_tree);
+        console.log('walked tree:', results.spf_tree); // eslint-disable-line no-console
         results.timestamp = moment().format('MMM D YYYY[, at] h:mm A');
         this.setState({ results });
       })
@@ -37,12 +41,29 @@ export default class Results extends Component {
   }
 
   render() {
+    const { results } = this.state;
+    const { domain } = this.props.params;
+    const { errors, warnings, spf_tree } = results;
+
     return (
       <div>
-        <ResultsHeader results={ this.state.results } domain={ this.props.params.domain } refresh={ () => this.getResults(this.props.params.domain) } ></ResultsHeader>
-        <ResultsErrors errors={ this.state.results.errors } warnings={ this.state.results.warnings }></ResultsErrors>
-        <SPFTree results={ this.state.results } domain={ this.props.params.domain }></SPFTree>
+        <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
+        <ResultsErrors errors={errors} warnings={warnings}></ResultsErrors>
+        <SPFNode {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
     );
   }
+}
+
+function walkTree(node, i = '0') {
+  const walked = Object.assign({}, node, {
+    expanded: false,
+    treeId: i
+  });
+
+  if (node.children) {
+    walked.children = node.children.map((child, j) => walkTree(child, `${i}.${j}`));
+  }
+
+  return walked;
 }
