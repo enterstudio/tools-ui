@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { CopyPopover } from 'components/popover/Popover';
-import { ActionLink, BackLink } from 'components/button/Button';
+import { ActionLink } from 'components/button/Button';
 
 export default (props) => {
   const {domain, results, refresh} = props;
   return (
     <div>
-      <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
       <div className='panel panel--accent'>
 
         {/*  Top section */}

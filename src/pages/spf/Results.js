@@ -6,6 +6,7 @@ import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
 import SPFTree from './components/SPFTree';
+import { BackLink } from 'components/button/Button';
 
 export default class Results extends Component {
   constructor(props) {
@@ -38,8 +39,13 @@ export default class Results extends Component {
 
   renderLoading() {
     return (
-      <div className='text--center paddingTop--xxl'>
-        <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
+      <div>
+        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
+        <div className='panel panel--accent'>
+          <div className='panel__body text--center paddingTop--xxl paddingBottom--xxl'>
+            <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
+          </div>
+        </div>
       </div>
     );
   }
