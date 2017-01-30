@@ -5,6 +5,7 @@ import moment from 'moment';
 import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
+import { BackLink } from 'components/button/Button';
 // import SPFTree from './components/SPFTree';
 
 import SPFNode from './components/SPFNode';
@@ -40,13 +41,31 @@ export default class Results extends Component {
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
   }
 
+  renderLoading() {
+    return (
+      <div>
+        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
+        <div className='panel panel--accent'>
+          <div className='panel__body text--center paddingTop--xxl paddingBottom--xxl'>
+            <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
-    const { results } = this.state;
+    const { results, loading } = this.state;
     const { domain } = this.props.params;
     const { errors, warnings, spf_tree } = results;
 
+    if (loading) {
+      return this.renderLoading();
+    }
+
     return (
       <div>
+        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
         <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
         <ResultsErrors errors={errors} warnings={warnings}></ResultsErrors>
         <SPFNode {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>

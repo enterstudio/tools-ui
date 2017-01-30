@@ -1,40 +1,47 @@
 import React from 'react';
 import { ActionLink } from 'components/button/Button';
+import Icon from 'components/Icon';
+
+import './ResultsErrors.scss';
 
 export default (props) => {
   const { errors = [], warnings = [] } = props;
 
-  const errorIcon = errors.length ? 'fa-exclamation-circle' : 'fa-check-circle';
-  const warningIcon = warnings.length ? 'fa-exclamation-triangle' : 'fa-check-circle';
+  const renderSummary = () => {
+    const errorMessage = `${errors.length} Error${errors.length === 1 ? '' : 's'} Found`;
+    const warningMessage = `${warnings.length} Warning${warnings.length === 1 ? '' : 's'} Found`;
 
-  const errorMessage = `${errors.length} Error${errors.length === 1 ? '' : 's'} Found`;
-  const warningMessage = `${warnings.length} Warning${warnings.length === 1 ? '' : 's'} Found`;
+    if (!errors.length && !warnings.length) {
+      return <h5 className='spf-resultsErrors__summary is-valid'><Icon name='check-circle' /> 0 Errors Found</h5>;
+    }
 
-  // TODO type colors
+    return (
+      <h5>
+        {errors.length > 0 && <span className='spf-resultsErrors__summary has-error'><Icon name='exclamation-circle' /> {errorMessage}</span> }
+        {warnings.length > 0 && <span className='spf-resultsErrors__summary has-warning'><Icon name='exclamation-circle' /> {warningMessage}</span> }
+      </h5>
+    );
+  };
+
+  // TODO find out how to get different errors to finish this section
+  // TODO see if we can anchor link to child with error
+  const renderRow = (error, idx, type) => (
+    <div key={`e-${idx}`} className='panel__body'>
+      <p>
+        <span className={`has-${type}`}><Icon name={type === 'error' ? 'exclamation-circle' : 'exlamcation-triangle'} /> </span>
+        {error.message}
+      </p>
+    </div>
+  );
 
   return (
-    <div className="panel">
+    <div className='panel spf-resultsErrors'>
       <div className='panel__heading'>
         <div className='float--right'><ActionLink>How do I fix errors?</ActionLink></div>
-        <h5>
-          <span><i className={ `fa ${errorIcon}` } /> { errorMessage } </span>
-          {warnings.length > 0 && <span><i className={ `fa ${warningIcon}` } /> { warningMessage }</span>}
-        </h5>
+        { renderSummary() }
       </div>
-
-      { errors.map((error, idx) => (
-        <div key={`e-${idx}`} className="body__panel">
-          <i className="fa fa-exclamation-circle"></i>
-          <span>{error.message}</span>
-        </div>
-      )) }
-
-      { errors.map((error, idx) => (
-        <div key={`w-${idx}`} className="body__panel">
-          <i className="fa fa-exclamation-triangle"></i>
-          <span>{error.message}</span>
-        </div>
-      )) }
+      { errors.map((error, idx) => renderRow(error, idx, 'error')) }
+      { warnings.map((error, idx) => renderRow(error, idx, 'warning')) }
     </div>
   );
 };

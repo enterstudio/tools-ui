@@ -20,13 +20,13 @@ export default class SPFTree extends Component {
   renderChildren() {
     const children = this.props.results.spf_tree.children;
 
-    if (!children || !children.length || this.state.childrenCollapsed) {
+    if (!children || !children.length) {
       return null;
     }
 
     return (
       <div className='spf-tree__children'>
-        {children.map((child, idx) => <ChildRecord key={ idx } record={ child } level={ 1 } collapsed={ this.state.childrenCollapsed }></ChildRecord>)}
+        {children.map((child, idx) => <ChildRecord key={ idx } record={ child }/>)}
       </div>
     );
   }
@@ -55,7 +55,7 @@ export default class SPFTree extends Component {
             <code className='spf-tree__code'>{ this.props.results.spf_tree.record }</code>
           </div>
         </div>
-        { this.renderChildren() }
+        { !this.state.childrenCollapsed && this.renderChildren() }
       </div>
     );
   }
