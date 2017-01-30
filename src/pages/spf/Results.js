@@ -60,6 +60,7 @@ export default class Results extends Component {
 
     return (
       <div>
+        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
         <ResultsHeader results={ results } domain={ domain } refresh={ () => this.getResults(domain) } />
         <ResultsErrors errors={ results.errors } warnings={ results.warnings } />
         <SPFTree results={ results } domain={ domain } />
