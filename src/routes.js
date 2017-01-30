@@ -4,6 +4,7 @@ import App from 'components/App';
 import DKIMHome from 'pages/dkim/HomePage';
 import DKIMResults from 'pages/dkim/ResultListPage';
 import DKIMDetail from 'pages/dkim/ResultDetailPage';
+import SPFHistory from 'pages/spf/History';
 import NotFound from 'pages/notFound/NotFound';
 
 export default (
@@ -14,6 +15,8 @@ export default (
       <Route path='dkim' component={DKIMHome} />
       <Route path='dkim/results/:email' component={DKIMResults} />
       <Route path='dkim/results/:email/:detailId' component={DKIMDetail} />
+
+      <Route path='spf/history' component={SPFHistory} />
       <Route path='*' component={NotFound} />
     </Route>
   </Route>
