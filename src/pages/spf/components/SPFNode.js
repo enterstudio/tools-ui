@@ -19,6 +19,14 @@ class SPFNode extends Component {
     );
   }
 
+  renderHeader() {
+    return (
+      <div className='panel__heading'>
+        <h4>SPF Record</h4>
+      </div>
+    );
+  }
+
   render() {
     const { domain = null, record, displayType = null, value = null, root = false, children = null } = this.props;
     const label = domain ? domain : `${displayType}:${value}`;
@@ -38,8 +46,9 @@ class SPFNode extends Component {
     });
 
     return (
-      <div className='spf-tree__childWrapper'>
+      <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
         <div className={panelClasses}>
+          {root && this.renderHeader()}
           <div className='panel__body'>
 
             <code className={labelClasses}>{ label }</code>

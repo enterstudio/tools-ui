@@ -33,7 +33,6 @@ export default class Results extends Component {
         const results = data.results;
         results.spf_tree = walkTree(results.spf_tree);
         setTreeId(results.spf_tree);
-        console.log('walked tree:', results.spf_tree); // eslint-disable-line no-console
         results.timestamp = moment().format('MMM D YYYY[, at] h:mm A');
         this.setState({ results });
       })
