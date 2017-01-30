@@ -8,6 +8,6 @@ export default (props) => (
       {props.children}
     </div>
     <Footer></Footer>
-    <Nav path={props.location.pathname}></Nav>
+    <Nav location={props.location}></Nav>
   </div>
 );
