@@ -7,7 +7,7 @@ export default (props) => {
   const {domain, results, refresh} = props;
   return (
     <div>
-      <BackLink to='/spf' title='Back to SPF Inspector' />
+      <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
       <div className='panel panel--accent'>
 
         {/*  Top section */}
