@@ -7,7 +7,7 @@ import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
 import { BackLink } from 'components/button/Button';
-// import SPFTree from './components/SPFTree';
+import {ErrorMessage} from 'components/errors/ErrorMessage';
 
 import SPFNode from './components/SPFNode';
 
@@ -21,7 +21,6 @@ export default class Results extends Component {
   }
 
   componentDidMount() {
-    // call the api to get domain results
     return this.getResults(this.props.params.domain);
   }
 
@@ -31,21 +30,33 @@ export default class Results extends Component {
     return axios.get(`${config.apiBase}/messaging-tools/spf/query`, {params: { domain }})
       .then(({ data }) => {
         const results = data.results;
+        const errors = data.errors;
+
+        if (errors) {
+          return this.setState({ errors: errors });
+        }
+
         results.spf_tree = walkTree(results.spf_tree);
+        // need to set IDs after walking due to flattening a and mx
         setTreeId(results.spf_tree);
         results.timestamp = moment().format('MMM D YYYY[, at] h:mm A');
         this.setState({ results });
       })
       .catch((err) => {
-        // TODO show error
+        console.log(err);
+        // this.setState({ error: err.errors });
       })
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
+  }
+
+  renderBackLink() {
+    return <BackLink to='/spf-inspector' title='Back to SPF Inspector' />;
   }
 
   renderLoading() {
     return (
       <div>
-        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
+        {this.renderBackLink()}
         <div className='panel panel--accent'>
           <div className='panel__body text--center paddingTop--xxl paddingBottom--xxl'>
             <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
@@ -55,20 +66,34 @@ export default class Results extends Component {
     );
   }
 
+  renderError() {
+    return (
+      <div>
+        {this.renderBackLink()}
+        <ErrorMessage error={this.state.errors[0]}></ErrorMessage>
+      </div>
+    );
+  }
+
   render() {
-    const { results, loading } = this.state;
+    const { results, loading, errors } = this.state;
     const { domain } = this.props.params;
-    const { errors, warnings, spf_tree } = results;
+    const { errors: spfErrors, warnings: spfWarnings, spf_tree } = results;
 
     if (loading) {
       return this.renderLoading();
     }
 
+    if (errors) {
+      return this.renderError();
+    }
+
     return (
       <div>
-        <BackLink to='/spf-inspector' title='Back to SPF Inspector' />
+        {this.renderBackLink()}
         <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
-        <ResultsErrors errors={errors} warnings={warnings}></ResultsErrors>
+        {/*{true && <ErrorMessage error={errors[0]}></ErrorMessage>}*/}
+        <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
         <SPFNode root={true} {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
     );

@@ -1,66 +1,60 @@
-/* eslint-disable no-console */
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 
-import './SPFTree.scss';
+import './SPFNode.scss';
 
-class SPFNode extends Component {
+function SPFNode({ domain = null, record, displayType = null, value = null, root = false, children = null }) {
+  const label = domain ? domain : `${displayType}:${value}`;
 
-  renderChildren() {
-    const { expanded, children = null } = this.props;
-    if (!expanded || !children) {
-      return null;
-    }
+  // TODO see if we can anchor link to panel with error
+  // TODO add child type 'error'
 
-    return (
-      <div className="spf-tree__children">
-        {this.props.children.map((child) => <SPFNode key={child.treeId} {...child}>{child.children}</SPFNode>)}
-      </div>
-    );
-  }
+  const panelClasses = classNames('panel', {
+    'spf-tree__child': !root,
+    [`spf-tree__child--${displayType}`]: displayType,
+    'can-expand': children
+  });
 
-  renderHeader() {
-    return (
-      <div className='panel__heading'>
-        <h4>SPF Record</h4>
-      </div>
-    );
-  }
+  const labelClasses = classNames('spf-tree__code', {
+    [`spf-tree__code--${displayType}`]: displayType,
+    'spf-tree__code--label': record // if record, use label styles
+  });
 
-  render() {
-    const { domain = null, record, displayType = null, value = null, root = false, children = null } = this.props;
-    const label = domain ? domain : `${displayType}:${value}`;
+  return (
+    <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
+      <div className={panelClasses}>
+        {root && <Header/>}
+        <div className='panel__body'>
 
-    // TODO see if we can anchor link to panel with error
-    // TODO add child type 'error'
+          <code className={labelClasses}>{ label }</code>
+          { record && <code className='spf-tree__code'>{ record }</code>}
 
-    const panelClasses = classNames('panel', {
-      'spf-tree__child': !root,
-      [`spf-tree__child--${displayType}`]: displayType,
-      'can-expand': children
-    });
-
-    const labelClasses = classNames('spf-tree__code', {
-      [`spf-tree__code--${displayType}`]: displayType,
-      'spf-tree__code--label': record // if record, use label styles
-    });
-
-    return (
-      <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
-        <div className={panelClasses}>
-          {root && this.renderHeader()}
-          <div className='panel__body'>
-
-            <code className={labelClasses}>{ label }</code>
-            { record && <code className='spf-tree__code'>{ record }</code>}
-
-          </div>
-          <div className='spf-tree__accent' />
         </div>
-        {this.renderChildren()}
+        <div className='spf-tree__accent' />
       </div>
-    );
+      <Children>{children}</Children>
+    </div>
+  );
+}
+
+function Children({children = null }) {
+  if (!children) {
+    return null;
   }
+
+  return (
+    <div className="spf-tree__children">
+      {children.map((child) => <SPFNode key={child.treeId} {...child}>{child.children}</SPFNode>)}
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <div className='panel__heading'>
+      <h4>SPF Record</h4>
+    </div>
+  );
 }
 
 export default SPFNode;
