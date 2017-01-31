@@ -1,7 +1,7 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { CopyPopover } from 'components/popover/Popover';
 import { ActionLink } from 'components/button/Button';
+import classNames from 'classnames';
 
 export default (props) => {
   const {domain, results, refresh} = props;
@@ -16,7 +16,7 @@ export default (props) => {
             <ActionLink onClick={ refresh }>Refresh</ActionLink>
             </div>
           <h1 className='marginBottom--none marginTop--xs'>{ domain }</h1>
-          <p className="text--muted marginBottom--none">Tested on { results ? results.timestamp : '...' }</p>
+          <p className={classNames('text--muted', 'marginBottom--none', {'h-hide': !results.timestamp})}>Tested on { results.timestamp }</p>
         </div>
 
 

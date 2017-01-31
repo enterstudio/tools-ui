@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
@@ -33,18 +32,17 @@ export default class Results extends Component {
         const errors = data.errors;
 
         if (errors) {
-          return this.setState({ errors: errors });
+          return this.setState({ error: errors[0] });
         }
 
         results.spf_tree = walkTree(results.spf_tree);
-        // need to set IDs after walking due to flattening a and mx
+        // need to set IDs after walking due to flattening a and mx records
         setTreeId(results.spf_tree);
         results.timestamp = moment().format('MMM D YYYY[, at] h:mm A');
         this.setState({ results });
       })
       .catch((err) => {
-        console.log(err);
-        // this.setState({ error: err.errors });
+        this.setState({ error: {message: 'There was an error getting your results.'} });
       })
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
   }
@@ -66,17 +64,8 @@ export default class Results extends Component {
     );
   }
 
-  renderError() {
-    return (
-      <div>
-        {this.renderBackLink()}
-        <ErrorMessage error={this.state.errors[0]}></ErrorMessage>
-      </div>
-    );
-  }
-
   render() {
-    const { results, loading, errors } = this.state;
+    const { results, loading, error } = this.state;
     const { domain } = this.props.params;
     const { errors: spfErrors, warnings: spfWarnings, spf_tree } = results;
 
@@ -84,15 +73,19 @@ export default class Results extends Component {
       return this.renderLoading();
     }
 
-    if (errors) {
-      return this.renderError();
+    if (error) {
+      return (
+        <div>
+          {this.renderBackLink()}
+          <ErrorMessage message={'Goddammit React!'}></ErrorMessage>
+        </div>
+      );
     }
 
     return (
       <div>
         {this.renderBackLink()}
         <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
-        {/*{true && <ErrorMessage error={errors[0]}></ErrorMessage>}*/}
         <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
         <SPFNode root={true} {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
