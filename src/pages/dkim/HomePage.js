@@ -35,7 +35,10 @@ export default class HomePage extends Component {
           loading: false
         });
       }, () => {
-        this.setState({ error: true });
+        this.setState({
+          error: true,
+          loading: false
+        });
       });
   }
 
@@ -64,15 +67,15 @@ export default class HomePage extends Component {
   }
 
   renderGenerateOrEmail() {
-    const { email } = this.state;
-    return email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} />;
+    const { email, error } = this.state;
+    return email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} error={error} />;
   }
 
   render() {
     const { loading } = this.state;
     return (
       <div className='flex center-xs'>
-        <div className='col-xs-12 col-md-10 col-lg-7'>
+        <div className='col-xs-12 col-md-10 col-lg-8'>
           <h1>DKIM Validator</h1>
           <p className='marginBottom--lg'>{INTRO_TEXT}</p>
           {loading ? this.renderLoading() : this.renderGenerateOrEmail()}

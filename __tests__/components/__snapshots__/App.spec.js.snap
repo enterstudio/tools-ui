@@ -2,7 +2,7 @@ exports[`test App renders correctly 1`] = `
 <div
   className="pageWrapper">
   <div
-    className="container container--tool paddingTop--xl paddingBottom--xl">
+    className="container container--tool">
     This is my app
   </div>
   <div
@@ -79,6 +79,19 @@ exports[`test App renders correctly 1`] = `
     className="nav">
     <div
       className="container">
+      <div
+        className="nav__right">
+        <a
+          className="sp-sign-in nav__link"
+          href="https://TEST.sparkpost.com/auth?return=http://localhostsome/path">
+          Login
+        </a>
+        <a
+          className="sp-sign-up button button--blue nav__button"
+          href="https://TEST.sparkpost.com/sign-up?return=http://localhostsome/path&src=SP-Tools">
+          Sign Up
+        </a>
+      </div>
       <a
         className="nav__logoLink"
         href="http://sparkpost.com"
@@ -101,11 +114,9 @@ exports[`test App renders correctly 1`] = `
         </svg>
       </a>
       <a
-        className="nav__link false"
-        onClick={[Function]}
-        style={Object {}}
-        title="DKIM Validator">
-        DKIM Validator
+        className="nav__hamburger"
+        onClick={[Function]}>
+        <span />
       </a>
       <a
         className="nav__link false"
@@ -115,16 +126,13 @@ exports[`test App renders correctly 1`] = `
         SPF Inspector
       </a>
       <div
-        className="float--right">
+        className="nav__links">
         <a
           className="nav__link"
-          href="http://app.sparkpost.com/auth">
-          Login
-        </a>
-        <a
-          className="button button--blue nav__button"
-          href="http://app.sparkpost.com/sign-up">
-          Sign Up
+          onClick={[Function]}
+          style={Object {}}
+          title="DKIM Validator">
+          DKIM Validator
         </a>
       </div>
     </div>

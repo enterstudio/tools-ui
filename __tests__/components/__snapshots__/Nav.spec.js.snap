@@ -3,6 +3,19 @@ exports[`Nav component should render correctly by default 1`] = `
   className="nav">
   <div
     className="container">
+    <div
+      className="nav__right">
+      <a
+        className="sp-sign-in nav__link"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something">
+        Login
+      </a>
+      <a
+        className="sp-sign-up button button--blue nav__button"
+        href="https://TEST.sparkpost.com/sign-up?return=http://localhost/some/path?maybe=something&src=SP-Tools">
+        Sign Up
+      </a>
+    </div>
     <a
       className="nav__logoLink"
       href="http://sparkpost.com"
@@ -25,11 +38,9 @@ exports[`Nav component should render correctly by default 1`] = `
       </svg>
     </a>
     <a
-      className="nav__link false"
-      onClick={[Function]}
-      style={Object {}}
-      title="DKIM Validator">
-      DKIM Validator
+      className="nav__hamburger"
+      onClick={[Function]}>
+      <span />
     </a>
     <a
       className="nav__link false"
@@ -39,16 +50,13 @@ exports[`Nav component should render correctly by default 1`] = `
       SPF Inspector
     </a>
     <div
-      className="float--right">
+      className="nav__links">
       <a
         className="nav__link"
-        href="http://app.sparkpost.com/auth">
-        Login
-      </a>
-      <a
-        className="button button--blue nav__button"
-        href="http://app.sparkpost.com/sign-up">
-        Sign Up
+        onClick={[Function]}
+        style={Object {}}
+        title="DKIM Validator">
+        DKIM Validator
       </a>
     </div>
   </div>
@@ -60,6 +68,19 @@ exports[`Nav component should render correctly when logged in 1`] = `
   className="nav">
   <div
     className="container">
+    <div
+      className="nav__right">
+      <a
+        className="nav__link"
+        href="">
+        Logout
+      </a>
+      <a
+        className="button button--blue nav__button"
+        href="https://TEST.sparkpost.com/dashboard">
+        SparkPost Dashboard
+      </a>
+    </div>
     <a
       className="nav__logoLink"
       href="http://sparkpost.com"
@@ -82,11 +103,9 @@ exports[`Nav component should render correctly when logged in 1`] = `
       </svg>
     </a>
     <a
-      className="nav__link false"
-      onClick={[Function]}
-      style={Object {}}
-      title="DKIM Validator">
-      DKIM Validator
+      className="nav__hamburger"
+      onClick={[Function]}>
+      <span />
     </a>
     <a
       className="nav__link false"
@@ -96,16 +115,13 @@ exports[`Nav component should render correctly when logged in 1`] = `
       SPF Inspector
     </a>
     <div
-      className="float--right">
+      className="nav__links">
       <a
         className="nav__link"
-        href="">
-        Logout
-      </a>
-      <a
-        className="button button--blue nav__button"
-        href="http://app.sparkpost.com/dashboard">
-        SparkPost Dashboard
+        onClick={[Function]}
+        style={Object {}}
+        title="DKIM Validator">
+        DKIM Validator
       </a>
     </div>
   </div>
@@ -117,6 +133,19 @@ exports[`Nav component should render correctly when not logged in 1`] = `
   className="nav">
   <div
     className="container">
+    <div
+      className="nav__right">
+      <a
+        className="sp-sign-in nav__link"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something">
+        Login
+      </a>
+      <a
+        className="sp-sign-up button button--blue nav__button"
+        href="https://TEST.sparkpost.com/sign-up?return=http://localhost/some/path?maybe=something&src=SP-Tools">
+        Sign Up
+      </a>
+    </div>
     <a
       className="nav__logoLink"
       href="http://sparkpost.com"
@@ -139,11 +168,9 @@ exports[`Nav component should render correctly when not logged in 1`] = `
       </svg>
     </a>
     <a
-      className="nav__link false"
-      onClick={[Function]}
-      style={Object {}}
-      title="DKIM Validator">
-      DKIM Validator
+      className="nav__hamburger"
+      onClick={[Function]}>
+      <span />
     </a>
     <a
       className="nav__link false"
@@ -153,16 +180,13 @@ exports[`Nav component should render correctly when not logged in 1`] = `
       SPF Inspector
     </a>
     <div
-      className="float--right">
+      className="nav__links">
       <a
         className="nav__link"
-        href="http://app.sparkpost.com/auth">
-        Login
-      </a>
-      <a
-        className="button button--blue nav__button"
-        href="http://app.sparkpost.com/sign-up">
-        Sign Up
+        onClick={[Function]}
+        style={Object {}}
+        title="DKIM Validator">
+        DKIM Validator
       </a>
     </div>
   </div>
@@ -174,6 +198,19 @@ exports[`Nav component should render correctly with a dkim path 1`] = `
   className="nav">
   <div
     className="container">
+    <div
+      className="nav__right">
+      <a
+        className="sp-sign-in nav__link"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/dkim/path?maybe=something">
+        Login
+      </a>
+      <a
+        className="sp-sign-up button button--blue nav__button"
+        href="https://TEST.sparkpost.com/sign-up?return=http://localhost/dkim/path?maybe=something&src=SP-Tools">
+        Sign Up
+      </a>
+    </div>
     <a
       className="nav__logoLink"
       href="http://sparkpost.com"
@@ -196,11 +233,9 @@ exports[`Nav component should render correctly with a dkim path 1`] = `
       </svg>
     </a>
     <a
-      className="nav__link is-active"
-      onClick={[Function]}
-      style={Object {}}
-      title="DKIM Validator">
-      DKIM Validator
+      className="nav__hamburger"
+      onClick={[Function]}>
+      <span />
     </a>
     <a
       className="nav__link false"
@@ -210,16 +245,13 @@ exports[`Nav component should render correctly with a dkim path 1`] = `
       SPF Inspector
     </a>
     <div
-      className="float--right">
+      className="nav__links">
       <a
-        className="nav__link"
-        href="http://app.sparkpost.com/auth">
-        Login
-      </a>
-      <a
-        className="button button--blue nav__button"
-        href="http://app.sparkpost.com/sign-up">
-        Sign Up
+        className="nav__link is-active"
+        onClick={[Function]}
+        style={Object {}}
+        title="DKIM Validator">
+        DKIM Validator
       </a>
     </div>
   </div>
@@ -231,6 +263,19 @@ exports[`Nav component should render correctly with an spf path 1`] = `
   className="nav">
   <div
     className="container">
+    <div
+      className="nav__right">
+      <a
+        className="sp-sign-in nav__link"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/spf/path?maybe=something">
+        Login
+      </a>
+      <a
+        className="sp-sign-up button button--blue nav__button"
+        href="https://TEST.sparkpost.com/sign-up?return=http://localhost/spf/path?maybe=something&src=SP-Tools">
+        Sign Up
+      </a>
+    </div>
     <a
       className="nav__logoLink"
       href="http://sparkpost.com"
@@ -253,11 +298,9 @@ exports[`Nav component should render correctly with an spf path 1`] = `
       </svg>
     </a>
     <a
-      className="nav__link false"
-      onClick={[Function]}
-      style={Object {}}
-      title="DKIM Validator">
-      DKIM Validator
+      className="nav__hamburger"
+      onClick={[Function]}>
+      <span />
     </a>
     <a
       className="nav__link false"
@@ -267,16 +310,13 @@ exports[`Nav component should render correctly with an spf path 1`] = `
       SPF Inspector
     </a>
     <div
-      className="float--right">
+      className="nav__links">
       <a
         className="nav__link"
-        href="http://app.sparkpost.com/auth">
-        Login
-      </a>
-      <a
-        className="button button--blue nav__button"
-        href="http://app.sparkpost.com/sign-up">
-        Sign Up
+        onClick={[Function]}
+        style={Object {}}
+        title="DKIM Validator">
+        DKIM Validator
       </a>
     </div>
   </div>

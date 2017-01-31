@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Icon from 'components/Icon';
+import config from 'config/index';
+import getCurrentUrl from 'helpers/getCurrentUrl';
 import classNames from 'classnames';
 const noop = () => {};
 
@@ -63,4 +65,21 @@ const BackLink = (props) => {
   );
 };
 
-export { ActionButton, LinkButton, ActionLink, BackLink };
+
+const SpLoginLink = ({ location = {}, classes, children }) => {
+  const currentUrl = getCurrentUrl(location);
+  const linkClasses = classNames('sp-sign-in', classes);
+  return (
+    <a href={`${config.appUrl}/auth?return=${currentUrl}`} className={linkClasses}>{children}</a>
+  );
+};
+
+const SpSignUpLink = ({ location = {}, classes, children }) => {
+  const currentUrl = getCurrentUrl(location);
+  const linkClasses = classNames('sp-sign-up', classes);
+  return (
+    <a href={`${config.appUrl}/sign-up?return=${currentUrl}&src=SP-Tools`} className={linkClasses}>{children}</a>
+  );
+};
+
+export { ActionButton, LinkButton, ActionLink, BackLink, SpLoginLink, SpSignUpLink };
