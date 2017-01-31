@@ -68,6 +68,7 @@ class Nav extends Component {
     });
 
     const dkimLink = classNames('nav__link', { 'is-active': location.pathname.includes('/dkim')});
+    const spfLink = classNames('nav__link', { 'is-active': location.pathname.includes('/spf/inspector')});
 
     return (
       <nav className={navClasses}>
@@ -93,11 +94,10 @@ class Nav extends Component {
           <Link
             to='/spf/inspector'
             title='SPF Inspector'
-            className={`nav__link ${path.includes('/spf/inspector') && 'is-active'}`}>
+            className={spfLink}>
             SPF Inspector
           </Link>
 
-          {loggedIn ? this.renderLoggedInLinks() : this.renderLoggedOutLinks()}
         </div>
       </nav>
     );

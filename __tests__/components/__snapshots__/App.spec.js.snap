@@ -118,13 +118,6 @@ exports[`test App renders correctly 1`] = `
         onClick={[Function]}>
         <span />
       </a>
-      <a
-        className="nav__link false"
-        onClick={[Function]}
-        style={Object {}}
-        title="SPF Inspector">
-        SPF Inspector
-      </a>
       <div
         className="nav__links">
         <a
@@ -135,6 +128,13 @@ exports[`test App renders correctly 1`] = `
           DKIM Validator
         </a>
       </div>
+      <a
+        className="nav__link"
+        onClick={[Function]}
+        style={Object {}}
+        title="SPF Inspector">
+        SPF Inspector
+      </a>
     </div>
   </nav>
 </div>
