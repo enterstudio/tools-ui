@@ -16,12 +16,13 @@ export default (
       <Route path='dkim' component={DKIMHome} />
       <Route path='dkim/results/:email' component={DKIMResults} />
       <Route path='dkim/results/:email/:detailId' component={DKIMDetail} />
-      <Route path='*' component={NotFound} />
 
       <Route path='spf/inspector' component={SPFQuery} />
       <Redirect from='/spf' to='/spf/inspector' />
       <Redirect from='/spf/inspector/results' to='/spf/inspector' />
       <Route path='spf/inspector/results/:domain' component={SPFResults} />
+
+      <Route path='*' component={NotFound} />
     </Route>
   </Route>
 );
