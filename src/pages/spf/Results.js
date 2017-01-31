@@ -48,7 +48,7 @@ export default class Results extends Component {
   }
 
   renderBackLink() {
-    return <BackLink to='/spf-inspector' title='Back to SPF Inspector' />;
+    return <BackLink to='/spf/inspector' title='Back to SPF Inspector' />;
   }
 
   renderLoading() {

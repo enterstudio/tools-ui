@@ -71,9 +71,9 @@ class Nav extends Component {
           </Link>
 
           <Link
-            to='/spf-inspector'
+            to='/spf/inspector'
             title='SPF Inspector'
-            className={`nav__link ${path.includes('/spf-inspector') && 'is-active'}`}>
+            className={`nav__link ${path.includes('/spf/inspector') && 'is-active'}`}>
             SPF Inspector
           </Link>
 
