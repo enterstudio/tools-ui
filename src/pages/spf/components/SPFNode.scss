@@ -33,20 +33,8 @@
 
   &__child, &__root {
     display: block;
-    transition: 0.15s;
-  }
-
-  &__root:hover {
-    cursor: pointer;
-    box-shadow: shadow(2);
-
-    & > .spf-tree__chevron {
-      color: color(blue);
-    }
-  }
-
-  &__child {
     position: relative;
+    transition: 0.15s;
 
     &.can-expand:hover {
       cursor: pointer;

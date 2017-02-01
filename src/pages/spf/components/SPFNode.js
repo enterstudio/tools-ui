@@ -24,7 +24,8 @@ function SPFNode({
 
   const panelClasses = classNames('panel', {
     'spf-tree__child': !root,
-    [`spf-tree__child--${displayType}`]: displayType,
+    'spf-tree__root': root,
+    [`spf-tree__child--${displayType}`]: !root && displayType,
     'can-expand': children
   });
 
@@ -33,8 +34,8 @@ function SPFNode({
     'spf-tree__code--label': record // if record, use label styles
   });
 
-  const toggleClasses = classNames({
-    'fa-rotate-180': expanded
+  const toggleClasses = classNames('spf-tree__chevron', {
+    'is-open': expanded
   });
 
   return (

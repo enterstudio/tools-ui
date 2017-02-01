@@ -42,9 +42,12 @@ class ResultsPage extends Component {
         <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
         <div className="panel marginBottom--none">
           <div className='panel__heading'>
+            <div className='float--right'>
+              {spf_tree.root && spf_tree.root.expanded ?
+                <ActionLink onClick={() => this.props.collapseAll()}>Collapse All</ActionLink> :
+                <ActionLink onClick={() => this.props.expandAll()}>Expand All</ActionLink>}
+            </div>
             <h4>SPF Record</h4>
-            <ActionLink onClick={() => this.props.expandAll()}>Expand All</ActionLink>
-            <ActionLink onClick={() => this.props.collapseAll()}>Collapse All</ActionLink>
           </div>
         </div>
         <SPFNode root={true} tree={spf_tree} {...spf_tree.root} domain={domain} expand={this.props.expand} collapse={this.props.collapse}>{spf_tree.root.children}</SPFNode>
