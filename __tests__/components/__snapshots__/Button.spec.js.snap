@@ -14,6 +14,48 @@ exports[`snapshot tests ActionButton will render correctly with no options 1`] =
 </button>
 `;
 
+exports[`snapshot tests ActionLink will render correctly with all options 1`] = `
+<a
+  className="actionLink"
+  onClick={[Function]}
+  style={Object {}}
+  title="a title">
+  Action link text
+</a>
+`;
+
+exports[`snapshot tests ActionLink will render correctly with no options 1`] = `
+<a
+  className="actionLink"
+  onClick={[Function]}
+  style={Object {}}
+  title="" />
+`;
+
+exports[`snapshot tests BackLink will render correctly with all options 1`] = `
+<a
+  className="backLink"
+  onClick={[Function]}
+  style={Object {}}
+  title="a title">
+  <i
+    className="fa fa-chevron-left" />
+   Back
+</a>
+`;
+
+exports[`snapshot tests BackLink will render correctly with no options 1`] = `
+<a
+  className="backLink"
+  onClick={[Function]}
+  style={Object {}}
+  title="">
+  <i
+    className="fa fa-chevron-left" />
+   Back
+</a>
+`;
+
 exports[`snapshot tests LinkButton will render correctly with all options 1`] = `
 <a
   className="button button--muted button--l button--magentaAccent button--full button--icon is-disabled is-awesome has-error best-button-ever"
@@ -30,4 +72,32 @@ exports[`snapshot tests LinkButton will render correctly with no options 1`] = `
   style={Object {}}>
   LINK
 </a>
+`;
+
+exports[`snapshot tests SpLoginLink will render correctly with all options 1`] = `
+<a
+  className="sp-sign-in a-list of-classes"
+  href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?some=search">
+  Log In
+</a>
+`;
+
+exports[`snapshot tests SpLoginLink will render correctly with no options 1`] = `
+<a
+  className="sp-sign-in"
+  href="https://TEST.sparkpost.com/auth?return=http://localhost" />
+`;
+
+exports[`snapshot tests SpSignUpLink will render correctly with all options 1`] = `
+<a
+  className="sp-sign-up a-list of-classes"
+  href="https://TEST.sparkpost.com/sign-up?return=http://localhost/some/path?some=search&src=SP-Tools">
+  Sign Up
+</a>
+`;
+
+exports[`snapshot tests SpSignUpLink will render correctly with no options 1`] = `
+<a
+  className="sp-sign-up"
+  href="https://TEST.sparkpost.com/sign-up?return=http://localhost&src=SP-Tools" />
 `;

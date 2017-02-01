@@ -82,13 +82,13 @@ exports[`test App renders correctly 1`] = `
       <div
         className="nav__right">
         <a
-          className="nav__link"
-          href="http://app.sparkpost.com/auth">
+          className="sp-sign-in nav__link"
+          href="https://TEST.sparkpost.com/auth?return=http://localhostsome/path">
           Login
         </a>
         <a
-          className="button button--blue nav__button"
-          href="http://app.sparkpost.com/sign-up">
+          className="sp-sign-up button button--blue nav__button"
+          href="https://TEST.sparkpost.com/sign-up?return=http://localhostsome/path&src=SP-Tools">
           Sign Up
         </a>
       </div>
@@ -128,6 +128,13 @@ exports[`test App renders correctly 1`] = `
           DKIM Validator
         </a>
       </div>
+      <a
+        className="nav__link"
+        onClick={[Function]}
+        style={Object {}}
+        title="SPF Inspector">
+        SPF Inspector
+      </a>
     </div>
   </nav>
 </div>

@@ -1,0 +1,77 @@
+exports[`ResultsHeader Snapshots baseline snapshot 1`] = `
+<div>
+  <div
+    className="panel panel--accent">
+    <div
+      className="panel__body">
+      <div
+        className="float--right">
+        <span
+          className="popover__group"
+          onClick={[Function]}>
+          <a
+            className="actionLink"
+            onClick={[Function]}
+            style={Object {}}
+            title="">
+            Share
+          </a>
+          <div
+            className="popover copyPopover popover--l popover--rightAligned popover--bottom">
+            <h6
+              className="text--left copyPopover__label">
+              <i
+                className="fa fa-check-circle" />
+               Copied to Clipboard!
+            </h6>
+            <p
+              className="copyPopover__copiedString">
+              http://localhost/
+            </p>
+            <input
+              className="copyPopover__hidden"
+              readOnly={true}
+              value="http://localhost/" />
+          </div>
+        </span>
+        <a
+          className="actionLink"
+          onClick={[Function]}
+          style={Object {}}
+          title="">
+          Refresh
+        </a>
+      </div>
+      <h1
+        className="marginBottom--none marginTop--xs">
+        itchyandscratchy.com
+      </h1>
+      <p
+        className="text--muted marginBottom--none">
+        Tested on 
+        now
+      </p>
+    </div>
+    <div
+      className="panel__body">
+      <div
+        className="flex">
+        <div
+          className="col-xs-3">
+          <b>
+            64
+          </b>
+           Authorized Netblocks
+        </div>
+        <div
+          className="col-xs-3">
+          <b>
+            9
+          </b>
+           DNS Lookups
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
