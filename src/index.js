@@ -2,13 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-import reducers from './reducers';
+import rootReducer from './reducers';
 import routes from './routes';
 import './styles/tools.scss';
 
-const store = createStore(reducers);
+const debug = () => (next) => (action) => {
+  console.log('=== ACTION ==='); // eslint-disable-line no-console
+  console.log(action); // eslint-disable-line no-console
+  next(action);
+};
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk, debug)
+);
 
 ReactDOM.render((
   <Provider store={store}>
