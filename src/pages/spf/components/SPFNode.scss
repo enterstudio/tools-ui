@@ -44,7 +44,9 @@
         color: color(blue);
       }
     }
-
+  }
+  
+  &__child {
     // These are the little lines
     &:before, &:after {
       position: absolute;
