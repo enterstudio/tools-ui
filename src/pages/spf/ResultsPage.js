@@ -18,6 +18,7 @@ class ResultsPage extends Component {
   renderBody() {
     const { tree, loading, error, params, results, collapseAll, expandAll } = this.props;
     const { domain } = params;
+    const { errors: spfErrors, warnings: spfWarnings, spf_tree } = results;
 
     if (loading) {
       return (
@@ -62,7 +63,10 @@ class ResultsPage extends Component {
   }
 }
 
-const mapStateToProps = ({ spfInspect: { tree, details }}) => ({ tree, ...details });
+const mapStateToProps = (state) => {
+  const { results, loading, error } = state.spfInspect;
+  return { results, loading, error };
+};
 
 export default connect(mapStateToProps, {
   inspect: spfInspect,
