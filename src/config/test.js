@@ -1,4 +1,5 @@
 export default {
   apiBase: 'http://TEST.sparkpost.com/api/v1',
-  appUrl: 'https://TEST.sparkpost.com'
+  appUrl: 'https://TEST.sparkpost.com',
+  authCookieName: 'website_auth'
 };
