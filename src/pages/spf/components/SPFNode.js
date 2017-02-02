@@ -52,7 +52,7 @@ function SPFNode({
 
   return (
     <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
-      <div className={panelClasses} onClick={() => expanded ? collapse(treeId) : expand(treeId)}>
+      <div className={panelClasses} onClick={onClick}>
         <div className='panel__body'>
 
           <code className={labelClasses}>{ label }</code>
