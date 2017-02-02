@@ -1,31 +1,32 @@
 import axios from 'axios';
 import cookie from 'js-cookie';
+import config from 'config/index';
 
 export default() => {
-// Add a request interceptor
-  axios.interceptors.request.use(function(config) {
-    // Do something before request is sent
-    console.log('config', config); // eslint-disable-line no-console
-    console.log('cookie', cookie.get('auth')); // eslint-disable-line no-console
+  /*
+   * Add a request interceptor to append auth token
+   * to request header
+   */
+  axios.interceptors.request.use(function(requestConfig) {
+    if (requestConfig.method !== 'OPTIONS') {
+      const authCookie = cookie.get(config.authCookieName);
+      const token = JSON.parse(authCookie).token;
 
-    if (config.method !== 'OPTIONS') {
-      config.headers.authorization = 'a68e6346bc2336bd40911fab1fea363d424e93d5';
+      requestConfig.headers.authorization = token;
     }
 
-    return config;
+    return requestConfig;
   }, function(error) {
-    // Do something with request error
     return Promise.reject(error);
   });
 
-// Add a response interceptor
+  /*
+   * Response interceptor should see 401 unauthorized
+   * responses and do something to re-authenticate the user
+   */
   axios.interceptors.response.use(function(response) {
-    // Do something with response data
-    console.log('response', response); // eslint-disable-line no-console
     return response;
-  }, function(error) {
-    // Do something with response error
-    return Promise.reject(error);
+  }, function(err) {
+    return Promise.reject(err);
   });
-
 };

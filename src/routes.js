@@ -4,7 +4,7 @@ import App from 'components/App';
 import DKIMHome from 'pages/dkim/HomePage';
 import DKIMResults from 'pages/dkim/ResultListPage';
 import DKIMDetail from 'pages/dkim/ResultDetailPage';
-import SPFHistory from 'pages/spf/History';
+import SPFHistory from 'pages/spf/HistoryPage';
 import NotFound from 'pages/notFound/NotFound';
 import SPFQuery from 'pages/spf/Query';
 import SPFResults from 'pages/spf/Results';
