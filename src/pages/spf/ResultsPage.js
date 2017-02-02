@@ -16,7 +16,7 @@ class ResultsPage extends Component {
   }
 
   renderBody() {
-    const { results, loading, error, params } = this.props;
+    const { results, loading, error, params, collapseAll, expandAll } = this.props;
     const { domain } = params;
     const { errors: spfErrors, warnings: spfWarnings, spf_tree } = results;
 
@@ -38,14 +38,14 @@ class ResultsPage extends Component {
 
     return (
       <div>
-        <ResultsHeader results={results} domain={domain} refresh={() => this.props.inspect(domain)} ></ResultsHeader>
-        <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
+        <ResultsHeader results={results} domain={domain} refresh={() => this.props.inspect(domain)} />
+        <ResultsErrors errors={spfErrors} warnings={spfWarnings} />
         <div className="panel marginBottom--none">
           <div className='panel__heading'>
             <div className='float--right'>
-              {spf_tree.root && spf_tree.root.expanded ?
-                <ActionLink onClick={() => this.props.collapseAll()}>Collapse All</ActionLink> :
-                <ActionLink onClick={() => this.props.expandAll()}>Expand All</ActionLink>}
+              <ActionLink onClick={() => spf_tree.root.expanded ? collapseAll() : expandAll()}>
+                Expand/Collapse All
+              </ActionLink>
             </div>
             <h4>SPF Record</h4>
           </div>
@@ -58,7 +58,7 @@ class ResultsPage extends Component {
   render() {
     return (
       <div>
-        <BackLink to='/spf/inspector' title='Back to SPF Inspector' />;
+        <BackLink to='/spf/inspector' title='Back to SPF Inspector' />
         {this.renderBody()}
       </div>
     );

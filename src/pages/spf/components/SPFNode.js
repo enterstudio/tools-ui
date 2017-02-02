@@ -18,6 +18,14 @@ function SPFNode({
   collapse
 }) {
   const label = domain ? domain : `${displayType}:${value}`;
+  const hasChildren = children && children.length > 0;
+
+  const onClick = () => {
+    if (!hasChildren) {
+      return null; // Prevent onClick on nodes w/ no children
+    }
+    return expanded ? collapse(treeId) : expand(treeId);
+  };
 
   // TODO see if we can anchor link to panel with error
   // TODO add child type 'error'
@@ -26,12 +34,12 @@ function SPFNode({
     'spf-tree__child': !root,
     'spf-tree__root': root,
     [`spf-tree__child--${displayType}`]: !root && displayType,
-    'can-expand': children
+    'can-expand': hasChildren
   });
 
   const labelClasses = classNames('spf-tree__code', {
     [`spf-tree__code--${displayType}`]: displayType,
-    'spf-tree__code--label': record // if record, use label styles
+    'spf-tree__code--label': record
   });
 
   const toggleClasses = classNames('spf-tree__chevron', {
@@ -40,12 +48,12 @@ function SPFNode({
 
   return (
     <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
-      <div className={panelClasses} onClick={() => expanded ? collapse(treeId) : expand(treeId)}>
+      <div className={panelClasses} onClick={onClick}>
         <div className='panel__body'>
 
           <code className={labelClasses}>{ label }</code>
           {record && <code className='spf-tree__code'>{ record }</code>}
-          {children && <Icon name='chevron-up' extras={toggleClasses} />}
+          {hasChildren && <Icon name='chevron-up' extras={toggleClasses} />}
 
         </div>
         <div className='spf-tree__accent' />
