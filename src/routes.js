@@ -19,9 +19,8 @@ export default (
 
       <Route path='spf/inspector' component={SPFQuery} />
       <Redirect from='/spf' to='/spf/inspector' />
-      <Redirect from='/spf/inspector/results' to='/spf/inspector' />
-      <Route path='spf/inspector/results/:domain' component={SPFResults} />
-
+      <Route path='spf/inspector/:domain' component={SPFResults} />
+      <Redirect from='/spf/inspector/results/:domain' to='/spf/inspector/:domain' />
       <Route path='*' component={NotFound} />
     </Route>
   </Route>

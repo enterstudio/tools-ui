@@ -16,15 +16,14 @@ class ResultsPage extends Component {
   }
 
   renderBody() {
-    const { results, loading, error, params, collapseAll, expandAll } = this.props;
+    const { tree, loading, error, params, results, collapseAll, expandAll } = this.props;
     const { domain } = params;
-    const { errors: spfErrors, warnings: spfWarnings, spf_tree } = results;
 
     if (loading) {
       return (
         <div className='panel panel--accent'>
           <div className='panel__body text--center paddingTop--xxl paddingBottom--xxl'>
-            <h4 className='text--muted'>Inspecting {this.props.params.domain}...</h4>
+            <h4 className='text--muted'>Inspecting {domain}...</h4>
           </div>
         </div>
       );
@@ -34,23 +33,21 @@ class ResultsPage extends Component {
       return <ErrorMessage message={error.message || error}></ErrorMessage>;
     }
 
-    console.log('results???', results); // eslint-disable-line no-console
-
     return (
       <div>
-        <ResultsHeader results={results} domain={domain} refresh={() => this.props.inspect(domain)} />
-        <ResultsErrors errors={spfErrors} warnings={spfWarnings} />
+        <ResultsHeader {...results} domain={domain} refresh={() => this.props.inspect(domain)} />
+        <ResultsErrors errors={results.spfErrors} warnings={results.spfWarnings} />
         <div className="panel marginBottom--none">
           <div className='panel__heading'>
             <div className='float--right'>
-              <ActionLink onClick={() => spf_tree.root.expanded ? collapseAll() : expandAll()}>
+              <ActionLink onClick={() => tree.root.expanded ? collapseAll() : expandAll()}>
                 Expand/Collapse All
               </ActionLink>
             </div>
             <h4>SPF Record</h4>
           </div>
         </div>
-        <SPFNode root={true} tree={spf_tree} {...spf_tree.root} domain={domain} expand={this.props.expand} collapse={this.props.collapse}>{spf_tree.root.children}</SPFNode>
+        <SPFNode root={true} tree={tree} {...tree.root} domain={domain} expand={this.props.expand} collapse={this.props.collapse}>{tree.root.children}</SPFNode>
       </div>
     );
   }
@@ -65,10 +62,7 @@ class ResultsPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { results, loading, error } = state.spfInspect;
-  return { results, loading, error };
-};
+const mapStateToProps = ({ spfInspect: { tree, details }}) => ({ tree, ...details });
 
 export default connect(mapStateToProps, {
   inspect: spfInspect,
