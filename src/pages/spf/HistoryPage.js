@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import config from 'config/index';
 
-import ResultListRow from 'components/spf/ResultListRow';
+import ResultListRow from './components/ResultListRow';
 
-class History extends Component {
+class HistoryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +22,7 @@ class History extends Component {
     this.setState({ loading: true });
     return axios({
       method: 'get',
-      url: 'http://api.sparkpost.dev/api/v1/messaging-tools/spf/history'
+      url: `${config.apiBase}/messaging-tools/spf/history`
     })
     .then(({ data }) => {
       const { results } = data;
@@ -33,9 +34,10 @@ class History extends Component {
         )),
         loading: false
       });
-    }, ({ response: { data: { errors = [] }}}) => {
+    })
+    .catch((err) => {
       this.setState({
-        error: errors[0],
+        error: err,
         loading: false
       });
     });
@@ -45,24 +47,14 @@ class History extends Component {
     const { results } = this.state;
 
     if (results.length === 0) {
-      return this.renderEmpty();
-    }
-
-    return results.map((values) => this.renderResultListRow(values));
-  }
-
-  renderResultListRow(row) {
-    return (
-        <ResultListRow key={row.id} {...row} />
-    );
-  }
-
-  renderEmpty() {
-    return (
+      return (
         <div className='text--center paddingTop--md'>
           <p className='text--regular text--muted'>Search for SPF records to start saving results!</p>
         </div>
-    );
+      );
+    }
+
+    return results.map((row, i) => <ResultListRow key={i} {...row} />);
   }
 
   renderLoading() {
@@ -86,12 +78,12 @@ class History extends Component {
   }
 }
 
-History.defaultProps = {
+HistoryPage.defaultProps = {
   loggedIn: false
 };
 
-History.propTypes = {
+HistoryPage.propTypes = {
   loggedIn: React.PropTypes.bool.isRequired
 };
 
-export default History;
+export default HistoryPage;
