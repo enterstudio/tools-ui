@@ -23,6 +23,8 @@ $nav-height: rem(57);
   &__link {
     display: block;
     padding: 0;
+    background-color: transparent;
+    border: none;
 
     font-family: $gotham-regular;
     font-size: rem(12);

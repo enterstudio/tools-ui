@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import _ from 'lodash';
 import { SpLoginLink, SpSignUpLink } from 'components/button/Button';
 import config from 'config/index';
+import { logout } from 'actions/auth';
 
 import { Logo } from 'components/logo/Logo';
 
@@ -53,7 +55,7 @@ class Nav extends Component {
   renderLoggedInLinks() {
     return (
       <div className='nav__right'>
-        <a href='' className='nav__link'>Logout</a>
+        <button className='nav__link button--link' onClick={() => this.props.logout()}>Logout</button>
         <a href={`${config.appUrl}/dashboard`} className='button button--blue nav__button'>SparkPost Dashboard</a>
       </div>
     );
@@ -104,15 +106,6 @@ class Nav extends Component {
   }
 }
 
-// I'm just preparing us for redux 😀
-// Normally, default props would be set in redux's initial state
-Nav.defaultProps = {
-  loggedIn: false
-};
+const mapStateToProps = ({ auth: { loggedIn } }) => ({ loggedIn });
 
-Nav.propTypes = {
-  loggedIn: React.PropTypes.bool.isRequired,
-  location: React.PropTypes.object
-};
-
-export default Nav;
+export default connect(mapStateToProps, { logout })(Nav);

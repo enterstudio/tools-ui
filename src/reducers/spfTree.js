@@ -12,7 +12,9 @@ export default (state = initialState, action) => {
 
     case 'SPF_INSPECT_SUCCESS': {
       const tree = setupTree(action.payload.spf_tree);
-      return flatten({ node: tree }); // refresh will reset the expand/collapse state, probably fine
+      const flat = flatten({ node: tree }); // refresh will reset the expand/collapse state, probably fine
+      console.log('flat', flat); // eslint-disable-line no-console
+      return flat;
     }
 
     case 'SPF_INSPECT_FAIL': {
