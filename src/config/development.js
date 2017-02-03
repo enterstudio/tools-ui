@@ -1,5 +1,4 @@
 export default {
   apiBase: 'http://api.sparkpost.dev/api/v1',
-  appUrl: 'https://app-uat.tst.sparkpost.com',
-  authCookieName: 'website_auth'
+  appUrl: 'https://app-uat.tst.sparkpost.com'
 };
