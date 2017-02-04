@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export function setupTree(node) {
   const defaults = {
-    expanded: true,
+    expanded: false, // default everything to collapsed, expand root later
     displayType: node.type
   };
   const walked = Object.assign(defaults, node);
