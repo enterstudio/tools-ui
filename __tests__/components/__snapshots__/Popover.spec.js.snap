@@ -14,7 +14,12 @@ exports[`CopyPopover component should render when supplied a string to copy 1`] 
     <h6
       className="text--left copyPopover__label">
       <i
-        className="fa fa-check-circle" />
+        className="fa fa-check-circle "
+        style={
+          Object {
+            "transition": "all 200ms ease-out",
+          }
+        } />
        Copied to Clipboard!
     </h6>
     <p
@@ -45,7 +50,12 @@ exports[`CopyPopover component should render when supplied a string to copy and 
     <h6
       className="text--left copyPopover__label">
       <i
-        className="fa fa-check-circle" />
+        className="fa fa-check-circle "
+        style={
+          Object {
+            "transition": "all 200ms ease-out",
+          }
+        } />
        Copied to Clipboard!
     </h6>
     <p
@@ -76,7 +86,12 @@ exports[`CopyPopover component should render with only children prop 1`] = `
     <h6
       className="text--left copyPopover__label">
       <i
-        className="fa fa-check-circle" />
+        className="fa fa-check-circle "
+        style={
+          Object {
+            "transition": "all 200ms ease-out",
+          }
+        } />
        Copied to Clipboard!
     </h6>
     <p

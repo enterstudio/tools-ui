@@ -39,7 +39,12 @@ exports[`snapshot tests BackLink will render correctly with all options 1`] = `
   style={Object {}}
   title="a title">
   <i
-    className="fa fa-chevron-left" />
+    className="fa fa-chevron-left "
+    style={
+      Object {
+        "transition": "all 200ms ease-out",
+      }
+    } />
    Back
 </a>
 `;
@@ -51,7 +56,12 @@ exports[`snapshot tests BackLink will render correctly with no options 1`] = `
   style={Object {}}
   title="">
   <i
-    className="fa fa-chevron-left" />
+    className="fa fa-chevron-left "
+    style={
+      Object {
+        "transition": "all 200ms ease-out",
+      }
+    } />
    Back
 </a>
 `;

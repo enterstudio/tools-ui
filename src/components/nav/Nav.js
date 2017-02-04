@@ -11,7 +11,7 @@ import { Logo } from 'components/logo/Logo';
 
 import './Nav.scss';
 
-class Nav extends Component {
+export class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,6 +106,6 @@ class Nav extends Component {
   }
 }
 
-const mapStateToProps = ({ auth: { loggedIn } }) => ({ loggedIn });
+const mapStateToProps = ({ auth }) => ({ loggedIn: auth.loggedIn });
 
 export default connect(mapStateToProps, { logout })(Nav);

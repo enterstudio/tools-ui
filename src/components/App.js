@@ -4,7 +4,7 @@ import Nav from 'components/nav/Nav';
 import Footer from 'components/footer/Footer';
 import { checkLogin } from 'actions/auth';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount() {
     this.props.checkLogin();
