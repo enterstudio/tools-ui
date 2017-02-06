@@ -22,17 +22,17 @@ export default (props) => {
   };
 
   return (
-    <div className="panel panel--accent text--left">
+    <div className="panel spf-historyRow">
       <div className="panel__body">
-        <div style={{ justifyContent: 'center', alignItems: 'center' }} className="flex">
-          <div style={{ fontSize: '32px' }} className="col-xs-2 col-md-2 col-lg-2">
+        <div className="flex middle-xs">
+          <div className="col-xs-2">
             {renderStatus(status)}
           </div>
           <div className="col-xs-10 col-md-8 col-lg-8">
             <h4>{domain}</h4>
-            <div className="paddingBottom--sm text--muted">
+            <p className="paddingBottom--sm text--muted">
               Inspected on {timestamp}
-            </div>
+            </p>
           </div>
           <div className="col-xs-12 col-md-2 col-lg-2">
             <LinkButton type='orange' to={`/spf/results/${domain}`}>View</LinkButton>

@@ -6,7 +6,7 @@ import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
 import { BackLink } from 'components/button/Button';
-import {ErrorMessage} from 'components/errors/ErrorMessage';
+import { ErrorMessage } from 'components/errors/ErrorMessage';
 
 import SPFNode from './components/SPFNode';
 
@@ -77,7 +77,7 @@ export default class Results extends Component {
       return (
         <div>
           {this.renderBackLink()}
-          <ErrorMessage message={'Goddammit React!'}></ErrorMessage>
+          <ErrorMessage details={error.message} />
         </div>
       );
     }
@@ -85,8 +85,8 @@ export default class Results extends Component {
     return (
       <div>
         {this.renderBackLink()}
-        <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
-        <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
+        <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} />
+        <ResultsErrors errors={spfErrors} warnings={spfWarnings} />
         <SPFNode root={true} {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
     );
