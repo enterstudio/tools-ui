@@ -78,7 +78,7 @@ class Query extends Component {
 }
 
 Query.defaultProps = {
-  loggedIn: false // change this to enable history
+  loggedIn: true // change this to enable history
 };
 
 Query.propTypes = {
