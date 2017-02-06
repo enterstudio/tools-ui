@@ -7,9 +7,10 @@ export function setupTree(node) {
   };
   const walked = Object.assign(defaults, node);
 
-  // mx and a records have child records, but no value of their own, flatten them to simplify the tree
+  // mx and a records may have child records, but no value of their own, flatten them to simplify the tree
   if (node.type === 'mx' || node.type === 'a') {
-    return node.children.map((child) => {
+    // node.children may be undefined, _.map will return an empty array, _.flatten will remove that empty array later
+    return _.map(node.children, (child) => {
       child.displayType = node.type;
       return setupTree(child);
     });
