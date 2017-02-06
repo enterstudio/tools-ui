@@ -1,36 +1,67 @@
-import axios from 'axios';
-import config from 'config/index';
 
-const spfInspect = (domain) => (dispatch) => {
-  dispatch({
-    type: 'SPF_INSPECT_PENDING'
-  });
+function chainedSaveHistory(domain) {
+  return (result) => {
+    const { errors, warnings } = result;
+    const hasErrors = (errors && errors.length);
+    const hasWarnings = (warnings && warnings.length);
+    let status = 'valid';
 
-  return axios.get(`${config.apiBase}/messaging-tools/spf/query`, { params: { domain } })
-    .then(({ data: { results, errors } }) => {
+    if (hasWarnings) { status = 'warning'; }
+    if (hasErrors) { status = 'error'; }
 
-      if (errors) {
-        return dispatch({
-          type: 'SPF_INSPECT_FAIL',
-          payload: errors[0]
-        });
+    return saveHistory(domain, status);
+  };
+}
+
+export function saveHistory(domain, status) {
+  return {
+    type: 'SPARKPOST_API_REQUEST',
+    meta: {
+      url: '/messaging-tools/spf/history',
+      method: 'post',
+      data: { domain, status },
+      types: ['SPF_SAVE_HISTORY_PENDING', 'SPF_SAVE_HISTORY_SUCCESS', 'SPF_SAVE_HISTORY_FAIL']
+    }
+  };
+}
+
+export function inspect(domain) {
+  return {
+    type: 'SPARKPOST_API_REQUEST',
+    meta: {
+      url: '/messaging-tools/spf/query',
+      params: { domain },
+      types: ['SPF_INSPECT_PENDING', 'SPF_INSPECT_SUCCESS', 'SPF_INSPECT_FAIL'],
+      chain: {
+        success: chainedSaveHistory(domain)
       }
+    }
+  };
+}
 
-      dispatch({
-        type: 'SPF_INSPECT_SUCCESS',
-        payload: results
-      });
-    }, (err) => {
-      dispatch({
-        type: 'SPF_INSPECT_FAIL',
-        payload: { message: 'There was an error getting your results.' }
-      });
-    });
-};
+export function expandAll() {
+  return { type: 'SPF_INSPECT_EXPAND_ALL' };
+}
 
-const expandAll = () => ({ type: 'SPF_INSPECT_EXPAND_ALL' });
-const collapseAll = () => ({ type: 'SPF_INSPECT_COLLAPSE_ALL' });
-const expand = (id) => ({ type: 'SPF_INSPECT_EXPAND', payload: id });
-const collapse = (id) => ({ type: 'SPF_INSPECT_COLLAPSE', payload: id });
+export function collapseAll() {
+  return { type: 'SPF_INSPECT_COLLAPSE_ALL' };
+}
 
-export { spfInspect, expandAll, collapseAll, expand, collapse };
+export function expand(id) {
+  return { type: 'SPF_INSPECT_EXPAND', payload: id };
+}
+
+export function collapse(id) {
+  return { type: 'SPF_INSPECT_COLLAPSE', payload: id };
+}
+
+export function getHistory() {
+  return {
+    type: 'SPARKPOST_API_REQUEST',
+    meta: {
+      method: 'GET',
+      url: '/messaging-tools/spf/history',
+      types: ['SPF_HISTORY_PENDING', 'SPF_HISTORY_SUCCESS', 'SPF_HISTORY_FAIL']
+    }
+  };
+}

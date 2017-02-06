@@ -7,11 +7,11 @@ export default (state = initialState, action) => {
   switch (action.type) {
 
     case 'AUTH_LOG_IN': {
-      const { token, username, refresh_token } = action.payload;
+      const { token, username = state.username, refreshToken } = action.payload;
       return {
         token,
         username,
-        refresh_token,
+        refreshToken,
         loggedIn: true
       };
     }

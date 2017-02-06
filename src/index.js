@@ -5,7 +5,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-
+import debugMiddleware from 'middleware/debug';
+import spApiMiddleware from 'middleware/sparkpostApiRequest';
 import rootReducer from './reducers';
 import routes from './routes';
 import './styles/tools.scss';
@@ -20,7 +21,7 @@ const debug = () => (next) => (action) => {
 const composeEnhancers = process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk, debug))
+  composeEnhancers(applyMiddleware(thunk, spApiMiddleware, debugMiddleware))
 );
 
 ReactDOM.render((

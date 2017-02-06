@@ -6,7 +6,9 @@ import { checkLogin } from 'actions/auth';
 
 export class App extends Component {
 
-  componentDidMount() {
+  // need to use this lifecycle stage to make sure that
+  // the cookie is read/token in place in time
+  componentWillMount() {
     this.props.checkLogin();
   }
 

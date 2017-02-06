@@ -1,54 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import config from 'config/index';
-import moment from 'moment';
+import { connect } from 'react-redux';
+import { getHistory } from 'actions/spf';
+import ResultListRow from './components/ResultListRow';
 
-import HistoryRow from './HistoryRow';
-
-class HistoryList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      results: [],
-      loading: false
-    };
-  }
+export class HistoryList extends Component {
 
   componentDidMount() {
-    this.getResults();
-  }
-
-  // TODO move this to redux
-  getResults() {
-    this.setState({ loading: true });
-    return axios({
-      method: 'get',
-      url: `${config.apiBase}/messaging-tools/spf/history`
-    })
-    .then(({ data }) => {
-      const { results } = data;
-      this.setState({
-        results: results.map(({ domain, status, timestamp }, idx) => (
-          {
-            id: idx, domain, status,
-            timestamp: moment(timestamp).format('[Inspected on] MMM D YYYY[, at] h:mm A')
-          }
-        )),
-        loading: false
-      });
-    })
-    .catch((err) => {
-      this.setState({
-        error: err,
-        loading: false
-      });
-    });
+    this.props.getHistory();
   }
 
   renderResults() {
-    const { results } = this.state;
+    const { list } = this.props;
 
-    if (results.length === 0) {
+    if (list.length === 0) {
       return (
         <div className='text--center'>
           <p className='text--regular text--muted'>Search for SPF records to start saving results!</p>
@@ -56,7 +20,7 @@ class HistoryList extends Component {
       );
     }
 
-    return results.map((row, i) => <HistoryRow key={i} {...row} />);
+    return list.map((row, i) => <ResultListRow key={i} {...row} />);
   }
 
   renderLoading() {
@@ -68,7 +32,7 @@ class HistoryList extends Component {
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading } = this.props;
     return (
         <div className='text--left'>
           <h4 className='marginBottom--xs'>SPF History</h4>
@@ -78,4 +42,6 @@ class HistoryList extends Component {
   }
 }
 
-export default HistoryList;
+const mapStateToProps = ({ spfHistory }) => ({ ...spfHistory });
+
+export default connect(mapStateToProps, { getHistory })(HistoryList);
