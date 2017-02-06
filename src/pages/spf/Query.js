@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import classNames from 'classnames';
-import { INTRO_TEXT } from './constants';
 
+import { INTRO_TEXT } from './constants';
+import HistoryList from './components/HistoryList';
 
 class Query extends Component {
   constructor(props) {
@@ -69,10 +70,19 @@ class Query extends Component {
           <h1>SPF Inspector</h1>
           <p className='marginBottom--lg text--muted'>{INTRO_TEXT}</p>
           { this.renderPanel() }
+          { this.props.loggedIn && <HistoryList /> }
         </div>
       </div>
     );
   }
 }
+
+Query.defaultProps = {
+  loggedIn: true // change this to enable history
+};
+
+Query.propTypes = {
+  loggedIn: React.PropTypes.bool.isRequired
+};
 
 export default withRouter(Query);

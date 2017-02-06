@@ -4,6 +4,6 @@ import Query from 'pages/spf/Query';
 
 describe('Query Snapshots', () => {
   test('baseline snapshot', () => {
-    expect(renderer.create(<Query></Query>)).toMatchSnapshot();
+    expect(renderer.create(<Query loggedIn={false}></Query>)).toMatchSnapshot();
   });
 });
