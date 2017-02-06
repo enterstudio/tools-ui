@@ -7,7 +7,7 @@ const mapPropsToClasses = ({ name, size, extras = [] }) => (
   classNames('fa', {
     [`${iconPrefix}${name}`]: name,
     [`${iconPrefix}${size}`]: size
-  }, extras.map((extra) => `${iconPrefix}${extra}`)).trim()
+  }, extras)
 );
 
-export default (props) => <i className={mapPropsToClasses(props)} />;
+export default (props) => <i className={mapPropsToClasses(props)} style={{ transition: 'all 200ms ease-out' }} />;

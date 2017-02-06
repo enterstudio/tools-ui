@@ -2,7 +2,8 @@ exports[`SPFNode Snapshots baseline snapshot 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx">
+    className="panel spf-tree__child spf-tree__child--mx"
+    onClick={[Function]}>
     <div
       className="panel__body">
       <code
@@ -24,7 +25,8 @@ exports[`SPFNode Snapshots should display domain if passed 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx">
+    className="panel spf-tree__child spf-tree__child--mx"
+    onClick={[Function]}>
     <div
       className="panel__body">
       <code
@@ -46,7 +48,8 @@ exports[`SPFNode Snapshots should not show record if missing 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx">
+    className="panel spf-tree__child spf-tree__child--mx"
+    onClick={[Function]}>
     <div
       className="panel__body">
       <code

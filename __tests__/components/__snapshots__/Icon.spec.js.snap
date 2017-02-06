@@ -1,9 +1,19 @@
 exports[`Icon component should render correctly with all options 1`] = `
 <i
-  className="fa fa-awesome-icon fa-lg fa-spin fa-big fa-super-special" />
+  className="fa fa-awesome-icon fa-lg spin big super-special"
+  style={
+    Object {
+      "transition": "all 200ms ease-out",
+    }
+  } />
 `;
 
 exports[`Icon component should render correctly with no options 1`] = `
 <i
-  className="fa" />
+  className="fa "
+  style={
+    Object {
+      "transition": "all 200ms ease-out",
+    }
+  } />
 `;

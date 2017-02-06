@@ -70,11 +70,11 @@ exports[`Nav component should render correctly when logged in 1`] = `
     className="container">
     <div
       className="nav__right">
-      <a
-        className="nav__link"
-        href="">
+      <button
+        className="nav__link button--link"
+        onClick={[Function]}>
         Logout
-      </a>
+      </button>
       <a
         className="button button--blue nav__button"
         href="https://TEST.sparkpost.com/dashboard">

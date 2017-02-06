@@ -10,7 +10,12 @@ exports[`ResultListRow component should render 1`] = `
       <div
         className="dkimResultListRow__result">
         <i
-          className="fa fa-check-circle" />
+          className="fa fa-check-circle "
+          style={
+            Object {
+              "transition": "all 200ms ease-out",
+            }
+          } />
       </div>
       <div
         className="dkimResultListRow__details">
@@ -37,7 +42,12 @@ exports[`ResultListRow component should render 1`] = `
             Sun Jan 01 2017 00:00:00 GMT+0000 (UTC)
           </span>
           <i
-            className="fa fa-chevron-right" />
+            className="fa fa-chevron-right "
+            style={
+              Object {
+                "transition": "all 200ms ease-out",
+              }
+            } />
         </div>
       </div>
     </div>

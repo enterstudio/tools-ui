@@ -21,7 +21,12 @@ exports[`ResultsHeader Snapshots baseline snapshot 1`] = `
             <h6
               className="text--left copyPopover__label">
               <i
-                className="fa fa-check-circle" />
+                className="fa fa-check-circle "
+                style={
+                  Object {
+                    "transition": "all 200ms ease-out",
+                  }
+                } />
                Copied to Clipboard!
             </h6>
             <p
@@ -47,9 +52,8 @@ exports[`ResultsHeader Snapshots baseline snapshot 1`] = `
         itchyandscratchy.com
       </h1>
       <p
-        className="text--muted marginBottom--none">
+        className="text--muted marginBottom--none h-hide">
         Tested on 
-        now
       </p>
     </div>
     <div
@@ -58,16 +62,12 @@ exports[`ResultsHeader Snapshots baseline snapshot 1`] = `
         className="flex">
         <div
           className="col-xs-3">
-          <b>
-            64
-          </b>
+          <b />
            Authorized Netblocks
         </div>
         <div
           className="col-xs-3">
-          <b>
-            9
-          </b>
+          <b />
            DNS Lookups
         </div>
       </div>
