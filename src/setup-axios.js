@@ -10,9 +10,11 @@ export default() => {
   axios.interceptors.request.use(function(requestConfig) {
     if (requestConfig.method !== 'OPTIONS') {
       const authCookie = cookie.get(config.authCookie.name);
-      const token = JSON.parse(authCookie).token;
 
-      requestConfig.headers.authorization = token;
+      if (authCookie) {
+        const token = JSON.parse(authCookie).token;
+        requestConfig.headers.authorization = token;
+      }
     }
 
     return requestConfig;

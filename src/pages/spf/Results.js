@@ -6,7 +6,7 @@ import config from 'config/index';
 import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
 import { BackLink } from 'components/button/Button';
-import {ErrorMessage} from 'components/errors/ErrorMessage';
+import ErrorMessage from 'components/errors/ErrorMessage';
 
 import SPFNode from './components/SPFNode';
 
@@ -28,6 +28,7 @@ export default class Results extends Component {
 
     return axios.get(`${config.apiBase}/messaging-tools/spf/query`, {params: { domain }})
       .then(({ data }) => {
+        console.log('here!', data); // eslint-disable-line no-console
         const results = data.results;
         const errors = data.errors;
 
@@ -42,6 +43,7 @@ export default class Results extends Component {
         this.setState({ results });
       })
       .catch((err) => {
+        console.log(err); //eslint-disable-line no-console
         this.setState({ error: {message: 'There was an error getting your results.'} });
       })
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
@@ -77,7 +79,7 @@ export default class Results extends Component {
       return (
         <div>
           {this.renderBackLink()}
-          <ErrorMessage message={'Goddammit React!'}></ErrorMessage>
+          <ErrorMessage friendly={'Ut oh!'} details={error.message}></ErrorMessage>
         </div>
       );
     }
