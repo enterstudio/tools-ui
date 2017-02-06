@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
+import moment from 'moment';
 
 import HistoryRow from './HistoryRow';
 
@@ -29,7 +30,8 @@ class HistoryList extends Component {
       this.setState({
         results: results.map(({ domain, status, timestamp }, idx) => (
           {
-            id: idx, domain, status, timestamp
+            id: idx, domain, status,
+            timestamp: moment(timestamp).format('[Inspected on] MMM D YYYY[, at] h:mm A')
           }
         )),
         loading: false
@@ -48,7 +50,7 @@ class HistoryList extends Component {
 
     if (results.length === 0) {
       return (
-        <div className='text--center paddingTop--md'>
+        <div className='text--center'>
           <p className='text--regular text--muted'>Search for SPF records to start saving results!</p>
         </div>
       );
@@ -68,11 +70,9 @@ class HistoryList extends Component {
   render() {
     const { loading } = this.state;
     return (
-        <div className='flex center-xs'>
-          <div className='col-xs-12 col-md-10 col-lg-7'>
-            <h1>SPF History</h1>
-            {loading ? this.renderLoading() : this.renderResults()}
-          </div>
+        <div className='text--left'>
+          <h4 className='marginBottom--xs'>SPF History</h4>
+          {loading ? this.renderLoading() : this.renderResults()}
         </div>
     );
   }
