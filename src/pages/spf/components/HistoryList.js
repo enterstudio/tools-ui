@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import config from 'config/index';
 
-import ResultListRow from './components/ResultListRow';
+import HistoryRow from './HistoryRow';
 
-class HistoryPage extends Component {
+class HistoryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,7 +54,7 @@ class HistoryPage extends Component {
       );
     }
 
-    return results.map((row, i) => <ResultListRow key={i} {...row} />);
+    return results.map((row, i) => <HistoryRow key={i} {...row} />);
   }
 
   renderLoading() {
@@ -78,12 +78,4 @@ class HistoryPage extends Component {
   }
 }
 
-HistoryPage.defaultProps = {
-  loggedIn: false
-};
-
-HistoryPage.propTypes = {
-  loggedIn: React.PropTypes.bool.isRequired
-};
-
-export default HistoryPage;
+export default HistoryList;

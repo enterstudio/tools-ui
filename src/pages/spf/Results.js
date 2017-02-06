@@ -28,7 +28,6 @@ export default class Results extends Component {
 
     return axios.get(`${config.apiBase}/messaging-tools/spf/query`, {params: { domain }})
       .then(({ data }) => {
-        console.log('here!', data); // eslint-disable-line no-console
         const results = data.results;
         const errors = data.errors;
 
@@ -43,7 +42,6 @@ export default class Results extends Component {
         this.setState({ results });
       })
       .catch((err) => {
-        console.log(err); //eslint-disable-line no-console
         this.setState({ error: {message: 'There was an error getting your results.'} });
       })
       .then(() => this.setState({loading: false}), () => this.setState({loading: false}));
@@ -87,8 +85,8 @@ export default class Results extends Component {
     return (
       <div>
         {this.renderBackLink()}
-        <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} ></ResultsHeader>
-        <ResultsErrors errors={spfErrors} warnings={spfWarnings}></ResultsErrors>
+        <ResultsHeader results={results} domain={domain} refresh={() => this.getResults(domain)} />
+        <ResultsErrors errors={spfErrors} warnings={spfWarnings} />
         <SPFNode root={true} {...spf_tree} domain={domain}>{spf_tree.children}</SPFNode>
       </div>
     );
