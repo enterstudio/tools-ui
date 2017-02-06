@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getHistory } from 'actions/spf';
-import ResultListRow from './components/ResultListRow';
+import HistoryRow from './HistoryRow';
 
 export class HistoryList extends Component {
 
@@ -20,7 +20,7 @@ export class HistoryList extends Component {
       );
     }
 
-    return list.map((row, i) => <ResultListRow key={i} {...row} />);
+    return list.map((row, i) => <HistoryRow key={i} {...row} />);
   }
 
   renderLoading() {

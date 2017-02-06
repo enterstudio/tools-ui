@@ -46,10 +46,6 @@ function SPFNode({
     'is-open': expanded
   });
 
-  const toggleClasses = classNames({
-    'fa-rotate-180': expanded
-  });
-
   return (
     <div className={classNames('spf-tree__childWrapper', {'spf-tree': root})}>
       <div className={panelClasses} onClick={onClick}>
