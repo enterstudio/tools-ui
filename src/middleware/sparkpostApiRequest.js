@@ -4,15 +4,11 @@
  * the 3 necessary actions for each request.
  */
 
-import axios from 'axios';
-import config from 'config/index';
 import _ from 'lodash';
 import { refresh } from 'actions/auth';
-import qs from 'qs';
+import { sparkpostRequest, useRefreshToken } from 'helpers/http';
 
-const http = axios.create({ baseURL: config.apiBase });
-
-// http({ url: '/what/ok/yeah' });
+const maxRefreshRetries = 3;
 
 export default function sparkpostApiRequest({ dispatch, getState }) {
   return (next) => (action) => {
@@ -25,7 +21,7 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
 
     const { auth } = getState();
     const { meta } = action;
-    const { url, method = 'get', type = 'NO_TYPE_DEFINED', params, headers, data, chain = {} } = meta;
+    const { url, method = 'get', type = 'NO_TYPE_DEFINED', params, headers, data, chain = {}, retries = 0 } = meta;
     const PENDING_TYPE = `${type}_PENDING`;
     const SUCCESS_TYPE = `${type}_SUCCESS`;
     const FAIL_TYPE = `${type}_FAIL`;
@@ -46,8 +42,8 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
       _.set(httpOptions, 'headers.Authorization', auth.token);
     }
 
-    return http(httpOptions).then(({ data: { results }}) => {
-      // this only happens if 2xx status code
+    return sparkpostRequest(httpOptions).then(({ data: { results }}) => {
+      // we only get here if the request returned a 2xx status code
       dispatch({
         type: SUCCESS_TYPE,
         payload: results
@@ -59,19 +55,23 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
       }
 
     }, ({ message, response }) => {
-      // NOTE: if this is a 401, need to do a refresh method to get
-      // a new token and then re-dispatch this action
-      if (response.status === 401 && auth.refreshToken) {
-        // call API for new token
-        return getRefreshToken(auth.refreshToken)
-          // dispatch a refresh action to save new token results
-          .then((result) => dispatch(refresh(result)))
-          // dispatch the original action again, now that we have a new token
-          // but if that fails, fail the request
+      // NOTE: if this is a 401, need to do a refresh to get
+      // a new auth token and then re-dispatch this action
+      if (response.status === 401 && auth.refreshToken && retries <= maxRefreshRetries) {
+        action.meta.retries = retries + 1;
+
+        // call API for a new token
+        return useRefreshToken(auth.refreshToken)
+
+          // dispatch a refresh action to save new token results in cookie and store
+          .then(({ data }) => dispatch(refresh(data.access_token, data.refresh_token)))
+
+          // dispatch the original action again, now that we have a new token ...
+          // if anything in this refresh flow blew up, dispatch the fail action
           .then(() => dispatch(action), ({ message, response }) => {
             dispatch({
               type: FAIL_TYPE,
-              payload: { message, response }
+              payload: { message, response, retries }
             });
           });
       }
@@ -88,19 +88,4 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
       throw err;
     });
   };
-}
-
-function getRefreshToken(refresh_token) {
-  return http({
-    method: 'POST',
-    url: '/authenticate',
-    data: qs.stringify({
-      grant_type: 'refresh_token',
-      refresh_token
-    }),
-    headers: {
-      Authorization: 'Basic bXN5c1VJTGltaXRlZDphZjE0OTdkYS02NjI5LTQ3NTEtODljZS01ZDBmODE4N2MyMDQ=', // TODO move this to config?
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
 }

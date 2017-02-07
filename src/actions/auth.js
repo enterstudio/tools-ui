@@ -27,17 +27,12 @@ export function checkLogin() {
   };
 }
 
-export function refresh(result) {
-  const { data } = result;
-  const cookieValues = {
-    token: data.access_token,
-    refreshToken: data.refresh_token
-  };
+export function refresh(token, refreshToken) {
   let oldCookie = cookie.get(authCookie.name);
   if (oldCookie) {
     oldCookie = JSON.parse(oldCookie);
   }
-  const newCookie = Object.assign({}, oldCookie, cookieValues);
+  const newCookie = Object.assign({}, oldCookie, { token, refreshToken });
   cookie.set(authCookie.name, newCookie, authCookie.options);
   return {
     type: 'AUTH_LOG_IN',
