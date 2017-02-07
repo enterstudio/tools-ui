@@ -17,7 +17,7 @@ function SPFNode({
   expand,
   collapse
 }) {
-  const label = domain ? domain : `${displayType}:${value}`;
+  const label = domain ? domain : [displayType, value].join(':'); // value may be undefined
   const hasChildren = children && children.length > 0;
 
   const onClick = () => {
