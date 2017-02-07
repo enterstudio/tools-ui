@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       return initialState;
     }
 
-    case 'SPF_INSPECT_EXPAND': {
+    case 'SPF_TREE_EXPAND': {
       return {
         ...state,
         [action.payload]: {
@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
       };
     }
 
-    case 'SPF_INSPECT_COLLAPSE': {
+    case 'SPF_TREE_COLLAPSE': {
       return {
         ...state,
         [action.payload]: {
@@ -41,11 +41,11 @@ export default (state = initialState, action) => {
       };
     }
 
-    case 'SPF_INSPECT_EXPAND_ALL': {
+    case 'SPF_TREE_EXPAND_ALL': {
       return _.mapValues(state, (node) => ({ ...node, expanded: true }));
     }
 
-    case 'SPF_INSPECT_COLLAPSE_ALL': {
+    case 'SPF_TREE_COLLAPSE_ALL': {
       return _.mapValues(state, (node) => ({ ...node, expanded: false }));
     }
 

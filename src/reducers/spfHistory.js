@@ -7,14 +7,14 @@ const initialState = {
 export default (state = initialState, action) => {
 
   switch (action.type) {
-    case 'SPF_HISTORY_PENDING': {
+    case 'SPF_GET_HISTORY_PENDING': {
       return {
         ...state,
         loading: true
       };
     }
 
-    case 'SPF_HISTORY_SUCCESS': {
+    case 'SPF_GET_HISTORY_SUCCESS': {
       return {
         ...state,
         loading: false,
@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
       };
     }
 
-    case 'SPF_HISTORY_FAIL': {
+    case 'SPF_GET_HISTORY_FAIL': {
       return {
         ...initialState,
         error: action.payload

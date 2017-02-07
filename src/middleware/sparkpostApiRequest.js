@@ -23,11 +23,12 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
       return;
     }
 
-    const noType = 'NO_TYPE_DEFINED';
     const { auth } = getState();
     const { meta } = action;
-    const { url, method = 'get', types = [], params, headers, data, chain = {} } = meta;
-    const [PENDING_TYPE = noType, SUCCESS_TYPE = noType, FAIL_TYPE = noType] = types;
+    const { url, method = 'get', type = 'NO_TYPE_DEFINED', params, headers, data, chain = {} } = meta;
+    const PENDING_TYPE = `${type}_PENDING`;
+    const SUCCESS_TYPE = `${type}_SUCCESS`;
+    const FAIL_TYPE = `${type}_FAIL`;
 
     dispatch({
       type: PENDING_TYPE
