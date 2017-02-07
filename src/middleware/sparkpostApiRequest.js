@@ -46,16 +46,8 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
       _.set(httpOptions, 'headers.Authorization', auth.token);
     }
 
-    http(httpOptions).then(({ data: { results, errors }}) => {
-      // TODO can this happen?
-      if (errors) {
-        console.log('err results', results); // eslint-disable-line no-console
-        return dispatch({
-          type: FAIL_TYPE,
-          payload: errors[0]
-        });
-      }
-
+    return http(httpOptions).then(({ data: { results }}) => {
+      // this only happens if 2xx status code
       dispatch({
         type: SUCCESS_TYPE,
         payload: results
@@ -66,21 +58,39 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
         dispatch(chain.success(results));
       }
 
-    }, ({ message, stack, response }) => {
+    }, ({ message, response }) => {
       // NOTE: if this is a 401, need to do a refresh method to get
       // a new token and then re-dispatch this action
       if (response.status === 401 && auth.refreshToken) {
-        return refreshAndRetry(auth, dispatch, action); // TODO prevent infinite retry loop
+        // call API for new token
+        return getRefreshToken(auth.refreshToken)
+          // dispatch a refresh action to save new token results
+          .then((result) => dispatch(refresh(result)))
+          // dispatch the original action again, now that we have a new token
+          // but if that fails, fail the request
+          .then(() => dispatch(action), ({ message, response }) => {
+            dispatch({
+              type: FAIL_TYPE,
+              payload: { message, response }
+            });
+          });
       }
+      // any other API error should automatically fail
+      // TODO on 403 should we do an AUTH_LOG_OUT action?
       dispatch({
         type: FAIL_TYPE,
         payload: { message, response }
       });
+    })
+    .catch((err) => {
+      // curious to understand when/how errors would find their way here, and what happens if/when they do
+      console.log('error appeared in spapirequest middleware catch()', err.message); // eslint-disable-line no-console
+      throw err;
     });
   };
 }
 
-function refreshAndRetry({ refreshToken: refresh_token }, dispatch, originalAction) {
+function getRefreshToken(refresh_token) {
   return http({
     method: 'POST',
     url: '/authenticate',
@@ -92,13 +102,5 @@ function refreshAndRetry({ refreshToken: refresh_token }, dispatch, originalActi
       Authorization: 'Basic bXN5c1VJTGltaXRlZDphZjE0OTdkYS02NjI5LTQ3NTEtODljZS01ZDBmODE4N2MyMDQ=', // TODO move this to config?
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-  })
-
-  // dispatch a refresh action to set the new cookie
-  .then((result) => dispatch(refresh(result)))
-
-  // dispatch the original action again, with refreshed auth
-  .then(() => dispatch(originalAction))
-
-  .catch((err) => console.log('oops oops refresh', err.response, err.response.data.error_description)); // eslint-disable-line no-console
+  });
 }
