@@ -17,8 +17,8 @@ export default (props) => {
 
     return (
       <h5>
-        {errors.length > 0 && <span className='spf-resultsErrors__summary has-error'><Icon name='exclamation-circle' /> {errorMessage}</span> }
-        {warnings.length > 0 && <span className='spf-resultsErrors__summary has-warning'><Icon name='exclamation-circle' /> {warningMessage}</span> }
+        {errors.length > 0 && <span className='spf-resultsErrors__summary has-error'><Icon name='exclamation-circle' extras='paddingRight--xs' />{errorMessage}</span> }
+        {warnings.length > 0 && <span className='spf-resultsErrors__summary has-warning'><Icon name='exclamation-triangle' extras='paddingRight--xs'/>{warningMessage}</span> }
       </h5>
     );
   };
@@ -28,7 +28,7 @@ export default (props) => {
   const renderRow = (error, idx, type) => (
     <div key={`e-${idx}`} className='panel__body'>
       <p>
-        <span className={`has-${type}`}><Icon name={type === 'error' ? 'exclamation-circle' : 'exlamcation-triangle'} /> </span>
+        <Icon name={type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} extras={`paddingRight--xs has-${type}`}/>
         {error.message}
       </p>
     </div>

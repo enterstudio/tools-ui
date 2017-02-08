@@ -1,3 +1,4 @@
+/* eslint complexity: ["error", 8] */
 import React from 'react';
 import classNames from 'classnames';
 import Icon from 'components/Icon';
@@ -56,7 +57,7 @@ function SPFNode({
   const labelClasses = classNames('spf-tree__code', {
     [`spf-tree__code--${displayType}`]: isValid && displayType,
     [`spf-tree__code--${status}`]: !isValid,
-    'spf-tree__code--label': record
+    'spf-tree__code--label': record || !isValid
   });
 
   const toggleClasses = classNames('spf-tree__chevron', {
