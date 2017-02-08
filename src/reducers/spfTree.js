@@ -6,7 +6,7 @@ const initialState = {
   root: {}
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action = {}) => {
 
   switch (action.type) {
 
