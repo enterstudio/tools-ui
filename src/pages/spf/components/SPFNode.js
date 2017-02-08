@@ -14,11 +14,28 @@ function SPFNode({
   root = false,
   children = null,
   expanded = true,
+  status = 'valid',
+  warnings = [],
+  errors = [],
   expand,
   collapse
 }) {
   const label = domain ? domain : [displayType, value].join(':'); // value may be undefined
   const hasChildren = children && children.length > 0;
+  const isValid = status === 'valid';
+  const panelType = isValid ? displayType : status;
+  const iconMap = {
+    warning: 'exclamation-triangle',
+    error: 'exclamation-circle'
+  };
+
+  let errorMessage;
+  if (warnings.length) {
+    errorMessage = warnings[0].message;
+  }
+  if (errors.length) {
+    errorMessage = errors[0].message;
+  }
 
   const onClick = () => {
     if (!hasChildren) {
@@ -28,17 +45,17 @@ function SPFNode({
   };
 
   // TODO see if we can anchor link to panel with error
-  // TODO add child type 'error'
 
   const panelClasses = classNames('panel', {
     'spf-tree__child': !root,
     'spf-tree__root': root,
-    [`spf-tree__child--${displayType}`]: !root && displayType,
+    [`spf-tree__child--${panelType}`]: !root && panelType,
     'can-expand': hasChildren
   });
 
   const labelClasses = classNames('spf-tree__code', {
-    [`spf-tree__code--${displayType}`]: displayType,
+    [`spf-tree__code--${displayType}`]: isValid && displayType,
+    [`spf-tree__code--${status}`]: !isValid,
     'spf-tree__code--label': record
   });
 
@@ -51,7 +68,12 @@ function SPFNode({
       <div className={panelClasses} onClick={onClick}>
         <div className='panel__body'>
 
-          <code className={labelClasses}>{ label }</code>
+          <span>
+            {!isValid && <Icon name={ iconMap[status] } extras={ `has-${status}` } />}
+            <code className={labelClasses}> { label }</code>
+          </span>
+          {errorMessage && <div> { errorMessage }</div>}
+
           {record && <code className='spf-tree__code'>{ record }</code>}
           {hasChildren && <Icon name='chevron-up' extras={toggleClasses} />}
 
