@@ -3,30 +3,46 @@ import config from 'config/index';
 
 const { authCookie } = config;
 
-export const checkLogin = () => (dispatch, getState) => {
-  const { auth } = getState();
+export function checkLogin() {
 
-  // already logged in, do nothing
-  if (auth.loggedIn) { return; }
+  // redux-thunk function
+  return (dispatch, getState) => {
+    const { auth } = getState();
 
-  const storedAuthCookie = cookie.get(authCookie.name);
+    // already logged in, do nothing
+    if (auth.loggedIn) { return; }
 
-  if (storedAuthCookie) {
-    dispatch({
-      type: 'AUTH_LOG_IN',
-      payload: storedAuthCookie
-    });
-  } else {
-    dispatch({
-      type: 'AUTH_LOG_OUT'
-    });
+    const storedAuthCookie = cookie.get(authCookie.name);
+
+    if (storedAuthCookie) {
+      dispatch({
+        type: 'AUTH_LOG_IN',
+        payload: JSON.parse(storedAuthCookie)
+      });
+    } else {
+      dispatch({
+        type: 'AUTH_LOG_OUT'
+      });
+    }
+  };
+}
+
+export function refresh(token, refreshToken) {
+  let oldCookie = cookie.get(authCookie.name);
+  if (oldCookie) {
+    oldCookie = JSON.parse(oldCookie);
   }
+  const newCookie = Object.assign({}, oldCookie, { token, refreshToken });
+  cookie.set(authCookie.name, newCookie, authCookie.options);
+  return {
+    type: 'AUTH_LOG_IN',
+    payload: newCookie
+  };
+}
 
-};
-
-export const logout = () => {
+export function logout() {
   cookie.remove(authCookie.name, authCookie.options);
   return {
     type: 'AUTH_LOG_OUT'
   };
-};
+}

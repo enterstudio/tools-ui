@@ -3,10 +3,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 const initialState = {
-  results: {
-    spfErrors: [],
-    spfWarnings: []
-  },
+  results: { errors: [], warnings: [], spf_tree: { root: {}} },
   loading: false,
   error: null
 };

@@ -5,7 +5,7 @@ import ResultsHeader from './components/ResultsHeader';
 import ResultsErrors from './components/ResultsErrors';
 import { BackLink, ActionLink } from 'components/button/Button';
 import { ErrorMessage } from 'components/errors/ErrorMessage';
-import { spfInspect, expandAll, collapseAll, expand, collapse } from 'actions/spf';
+import { inspect, expandAll, collapseAll, expand, collapse } from 'actions/spf';
 
 import SPFNode from './components/SPFNode';
 
@@ -65,7 +65,7 @@ class ResultsPage extends Component {
 const mapStateToProps = ({ spfInspect: { tree, details }}) => ({ tree, ...details });
 
 export default connect(mapStateToProps, {
-  inspect: spfInspect,
+  inspect,
   expandAll,
   collapseAll,
   expand,
