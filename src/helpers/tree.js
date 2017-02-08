@@ -27,6 +27,15 @@ export function flatten({ top = {}, node, parent = null, id = 'root' }) {
   if (parent) {
     parent.children.push(id);
   }
+
+  node.status = 'valid';
+  if (node.warnings && node.warnings.length) {
+    node.status = 'warning';
+  }
+  if (node.errors && node.errors.length) {
+    node.status = 'error';
+  }
+
   if (node.children) {
     const children = [...node.children];
     node.children = [];

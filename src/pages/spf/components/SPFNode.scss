@@ -25,6 +25,14 @@
     // Color Coding
     &--redirect { color: color(teal);    }
     &--include  { color: color(magenta); }
+    &--warning  {
+      display: inline;
+      color: color(mustard);
+    }
+    &--error    {
+      display: inline;
+      color: color(alert);
+    }
   }
 
   &__children {
@@ -76,6 +84,8 @@
     // Color Coding
     &--redirect > .spf-tree__accent { background: color(teal);    }
     &--include  > .spf-tree__accent { background: color(magenta); }
+    &--warning  > .spf-tree__accent { background: color(mustard); }
+    &--error  > .spf-tree__accent { background: color(alert); }
   }
 
   // Can't have 3 pseudo elements, and border messes up margins so...
