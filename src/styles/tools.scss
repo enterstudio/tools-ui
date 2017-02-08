@@ -30,6 +30,7 @@ $fa-font-path: "~@sparkpost/styles/src/assets/fonts";
 @import "~@sparkpost/styles/src/assets/scss/components/popover";
 
 @import "./layout";
+@import "./_helpers";
 
 // Styleguide overrides
 .input__error {
