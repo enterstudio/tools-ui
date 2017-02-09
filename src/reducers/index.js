@@ -4,6 +4,7 @@ import authReducer from './auth';
 import spfTreeReducer from './spfTree';
 import spfInspectReducer from './spfInspect';
 import spfHistoryReducer from './spfHistory';
+import dkimReducer from './dkim';
 
 const reducers = {
   auth: authReducer,
@@ -12,6 +13,7 @@ const reducers = {
     details: spfInspectReducer
   }),
   spfHistory: spfHistoryReducer,
+  dkim: dkimReducer,
   form: formReducer
 };
 
