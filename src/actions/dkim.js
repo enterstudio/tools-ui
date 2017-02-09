@@ -54,6 +54,10 @@ export function getValidatorEmail() {
   };
 }
 
+/*
+ * Actions for the DKIM list and detail sections
+ */
+
 export function getValidatorResults(email) {
   return {
     type: 'SPARKPOST_API_REQUEST',
