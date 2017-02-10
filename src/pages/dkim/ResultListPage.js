@@ -9,10 +9,6 @@ import { getValidatorResults } from 'actions/dkim';
 import { connect } from 'react-redux';
 
 class ResultListPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { email } = this.props.params;
 
@@ -68,11 +64,7 @@ class ResultListPage extends Component {
   }
 }
 
-const mapStateToProps = ({ dkim }) => ({
-  tableRows: dkim.resultsList.tableRows,
-  error: dkim.resultsList.error,
-  loading: dkim.resultsList.loading
-});
+const mapStateToProps = ({ dkim }) => ({ ...dkim.resultsList });
 
 export default connect(mapStateToProps, {
   getValidatorResults

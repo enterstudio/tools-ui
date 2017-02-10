@@ -10,10 +10,6 @@ import { getValidatorDetailedResult } from 'actions/dkim';
 import { connect } from 'react-redux';
 
 class ResultDetailPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { email, detailId } = this.props.params;
     this.props.getValidatorDetailedResult(email, detailId);
@@ -57,13 +53,7 @@ class ResultDetailPage extends Component {
   }
 }
 
-const mapStateToProps = ({ dkim }) => ({
-  detailTableRows: dkim.resultsDetail.detailTableRows,
-  sigTableHeaders: dkim.resultsDetail.sigTableHeaders,
-  sigTableRows: dkim.resultsDetail.sigTableRows,
-  error: dkim.resultsDetail.error,
-  loading: dkim.resultsDetail.loading
-});
+const mapStateToProps = ({ dkim }) => ({ ...dkim.resultsDetail });
 
 export default connect(mapStateToProps, {
   getValidatorDetailedResult

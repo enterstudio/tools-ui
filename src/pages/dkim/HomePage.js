@@ -7,10 +7,6 @@ import { getValidatorEmail, deleteSavedValidatorEmail, checkSavedValidatorEmail 
 import { connect } from 'react-redux';
 
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     return this.props.checkSavedValidatorEmail();
   }
@@ -55,11 +51,7 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = ({ dkim }) => ({
-  email: dkim.generateEmail.email,
-  error: dkim.generateEmail.error,
-  loading: dkim.generateEmail.loading
-});
+const mapStateToProps = ({ dkim }) => ({ ...dkim.generateEmail });
 
 export default connect(mapStateToProps, {
   getValidatorEmail,

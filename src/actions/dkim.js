@@ -16,7 +16,7 @@ function saveValidatorEmail() {
     cookie.set(COOKIE_NAME, email, { expires });
 
     return {
-      type: 'DKIM_SAVED_EMAIL_SUCCCESS',
+      type: 'DKIM_SAVED_EMAIL',
       email: email
     };
   };
@@ -26,7 +26,7 @@ export function deleteSavedValidatorEmail() {
   cookie.remove(COOKIE_NAME);
 
   return {
-    type: 'DKIM_REMOVE_SAVED_EMAIL_SUCCCESS',
+    type: 'DKIM_REMOVE_EMAIL',
     email: null
   };
 }
