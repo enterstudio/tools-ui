@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import config from 'config/index';
-import moment from 'moment';
 
 import Table from 'components/table/Table';
 import ResultDetailHeader from './components/ResultDetailHeader';
@@ -9,44 +6,13 @@ import { BackLink } from 'components/button/Button';
 import ErrorMessage from 'components/errors/ErrorMessage';
 import { DETAIL_ERROR_MESSAGE } from './constants';
 
-export default class ResultDetailPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      detailTableRows: [],
-      sigTableHeaders: ['Status', 'DKIM Selector (s=)', 'Signing Domain (d=)', 'Timestamp (t=)'],
-      sigTableRows: [],
-      loading: true
-    };
-  }
+import { getValidatorDetailedResult } from 'actions/dkim';
+import { connect } from 'react-redux';
 
+class ResultDetailPage extends Component {
   componentDidMount() {
-    this.getDetail();
-  }
-
-  getDetail() {
     const { email, detailId } = this.props.params;
-    this.setState({ loading: true });
-    return axios.get(`${config.apiBase}/messaging-tools/validations/${email}/${detailId}`)
-      .then(({ data }) => {
-        const { results } = data;
-        this.setState({
-          detailTableRows: [
-            ['Subject', results.subject],
-            ['From', results.header_from],
-            ['On', moment(results.received).local().format('MMM D YYYY[, at] h:mm A')],
-            ['Status', results.result ? 'Passed' : 'Failed']
-          ],
-          sigTableRows: results.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A'])),
-          loading: false
-        });
-      }, ({ response = null }) => {
-        this.setState({
-          error: response ? response.data.errors[0] : true,
-          loading: false
-        });
-      });
+    this.props.getValidatorDetailedResult(email, detailId);
   }
 
   renderLoading() {
@@ -58,7 +24,7 @@ export default class ResultDetailPage extends Component {
   }
 
   renderDetails() {
-    const { detailTableRows, sigTableHeaders, sigTableRows, error } = this.state;
+    const { detailTableRows, sigTableHeaders, sigTableRows, error } = this.props;
     if (error) { return null; }
     return (
       <div>
@@ -73,7 +39,7 @@ export default class ResultDetailPage extends Component {
   }
 
   render() {
-    const { error, loading } = this.state;
+    const { error, loading } = this.props;
     const back = `/dkim/results/${this.props.params.email}`;
     return (
       <div className='flex center-xs'>
@@ -86,3 +52,9 @@ export default class ResultDetailPage extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ dkim }) => ({ ...dkim.resultsDetail });
+
+export default connect(mapStateToProps, {
+  getValidatorDetailedResult
+})(ResultDetailPage);

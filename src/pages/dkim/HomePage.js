@@ -1,57 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import cookie from 'js-cookie';
-import config from 'config/index';
-import { INTRO_TEXT, COOKIE_NAME } from './constants';
+import { INTRO_TEXT } from './constants';
 import { ActionButton } from 'components/button/Button';
 import ShowEmail from './components/ShowEmail';
 import GenerateEmail from './components/GenerateEmail';
+import { getValidatorEmail, deleteSavedValidatorEmail, checkSavedValidatorEmail } from 'actions/dkim';
+import { connect } from 'react-redux';
 
-export default class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      email: cookie.get(COOKIE_NAME) || null,
-      loading: false
-    };
-  }
-
-  setDkimCookie(email) {
-    const expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 1);
-    cookie.set(COOKIE_NAME, email, { expires });
-  }
-
-  // redux
-  generate() {
-    this.setState({ loading: true, error: null });
-    axios.post(`${config.apiBase}/messaging-tools/validator-emails`)
-      .then(({ data }) => {
-        const { email } = data.results;
-        this.setDkimCookie(email);
-        this.setState({
-          email: data.results.email,
-          loading: false
-        });
-      }, () => {
-        this.setState({
-          error: true,
-          loading: false
-        });
-      });
-  }
-
-  deleteCookie() {
-    cookie.remove(COOKIE_NAME);
-    this.setState({ email: null });
+class HomePage extends Component {
+  componentDidMount() {
+    return this.props.checkSavedValidatorEmail();
   }
 
   renderDeleteCookie() {
     return (
       <div className='for-testing-only-DUH'>
         <br/><br/>
-        <ActionButton type='red' size='s' action={() => this.deleteCookie()}>Delete my email cookie and start over</ActionButton>
+        <ActionButton type='red' size='s' action={() => this.props.deleteSavedValidatorEmail()}>Delete my email cookie and start over</ActionButton>
       </div>
     );
   }
@@ -67,12 +31,13 @@ export default class HomePage extends Component {
   }
 
   renderGenerateOrEmail() {
-    const { email, error } = this.state;
-    return email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.generate()} error={error} />;
+    const { email, error } = this.props;
+
+    return email ? <ShowEmail email={email} /> : <GenerateEmail generate={() => this.props.getValidatorEmail()} error={error} />;
   }
 
   render() {
-    const { loading } = this.state;
+    const { loading } = this.props;
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10 col-lg-8'>
@@ -85,3 +50,12 @@ export default class HomePage extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ dkim }) => ({ ...dkim.generateEmail });
+
+export default connect(mapStateToProps, {
+  getValidatorEmail,
+  deleteSavedValidatorEmail,
+  checkSavedValidatorEmail
+})(HomePage);
+
