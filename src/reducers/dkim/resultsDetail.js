@@ -1,5 +1,5 @@
-import moment from 'moment';
 import makeReducer from 'reducers/makeReducer';
+import { formatDate } from 'helpers/date';
 
 export default makeReducer({
   initialState: {
@@ -15,7 +15,7 @@ export default makeReducer({
       detailTableRows: [
         ['Subject', action.payload.subject],
         ['From', action.payload.header_from],
-        ['On', moment(action.payload.received).local().format('MMM D YYYY[, at] h:mm A')],
+        ['On', formatDate(action.payload.received)],
         ['Status', action.payload.result ? 'Passed' : 'Failed']
       ],
       sigTableRows: action.payload.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A'])),

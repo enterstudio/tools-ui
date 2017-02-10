@@ -8,7 +8,7 @@ export default makeReducer({
     list: []
   },
   types: {
-    'SPF_GET_HISTORY_PENDING': (state, action) => ({
+    'SPF_GET_HISTORY_PENDING': (state) => ({
       ...state,
       loading: true
     }),

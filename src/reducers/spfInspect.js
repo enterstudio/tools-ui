@@ -9,7 +9,7 @@ export default makeReducer({
     error: null
   },
   types: {
-    'SPF_INSPECT_PENDING': (state, action) => ({
+    'SPF_INSPECT_PENDING': (state) => ({
       ...state,
       loading: true
     }),

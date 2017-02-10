@@ -1,6 +1,6 @@
-export default (config) => (state = config.initialState || {}, action = {}) => {
-  if (config.types && typeof config.types[action.type] === 'function') {
-    return config.types[action.type](state, action);
+export default ({ types = {}, initialState = {} }) => (state = initialState, action = {}) => {
+  if (typeof types[action.type] === 'function') {
+    return types[action.type](state, action);
   }
 
   return state;

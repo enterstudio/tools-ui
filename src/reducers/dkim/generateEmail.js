@@ -7,7 +7,7 @@ export default makeReducer({
     loading: false
   },
   types: {
-    'DKIM_REMOVE_EMAIL': (state, action) => ({
+    'DKIM_REMOVE_EMAIL': (state) => ({
       ...state,
       email: null
     }),
@@ -15,7 +15,7 @@ export default makeReducer({
       ...state,
       email: action.email
     }),
-    'DKIM_GENERATE_EMAIL_PENDING': (state, action) => ({
+    'DKIM_GENERATE_EMAIL_PENDING': (state) => ({
       ...state,
       loading: true
     }),
