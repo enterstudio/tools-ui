@@ -4,7 +4,7 @@ const initialState = {
   loading: false
 };
 
-export default (state = initialState, action) => { // eslint-disable-line complexity
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'DKIM_REMOVE_SAVED_EMAIL_SUCCCESS': {
       return {
@@ -45,4 +45,3 @@ export default (state = initialState, action) => { // eslint-disable-line comple
 
   return state;
 };
-

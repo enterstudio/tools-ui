@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import moment from 'moment';
 import _ from 'lodash';
 
