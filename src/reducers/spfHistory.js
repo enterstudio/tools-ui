@@ -1,3 +1,4 @@
+import makeReducer from 'reducers/makeReducer';
 import { formatDate } from 'helpers/date';
 
 export default makeReducer({
@@ -17,8 +18,8 @@ export default makeReducer({
       list: action.payload.map(({ domain, status, timestamp }, id) => ({
         id, domain, status,
         timestamp: formatDate(timestamp)
-      })
-     })
+      }))
+    }),
     'SPF_GET_HISTORY_FAIL': (state, action) => ({
       ...state,
       error: action.payload
