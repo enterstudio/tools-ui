@@ -24,7 +24,7 @@ class HomePage extends Component {
     return (
       <div className='panel panel--accent'>
         <div className='panel__body text--center'>
-          <p className='text--regular text--muted paddingTop--xl paddingBottom--xl'>Generating Email Address...</p>
+          <p className='text--regular paddingTop--xl paddingBottom--xl'>Generating Email Address...</p>
         </div>
       </div>
     );

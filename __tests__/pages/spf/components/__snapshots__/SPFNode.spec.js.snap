@@ -6,10 +6,13 @@ exports[`SPFNode Snapshots baseline snapshot 1`] = `
     onClick={[Function]}>
     <div
       className="panel__body">
-      <code
-        className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
-        mx:_spf.erlock.homes
-      </code>
+      <span>
+        <code
+          className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
+           
+          mx:_spf.erlock.homes
+        </code>
+      </span>
       <code
         className="spf-tree__code">
         sirMXaLot
@@ -29,10 +32,13 @@ exports[`SPFNode Snapshots should display domain if passed 1`] = `
     onClick={[Function]}>
     <div
       className="panel__body">
-      <code
-        className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
-        domain.com
-      </code>
+      <span>
+        <code
+          className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
+           
+          domain.com
+        </code>
+      </span>
       <code
         className="spf-tree__code">
         sirMXaLot
@@ -52,10 +58,13 @@ exports[`SPFNode Snapshots should not show record if missing 1`] = `
     onClick={[Function]}>
     <div
       className="panel__body">
-      <code
-        className="spf-tree__code spf-tree__code--mx">
-        mx:_spf.erlock.homes
-      </code>
+      <span>
+        <code
+          className="spf-tree__code spf-tree__code--mx">
+           
+          mx:_spf.erlock.homes
+        </code>
+      </span>
     </div>
     <div
       className="spf-tree__accent" />

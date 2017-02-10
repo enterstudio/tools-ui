@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { formatDate } from 'helpers/date';
 import _ from 'lodash';
 import makeReducer from 'reducers/makeReducer';
 
@@ -15,7 +15,7 @@ export default makeReducer({
     }),
     'SPF_INSPECT_SUCCESS': (state, action) => {
       const { errors, warnings, authorized_netblocks, dns_lookups } = action.payload;
-      const timestamp = moment().format('MMM D YYYY[, at] h:mm A');
+      const timestamp = formatDate();
       return {
         ...state,
         results: {

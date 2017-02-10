@@ -1,5 +1,4 @@
 import React from 'react';
-import { ActionLink } from 'components/button/Button';
 import Icon from 'components/Icon';
 
 import './ResultsErrors.scss';
@@ -17,8 +16,8 @@ export default (props) => {
 
     return (
       <h5>
-        {errors.length > 0 && <span className='spf-resultsErrors__summary has-error'><Icon name='exclamation-circle' /> {errorMessage}</span> }
-        {warnings.length > 0 && <span className='spf-resultsErrors__summary has-warning'><Icon name='exclamation-circle' /> {warningMessage}</span> }
+        {errors.length > 0 && <span className='spf-resultsErrors__summary has-error'><Icon name='exclamation-circle' extras='paddingRight--xs' />{errorMessage}</span> }
+        {warnings.length > 0 && <span className='spf-resultsErrors__summary has-warning'><Icon name='exclamation-triangle' extras='paddingRight--xs'/>{warningMessage}</span> }
       </h5>
     );
   };
@@ -28,7 +27,7 @@ export default (props) => {
   const renderRow = (error, idx, type) => (
     <div key={`e-${idx}`} className='panel__body'>
       <p>
-        <span className={`has-${type}`}><Icon name={type === 'error' ? 'exclamation-circle' : 'exlamcation-triangle'} /> </span>
+        <Icon name={type === 'error' ? 'exclamation-circle' : 'exclamation-triangle'} extras={`paddingRight--xs has-${type}`}/>
         {error.message}
       </p>
     </div>
@@ -37,7 +36,7 @@ export default (props) => {
   return (
     <div className='panel spf-resultsErrors'>
       <div className='panel__heading'>
-        <div className='float--right'><ActionLink>How do I fix errors?</ActionLink></div>
+        {/* <div className='float--right'><ActionLink>How do I fix errors?</ActionLink></div> */}
         { renderSummary() }
       </div>
       { errors.map((error, idx) => renderRow(error, idx, 'error')) }
