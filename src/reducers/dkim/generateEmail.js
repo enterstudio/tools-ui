@@ -1,47 +1,32 @@
-const initialState = {
-  error: null,
-  email: null,
-  loading: false
-};
+import makeReducer from 'reducers/makeReducer';
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case 'DKIM_REMOVE_SAVED_EMAIL_SUCCCESS': {
-      return {
-        ...state,
-        email: null
-      };
-    }
-
-    case 'DKIM_SAVED_EMAIL': {
-      return {
-        ...state,
-        email: action.email
-      };
-    }
-
-    case 'DKIM_GENERATE_EMAIL_PENDING': {
-      return {
-        ...state,
-        loading: true
-      };
-    }
-
-    case 'DKIM_GENERATE_EMAIL_SUCCESS': {
-      return {
-        ...state,
-        loading: false,
-        email: action.payload.email
-      };
-    }
-
-    case 'DKIM_GENERATE_EMAIL_FAIL': {
-      return {
-        ...state,
-        error: action.payload.message
-      };
-    }
+export default makeReducer({
+  initialState: {
+    error: null,
+    email: null,
+    loading: false
+  },
+  types: {
+    'DKIM_REMOVE_EMAIL': (state, action) => ({
+      ...state,
+      email: null
+    }),
+    'DKIM_SAVED_EMAIL': (state, action) => ({
+      ...state,
+      email: action.email
+    }),
+    'DKIM_GENERATE_EMAIL_PENDING': (state, action) => ({
+      ...state,
+      loading: true
+    }),
+    'DKIM_GENERATE_EMAIL_SUCCESS': (state, action) => ({
+      ...state,
+      loading: false,
+      email: action.payload.email
+    }),
+    'DKIM_GENERATE_EMAIL_FAIL': (state, action) => ({
+      ...state,
+      error: action.payload.message
+    })
   }
-
-  return state;
-};
+});

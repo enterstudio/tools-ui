@@ -1,14 +1,14 @@
 import moment from 'moment';
+import makeReducer from 'reducers/makeReducer';
 
-const initialState = {
-  error: null,
-  tableRows: [],
-  loading: false
-};
-
-export default (state = initialState, action) => { // eslint-disable-line complexity
-  switch (action.type) {
-    case 'DKIM_GET_RESULTS_SUCCESS': {
+export default makeReducer({
+  initialState: {
+    error: null,
+    tableRows: [],
+    loading: false
+  },
+  types: {
+    'DKIM_GET_RESULTS_SUCCESS': (state, action) => {
       const tableRows = action.payload.map(({ id, subject, result, header_from, received }) => (
         {
           id, header_from, subject, result,
@@ -21,15 +21,10 @@ export default (state = initialState, action) => { // eslint-disable-line comple
         loading: false,
         tableRows: tableRows
       };
-    }
-
-    case 'DKIM_GET_RESULTS_FAIL': {
-      return {
-        ...state,
-        error: action.payload.message
-      };
-    }
+    },
+    'DKIM_GET_RESULTS_FAIL': (state, action) => ({
+      ...state,
+      error: action.payload.message
+    })
   }
-
-  return state;
-};
+});
