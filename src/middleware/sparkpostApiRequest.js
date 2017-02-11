@@ -5,7 +5,7 @@
  */
 
 import _ from 'lodash';
-import { refresh } from 'actions/auth';
+import { refresh, logout } from 'actions/auth';
 import { sparkpostRequest, useRefreshToken } from 'helpers/http';
 
 const maxRefreshRetries = 3;
@@ -75,8 +75,13 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
             });
           });
       }
-      // any other API error should automatically fail
-      // TODO on 403 should we do an AUTH_LOG_OUT action?
+
+      // If we have a 401 and we're not refreshing, log the user out silently
+      if (response.status === 401) {
+        return dispatch(logout());
+      }
+
+      // any other API error should automatically fail, to be handled in the reducers/components
       dispatch({
         type: FAIL_TYPE,
         payload: { message, response }
