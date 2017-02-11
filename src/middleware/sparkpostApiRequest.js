@@ -54,7 +54,7 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
         dispatch(chain.success(results));
       }
 
-    }, ({ message, response }) => {
+    }, ({ message, response = {} }) => {
       // NOTE: if this is a 401, need to do a refresh to get
       // a new auth token and then re-dispatch this action
       if (response.status === 401 && auth.refreshToken && retries <= maxRefreshRetries) {

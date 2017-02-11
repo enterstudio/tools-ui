@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ResultListRow from './components/ResultListRow';
 import ResultListHeader from './components/ResultListHeader';
-import ErrorMessage from 'components/errors/ErrorMessage';
+import ApiErrorMessage from 'components/errors/ApiErrorMessage';
 import { LIST_ERROR_MESSAGE } from './constants';
 
 import { getValidatorResults } from 'actions/dkim';
@@ -39,7 +39,11 @@ class ResultListPage extends Component {
   }
 
   renderResults() {
-    const { tableRows } = this.props;
+    const { tableRows, error } = this.props;
+
+    if (error) {
+      return <ApiErrorMessage friendly={LIST_ERROR_MESSAGE} error={error} />;
+    }
 
     if (tableRows.length === 0) {
       return this.renderEmpty();
@@ -49,13 +53,11 @@ class ResultListPage extends Component {
   }
 
   render() {
-    const { error, loading } = this.props;
-    const { email } = this.props.params;
+    const { loading, params: { email } } = this.props;
 
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10 col-lg-8'>
-          {(error && !loading) && <ErrorMessage friendly={LIST_ERROR_MESSAGE} details={error.message} />}
           <ResultListHeader email={email} getResults={() => this.props.getValidatorResults(email)}/>
           {loading ? this.renderLoading() : this.renderResults()}
         </div>
@@ -69,4 +71,3 @@ const mapStateToProps = ({ dkim }) => ({ ...dkim.resultsList });
 export default connect(mapStateToProps, {
   getValidatorResults
 })(ResultListPage);
-

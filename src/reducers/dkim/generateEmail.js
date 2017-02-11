@@ -1,11 +1,13 @@
 import makeReducer from 'reducers/makeReducer';
 
+const initialState = {
+  error: null,
+  email: null,
+  loading: false
+};
+
 export default makeReducer({
-  initialState: {
-    error: null,
-    email: null,
-    loading: false
-  },
+  initialState,
   types: {
     'DKIM_REMOVE_EMAIL': (state) => ({
       ...state,
@@ -16,17 +18,16 @@ export default makeReducer({
       email: action.email
     }),
     'DKIM_GENERATE_EMAIL_PENDING': (state) => ({
-      ...state,
+      ...initialState,
       loading: true
     }),
     'DKIM_GENERATE_EMAIL_SUCCESS': (state, action) => ({
-      ...state,
-      loading: false,
+      ...initialState,
       email: action.payload.email
     }),
     'DKIM_GENERATE_EMAIL_FAIL': (state, action) => ({
-      ...state,
-      error: action.payload.message
+      ...initialState,
+      error: action.payload
     })
   }
 });
