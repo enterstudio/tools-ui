@@ -6,6 +6,5 @@ export default {
     options: {
       domain: '.sparkpost.dev'
     }
-  },
-  gtmId: 'GTM-KW77RZ'
+  }
 };
