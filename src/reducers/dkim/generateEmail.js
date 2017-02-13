@@ -18,15 +18,21 @@ export default makeReducer({
       email: action.email
     }),
     'DKIM_GENERATE_EMAIL_PENDING': (state) => ({
-      ...initialState,
+      ...state,
+      email: null,
+      error: null,
       loading: true
     }),
     'DKIM_GENERATE_EMAIL_SUCCESS': (state, action) => ({
-      ...initialState,
+      ...state,
+      error: null,
+      loading: false,
       email: action.payload.email
     }),
     'DKIM_GENERATE_EMAIL_FAIL': (state, action) => ({
-      ...initialState,
+      ...state,
+      email: null,
+      loading: false,
       error: action.payload
     })
   }

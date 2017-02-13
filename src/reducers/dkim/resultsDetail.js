@@ -14,7 +14,9 @@ export default makeReducer({
   types: {
     'DKIM_GET_DETAILED_RESULT_PENDING': (state) => ({ ...state, loading: true }),
     'DKIM_GET_DETAILED_RESULT_SUCCESS': (state, action) => ({
-      ...initialState,
+      ...state,
+      loading: false,
+      error: null,
       detailTableRows: [
         ['Subject', action.payload.subject],
         ['From', action.payload.header_from],
@@ -24,7 +26,10 @@ export default makeReducer({
       sigTableRows: action.payload.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A']))
     }),
     'DKIM_GET_DETAILED_RESULT_FAIL': (state, action) => ({
-      ...initialState,
+      ...state,
+      detailTableRows: [],
+      sigTableRows: [],
+      loading: false,
       error: action.payload
     })
   }

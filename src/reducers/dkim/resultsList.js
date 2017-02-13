@@ -20,12 +20,16 @@ export default makeReducer({
       ));
 
       return {
-        ...initialState,
+        ...state,
+        loading: false,
+        error: null,
         tableRows: tableRows
       };
     },
     'DKIM_GET_RESULTS_FAIL': (state, action) => ({
-      ...initialState,
+      ...state,
+      loading: false,
+      tableRows: [],
       error: action.payload
     })
   }
