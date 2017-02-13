@@ -51,7 +51,7 @@ export default function sparkpostApiRequest({ dispatch, getState }) {
 
       // if we need to chain together another action, do it here
       if (typeof chain.success === 'function') {
-        dispatch(chain.success(results));
+        chain.success({ dispatch, getState, results });
       }
 
     }, ({ message, response = {} }) => {
