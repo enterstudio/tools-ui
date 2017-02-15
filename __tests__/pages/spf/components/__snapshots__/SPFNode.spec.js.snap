@@ -2,15 +2,15 @@ exports[`SPFNode Snapshots baseline snapshot 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx"
+    className="panel spf-tree__child"
     onClick={[Function]}>
     <div
       className="panel__body">
       <span>
         <code
-          className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
+          className="spf-tree__code spf-tree__code--label">
            
-          mx:_spf.erlock.homes
+          :_spf.erlock.homes
         </code>
       </span>
       <code
@@ -28,13 +28,13 @@ exports[`SPFNode Snapshots should display domain if passed 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx"
+    className="panel spf-tree__child"
     onClick={[Function]}>
     <div
       className="panel__body">
       <span>
         <code
-          className="spf-tree__code spf-tree__code--mx spf-tree__code--label">
+          className="spf-tree__code spf-tree__code--label">
            
           domain.com
         </code>
@@ -54,15 +54,15 @@ exports[`SPFNode Snapshots should not show record if missing 1`] = `
 <div
   className="spf-tree__childWrapper">
   <div
-    className="panel spf-tree__child spf-tree__child--mx"
+    className="panel spf-tree__child"
     onClick={[Function]}>
     <div
       className="panel__body">
       <span>
         <code
-          className="spf-tree__code spf-tree__code--mx">
+          className="spf-tree__code">
            
-          mx:_spf.erlock.homes
+          :_spf.erlock.homes
         </code>
       </span>
     </div>

@@ -10,7 +10,7 @@ function SPFNode({
   treeId,
   domain = null,
   record,
-  displayType = null,
+  type,
   value = null,
   root = false,
   children = null,
@@ -21,10 +21,10 @@ function SPFNode({
   expand,
   collapse
 }) {
-  const label = domain ? domain : [displayType, value].join(':'); // value may be undefined
+  const label = domain ? domain : [type, value].join(':'); // value may be undefined
   const hasChildren = children && children.length > 0;
   const isValid = status === 'valid';
-  const panelType = isValid ? displayType : status;
+  const panelType = isValid ? type : status;
   const iconMap = {
     warning: 'exclamation-triangle',
     error: 'exclamation-circle'
@@ -55,7 +55,7 @@ function SPFNode({
   });
 
   const labelClasses = classNames('spf-tree__code', {
-    [`spf-tree__code--${displayType}`]: isValid && displayType,
+    [`spf-tree__code--${type}`]: isValid && type,
     [`spf-tree__code--${status}`]: !isValid,
     'spf-tree__code--label': record || !isValid
   });
