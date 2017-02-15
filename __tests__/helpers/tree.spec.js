@@ -40,11 +40,11 @@ describe('helpers: tree', () => {
 
     it('should set all nodes to expanded false', function() {
       const walked = setupTree(tree);
-      expectExpanded(walked);
+      expectCollaped(walked);
 
-      function expectExpanded(node) {
+      function expectCollaped(node) {
         expect(node.expanded).toEqual(false);
-        _.forEach(node.children, expectExpanded)
+        _.forEach(node.children, expectCollaped)
       }
     });
   });
