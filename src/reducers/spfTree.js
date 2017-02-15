@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import _ from 'lodash';
-import { setupTree, flatten } from 'helpers/tree';
+import { flatten } from 'helpers/tree';
 
 const initialState = {
   root: {}
@@ -11,8 +11,7 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
 
     case 'SPF_INSPECT_SUCCESS': {
-      const tree = setupTree(action.payload.spf_tree);
-      const flat = flatten({ node: tree }); // refresh will reset the expand/collapse state, probably fine
+      const flat = flatten({ node: action.payload.spf_tree }); // refresh will reset the expand/collapse state, probably fine
       flat.root.expanded = true; // expand just the root to start out
       return flat;
     }

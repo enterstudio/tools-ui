@@ -1,22 +1,11 @@
 
-export function setupTree(node) {
-  const defaults = {
-    expanded: false // default everything to collapsed, expand root later
-  };
-  const walked = Object.assign(defaults, node);
-
-  if (node.children && node.children.length) {
-    walked.children = node.children.map(setupTree);
-  }
-
-  return walked;
-}
-
 export function flatten({ top = {}, node, parent = null, id = 'root' }) {
   node.treeId = id;
   if (parent) {
     parent.children.push(id);
   }
+
+  node.expanded = false;
 
   node.status = 'valid';
   if (node.warnings && node.warnings.length) {

@@ -1,4 +1,4 @@
-import { setupTree, flatten } from 'helpers/tree';
+import { flatten } from 'helpers/tree';
 import _ from 'lodash';
 
 describe('helpers: tree', () => {
@@ -36,16 +36,13 @@ describe('helpers: tree', () => {
     };
   });
 
-  describe('setupTree', () => {
+  describe('flatten', () => {
 
     it('should set all nodes to expanded false', function() {
-      const walked = setupTree(tree);
-      expectCollaped(walked);
-
-      function expectCollaped(node) {
+      const flattenedTree = flatten({node: tree});
+      _.forEach(flattenedTree, (node) => {
         expect(node.expanded).toEqual(false);
-        _.forEach(node.children, expectCollaped)
-      }
+      })
     });
   });
 
