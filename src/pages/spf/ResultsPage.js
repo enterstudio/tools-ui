@@ -53,7 +53,7 @@ class ResultsPage extends Component {
         <div className="panel marginBottom--none">
           <div className='panel__heading'>
             <div className='float--right'>
-              <ActionLink onClick={() => tree.root.expanded ? collapseAll() : expandAll()}>
+              <ActionLink title='Expand or Collapse All' onClick={() => tree.root.expanded ? collapseAll() : expandAll()}>
                 Expand/Collapse All
               </ActionLink>
             </div>
@@ -66,18 +66,18 @@ class ResultsPage extends Component {
   }
 
   render() {
-    const { loading, results, inspect, params: { domain } } = this.props;
+    const { loading, results, inspect, loggedIn, params: { domain } } = this.props;
     return (
       <div>
         <BackLink to='/spf/inspector' title='Back to SPF Inspector' />
-        {!loading && <ResultsHeader {...results} domain={domain} refresh={() => inspect(domain)} />}
+        {!loading && <ResultsHeader {...results} loggedIn={loggedIn} domain={domain} refresh={() => inspect(domain)} />}
         {this.renderBody()}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ spfInspect: { tree, details }}) => ({ tree, ...details });
+const mapStateToProps = ({ auth: { loggedIn }, spfInspect: { tree, details }}) => ({ loggedIn, tree, ...details });
 
 export default connect(mapStateToProps, {
   inspect,
