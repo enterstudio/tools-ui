@@ -3,13 +3,38 @@ export const INTRO_TEXT = 'Verifying DKIM is one step that can help your email g
 export const LIST_ERROR_MESSAGE = 'Sorry, we\'re having trouble finding your messages.';
 export const DETAIL_ERROR_MESSAGE = 'Sorry, we\'re having trouble finding your message details.';
 
-// https://github.com/nfl/react-helmet
-export const HOMEPAGE_HELMET = {
+export const dkimMeta = {
   title: 'DKIM Validator',
   meta: [
-    {name: 'description', content: 'DKIM Validator Description'},
-    {property: 'og:type', content: 'website'},
-    {property: 'og:url', content: 'https://tools.sparkpost.com/dkim'}
-    // {property: 'og:image', content: ''}
+    {
+      name: 'description',
+      content: 'DKIM is a key email authentication standard. Verify your messages have working DKIM signatures with this easy tool from the email experts at SparkPost.'
+    },
+    // Og
+    {
+      property: 'og:title',
+      content: 'DKIM Validator'
+    },
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+    {
+      property: 'og:url',
+      content: 'https://tools.sparkpost.com/dkim'
+    },
+    {
+      property: 'og:description',
+      content: 'DKIM is a key email authentication standard. Verify your messages have working DKIM signatures with this easy tool from the email experts at SparkPost.'
+    },
+    // Twitter
+    {
+      name: 'twitter:title',
+      content: 'DKIM Validator'
+    },
+    {
+      name: 'twitter:description',
+      content: 'DKIM is a key email authentication standard. Verify your messages have working DKIM signatures with this easy tool from the email experts at SparkPost.'
+    }
   ]
 };

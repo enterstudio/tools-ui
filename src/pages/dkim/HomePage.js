@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { INTRO_TEXT, HOMEPAGE_HELMET } from './constants';
+import { INTRO_TEXT } from './constants';
 import { ActionButton } from 'components/button/Button';
 import ShowEmail from './components/ShowEmail';
 import GenerateEmail from './components/GenerateEmail';
 import { getValidatorEmail, deleteSavedValidatorEmail, checkSavedValidatorEmail } from 'actions/dkim';
 import ApiErrorMessage from 'components/errors/ApiErrorMessage';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -46,7 +45,6 @@ class HomePage extends Component {
     const { loading, email } = this.props;
     return (
       <div className='flex center-xs'>
-        <Helmet {...HOMEPAGE_HELMET} />
         <div className='col-xs-12 col-md-10 col-lg-8'>
           <h1>DKIM Validator</h1>
           <p className='marginBottom--lg'>{INTRO_TEXT}</p>
