@@ -6,7 +6,7 @@ import { builderMeta } from 'pages/builder/constants';
 
 // Meta by url - defined in constants
 export const Meta = ({ location: { pathname } }) => {
-  let meta = {};
+  let meta = null;
 
   if (pathname.includes('/dkim')) {
     meta = dkimMeta;
@@ -15,7 +15,7 @@ export const Meta = ({ location: { pathname } }) => {
   } else if (pathname.includes('/spf/builder')) {
     meta = builderMeta;
   }
-  return <Helmet {...meta} />;
+  return meta && <Helmet {...meta} />;
 };
 
 // Default / global meta tags - any nested duplicates will override these
