@@ -1,4 +1,5 @@
 import cookie from 'js-cookie';
+//import axios from 'axios';
 import config from 'config/index';
 
 const { authCookie } = config;
@@ -18,6 +19,15 @@ export function checkLogin() {
       dispatch({
         type: 'AUTH_LOG_IN',
         payload: JSON.parse(storedAuthCookie)
+      });
+
+      dispatch({
+        type: 'SPARKPOST_API_REQUEST',
+        meta: {
+          type: 'AUTH_LOG_IN_PING',
+          url: '/messaging-tools/ping',
+          method: 'get'
+        }
       });
     } else {
       dispatch({
