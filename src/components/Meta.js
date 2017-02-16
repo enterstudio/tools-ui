@@ -4,8 +4,9 @@ import { dkimMeta } from 'pages/dkim/constants';
 import { inspectorMeta } from 'pages/spf/constants';
 import { builderMeta } from 'pages/builder/constants';
 
-const Meta = ({ location: { pathname } }) => {
-  let meta = null;
+// Meta by url - defined in constants
+export const Meta = ({ location: { pathname } }) => {
+  let meta = {};
 
   if (pathname.includes('/dkim')) {
     meta = dkimMeta;
@@ -17,4 +18,18 @@ const Meta = ({ location: { pathname } }) => {
   return <Helmet {...meta} />;
 };
 
-export default Meta;
+// Default / global meta tags - any nested duplicates will override these
+const defaultMeta = {
+  title: 'SparkPost Tools',
+  meta: [
+    { property: 'og:title', content: 'SparkPost Tools' },
+    { property: 'og:url', content: 'https://tools.sparkpost.com' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:site_name', content: 'SparkPost' },
+    { property: 'fb:admins', content: '371333539709717' },
+    { name: 'twitter:site', content: '@SparkPost' },
+    { name: 'twitter:creator', content: '@SparkPost' }
+  ]
+};
+
+export const DefaultMeta = () => <Helmet {...defaultMeta} />;

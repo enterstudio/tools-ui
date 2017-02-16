@@ -13,10 +13,6 @@ export const inspectorMeta = {
       content: 'SPF Inspector'
     },
     {
-      property: 'og:type',
-      content: 'website'
-    },
-    {
       property: 'og:url',
       content: 'https://tools.sparkpost.com/spf/inspector'
     },
@@ -31,6 +27,10 @@ export const inspectorMeta = {
     },
     {
       name: 'twitter:description',
+      content: 'SPF email authentication is important, but hard to grok. Check SPF rules for sending from your domain with this easy tool from the email experts at SparkPost.'
+    },
+    {
+      name: 'twitter:card',
       content: 'SPF email authentication is important, but hard to grok. Check SPF rules for sending from your domain with this easy tool from the email experts at SparkPost.'
     }
   ]

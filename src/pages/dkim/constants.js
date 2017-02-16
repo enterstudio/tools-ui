@@ -16,10 +16,6 @@ export const dkimMeta = {
       content: 'DKIM Validator'
     },
     {
-      property: 'og:type',
-      content: 'website'
-    },
-    {
       property: 'og:url',
       content: 'https://tools.sparkpost.com/dkim'
     },
@@ -34,6 +30,10 @@ export const dkimMeta = {
     },
     {
       name: 'twitter:description',
+      content: 'DKIM is a key email authentication standard. Verify your messages have working DKIM signatures with this easy tool from the email experts at SparkPost.'
+    },
+    {
+      name: 'twitter:card',
       content: 'DKIM is a key email authentication standard. Verify your messages have working DKIM signatures with this easy tool from the email experts at SparkPost.'
     }
   ]

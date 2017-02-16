@@ -32,10 +32,6 @@ export const builderMeta = {
       content: 'SPF Builder'
     },
     {
-      property: 'og:type',
-      content: 'website'
-    },
-    {
       property: 'og:url',
       content: 'https://tools.sparkpost.com/spf/builder'
     },
@@ -50,6 +46,10 @@ export const builderMeta = {
     },
     {
       name: 'twitter:description',
+      content: 'SPF email authentication is important, but hard to grok. This tool from the experts at SparkPost makes it easy to build SPF rules for sending from your domain.'
+    },
+    {
+      name: 'twitter:card',
       content: 'SPF email authentication is important, but hard to grok. This tool from the experts at SparkPost makes it easy to build SPF rules for sending from your domain.'
     }
   ]
