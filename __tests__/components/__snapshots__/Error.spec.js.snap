@@ -4,12 +4,7 @@ exports[`ErrorMessage component should render correctly with a supplied icon 1`]
   <div
     className="errorMessage__text">
     <i
-      className="fa fa-fa-bolt "
-      style={
-        Object {
-          "transition": "all 200ms ease-out",
-        }
-      } />
+      className="fa fa-fa-bolt " />
     <p
       className="errorMessage__friendly">
       An error occurred
@@ -24,12 +19,7 @@ exports[`ErrorMessage component should render correctly with an error message 1`
   <div
     className="errorMessage__text">
     <i
-      className="fa fa-exclamation-circle "
-      style={
-        Object {
-          "transition": "all 200ms ease-out",
-        }
-      } />
+      className="fa fa-exclamation-circle " />
     <p
       className="errorMessage__friendly">
       some string message
@@ -44,12 +34,7 @@ exports[`ErrorMessage component should render correctly with an error message an
   <div
     className="errorMessage__text">
     <i
-      className="fa fa-exclamation-circle "
-      style={
-        Object {
-          "transition": "all 200ms ease-out",
-        }
-      } />
+      className="fa fa-exclamation-circle " />
     <a
       className="errorMessage__link"
       onClick={[Function]}>
@@ -69,12 +54,7 @@ exports[`ErrorMessage component should render the default message with no props 
   <div
     className="errorMessage__text">
     <i
-      className="fa fa-exclamation-circle "
-      style={
-        Object {
-          "transition": "all 200ms ease-out",
-        }
-      } />
+      className="fa fa-exclamation-circle " />
     <p
       className="errorMessage__friendly">
       An error occurred

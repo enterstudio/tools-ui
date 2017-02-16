@@ -33,12 +33,7 @@ exports[`ResultListHeader component should render 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -93,12 +88,7 @@ exports[`ResultListHeader component should render when logged in 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -166,12 +156,7 @@ exports[`ResultListHeader component should render when not logged in 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -239,12 +224,7 @@ exports[`ResultListHeader component should render with an error present 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
