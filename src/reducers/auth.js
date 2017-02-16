@@ -1,12 +1,11 @@
-const initialState = {
-  loggedIn: false
-};
+import makeReducer from 'reducers/makeReducer';
 
-export default (state = initialState, action = {}) => {
-
-  switch (action.type) {
-
-    case 'AUTH_LOG_IN': {
+export default makeReducer({
+  initialState: {
+    loggedIn: false
+  },
+  types: {
+    'AUTH_LOG_IN': (state, action) => {
       const { token, username = state.username, refreshToken } = action.payload;
       return {
         token,
@@ -14,14 +13,7 @@ export default (state = initialState, action = {}) => {
         refreshToken,
         loggedIn: true
       };
-    }
-
-    case 'AUTH_LOG_OUT': {
-      return { loggedIn: false };
-    }
-
+    },
+    'AUTH_LOG_OUT': () => ({ loggedIn: false })
   }
-
-  return state;
-
-};
+});

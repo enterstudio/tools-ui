@@ -1,49 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import config from 'config/index';
-import moment from 'moment';
 
 import ResultListRow from './components/ResultListRow';
 import ResultListHeader from './components/ResultListHeader';
-import ErrorMessage from 'components/errors/ErrorMessage';
+import ApiErrorMessage from 'components/errors/ApiErrorMessage';
 import { LIST_ERROR_MESSAGE } from './constants';
 
-export default class ResultListPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      tableRows: [],
-      loading: true
-    };
-  }
+import { getValidatorResults } from 'actions/dkim';
+import { connect } from 'react-redux';
 
+class ResultListPage extends Component {
   componentDidMount() {
-    this.getResults();
-  }
-
-  // TODO move this to redux
-  getResults() {
     const { email } = this.props.params;
-    this.setState({ loading: true });
-    return axios.get(`${config.apiBase}/messaging-tools/validations/${email}`)
-      .then(({ data }) => {
-        const { results } = data;
-        this.setState({
-          tableRows: results.map(({ id, subject, result, header_from, received }) => (
-            {
-              id, header_from, subject, result,
-              received: moment(received).local().format('[Delivered on] MMM D YYYY[, at] h:mm A')
-            }
-          )),
-          loading: false
-        });
-      }, ({ response: { data: { errors = [] }}}) => {
-        this.setState({
-          error: errors[0],
-          loading: false
-        });
-      });
+
+    this.props.getValidatorResults(email);
   }
 
   renderResultListRow(row) {
@@ -70,7 +39,11 @@ export default class ResultListPage extends Component {
   }
 
   renderResults() {
-    const { tableRows } = this.state;
+    const { tableRows, error } = this.props;
+
+    if (error) {
+      return <ApiErrorMessage friendly={LIST_ERROR_MESSAGE} error={error} />;
+    }
 
     if (tableRows.length === 0) {
       return this.renderEmpty();
@@ -80,17 +53,21 @@ export default class ResultListPage extends Component {
   }
 
   render() {
-    const { error, loading } = this.state;
-    const { email } = this.props.params;
+    const { loading, loggedIn, params: { email } } = this.props;
 
     return (
       <div className='flex center-xs'>
         <div className='col-xs-12 col-md-10 col-lg-8'>
-          {(error && !loading) && <ErrorMessage friendly={LIST_ERROR_MESSAGE} details={error.message} />}
-          <ResultListHeader email={email} getResults={() => this.getResults()}/>
+          <ResultListHeader loggedIn={loggedIn} email={email} getResults={() => this.props.getValidatorResults(email)}/>
           {loading ? this.renderLoading() : this.renderResults()}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ auth: { loggedIn }, dkim }) => ({ loggedIn, ...dkim.resultsList });
+
+export default connect(mapStateToProps, {
+  getValidatorResults
+})(ResultListPage);
