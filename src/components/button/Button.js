@@ -19,6 +19,8 @@ const mapPropsToClasses = ({ type, size, accent, fullWidth, icon, states, extraC
   }, states, extraClasses)
 );
 
+const getLoginSignUpQueryParams = (location) => `return=${getCurrentUrl(location)}&src=SP-Tools`;
+
 const ActionButton = (props) => {
   const { action = noop, children } = props;
   const classes = mapPropsToClasses(props);
@@ -63,28 +65,23 @@ const BackLink = ({ to = null, title = '' }) => <Link to={to} className='backLin
 /**
  * Produces a Save Results action link
  */
-const SaveResultsLink = () => {
-  const currentUrl = getCurrentUrl(location);
-  return (
-    <HoverPopover placement='top' size='m' text='Create a free SparkPost account or login into your account to save results'>
-      <ActionLink external={`${config.appUrl}/sign-up?return=${currentUrl}`} className='actionLink' title='Save Results'>Save Results</ActionLink>
-    </HoverPopover>
-  );
-};
+const SaveResultsLink = () => (
+  <HoverPopover placement='top' size='m' text='Create a free SparkPost account or login into your account to save results'>
+    <ActionLink external={`${config.appUrl}/sign-up?${getLoginSignUpQueryParams(location)}`} className='actionLink' title='Save Results'>Save Results</ActionLink>
+  </HoverPopover>
+);
 
 const SpLoginLink = ({ location = {}, classes, children }) => {
-  const currentUrl = getCurrentUrl(location);
   const linkClasses = classNames('sp-sign-in', classes);
   return (
-    <a href={`${config.appUrl}/auth?return=${currentUrl}`} title='Login' className={linkClasses}>{children}</a>
+    <a href={`${config.appUrl}/auth?${getLoginSignUpQueryParams(location)}`} title='Login' className={linkClasses}>{children}</a>
   );
 };
 
 const SpSignUpLink = ({ location = {}, classes, children }) => {
-  const currentUrl = getCurrentUrl(location);
   const linkClasses = classNames('sp-sign-up', classes);
   return (
-    <a href={`${config.appUrl}/sign-up?return=${currentUrl}&src=SP-Tools`} title='Sign Up' className={linkClasses}>{children}</a>
+    <a href={`${config.appUrl}/sign-up?${getLoginSignUpQueryParams(location)}`} title='Sign Up' className={linkClasses}>{children}</a>
   );
 };
 

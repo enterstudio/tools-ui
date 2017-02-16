@@ -87,7 +87,7 @@ exports[`snapshot tests LinkButton will render correctly with no options 1`] = `
 exports[`snapshot tests SpLoginLink will render correctly with all options 1`] = `
 <a
   className="sp-sign-in a-list of-classes"
-  href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?some=search"
+  href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?some=search&src=SP-Tools"
   title="Login">
   Log In
 </a>
@@ -96,7 +96,7 @@ exports[`snapshot tests SpLoginLink will render correctly with all options 1`] =
 exports[`snapshot tests SpLoginLink will render correctly with no options 1`] = `
 <a
   className="sp-sign-in"
-  href="https://TEST.sparkpost.com/auth?return=http://localhost"
+  href="https://TEST.sparkpost.com/auth?return=http://localhost&src=SP-Tools"
   title="Login" />
 `;
 
