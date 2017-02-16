@@ -1,5 +1,4 @@
 import cookie from 'js-cookie';
-//import axios from 'axios';
 import config from 'config/index';
 
 const { authCookie } = config;
