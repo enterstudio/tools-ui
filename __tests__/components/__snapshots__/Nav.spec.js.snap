@@ -7,7 +7,7 @@ exports[`Nav component should render correctly by default 1`] = `
       className="nav__right">
       <a
         className="sp-sign-in nav__link"
-        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something&src=SP-Tools"
         title="Login">
         Login
       </a>
@@ -180,7 +180,7 @@ exports[`Nav component should render correctly when not logged in 1`] = `
       className="nav__right">
       <a
         className="sp-sign-in nav__link"
-        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/some/path?maybe=something&src=SP-Tools"
         title="Login">
         Login
       </a>
@@ -267,7 +267,7 @@ exports[`Nav component should render correctly with a builder path 1`] = `
       className="nav__right">
       <a
         className="sp-sign-in nav__link"
-        href="https://TEST.sparkpost.com/auth?return=http://localhost/spf/builder?maybe=something"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/spf/builder?maybe=something&src=SP-Tools"
         title="Login">
         Login
       </a>
@@ -354,7 +354,7 @@ exports[`Nav component should render correctly with a dkim path 1`] = `
       className="nav__right">
       <a
         className="sp-sign-in nav__link"
-        href="https://TEST.sparkpost.com/auth?return=http://localhost/dkim/path?maybe=something"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/dkim/path?maybe=something&src=SP-Tools"
         title="Login">
         Login
       </a>
@@ -441,7 +441,7 @@ exports[`Nav component should render correctly with an inspector path 1`] = `
       className="nav__right">
       <a
         className="sp-sign-in nav__link"
-        href="https://TEST.sparkpost.com/auth?return=http://localhost/spf/inspector?maybe=something"
+        href="https://TEST.sparkpost.com/auth?return=http://localhost/spf/inspector?maybe=something&src=SP-Tools"
         title="Login">
         Login
       </a>
