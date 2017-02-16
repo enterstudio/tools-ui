@@ -1,5 +1,17 @@
 .has-error   { color: color(alert);   }
 .has-warning { color: color(mustard); }
+.is-valid { color: color(green); }
+
+.text--semibold {
+  font-weight: 500;
+}
+
+.text--small {
+  font-size: rem(12);
+  font-weight: 500;
+  color: grayscale(5);
+  line-height: rem(13);
+}
 
 // Responsive box model helpers don't exist
 // This is here only to produce a 1rem gap between the input and button on mobile

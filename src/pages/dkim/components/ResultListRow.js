@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Icon from 'components/Icon';
-import classNames from 'classnames';
 
 import './ResultListRow.scss';
 
 const ResultListRow = (props) => {
   const { id, subject, result, header_from, received, email } = props;
-  const resultClasses = classNames('dkimResultListRow__result', {
-    'has-error': !result
-  });
+  const resultClasses = result ? 'is-valid' : 'has-error';
 
   return (
     <Link to={`/dkim/results/${email}/${id}`} className='dkimResultListRow'>
       <div className='panel marginBottom--none'>
         <div className='panel__body'>
-          <div className={resultClasses}>
+          <div className={`dkimResultListRow__result ${resultClasses}`}>
             <Icon name={result ? 'check-circle' : 'exclamation-circle'} />
           </div>
           <div className='dkimResultListRow__details'>

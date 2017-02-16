@@ -17,13 +17,15 @@ export default makeReducer({
       ...state,
       loading: false,
       error: null,
+      status: action.payload.result ? 'Passed' : 'Failed',
       detailTableRows: [
         ['Subject', action.payload.subject],
         ['From', action.payload.header_from],
-        ['On', formatDate(action.payload.received)],
-        ['Status', action.payload.result ? 'Passed' : 'Failed']
+        ['On', formatDate(action.payload.received)]
       ],
-      sigTableRows: action.payload.sigs.map(({ s, d, t, result }) => ([result ? 'Passed' : 'Failed', s, d, t || 'N/A']))
+      sigTableRows: action.payload.sigs.map(({ s, d, t, issue_desc, result }) => (
+        [result ? 'Passed' : 'Failed', s, d, t || 'N/A', issue_desc]
+      ))
     }),
     'DKIM_GET_DETAILED_RESULT_FAIL': (state, action) => ({
       ...state,

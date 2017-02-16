@@ -26,12 +26,6 @@
     top: 50%;
     left: rem(18);
     transform: translate(0, -50%);
-
-    color: color(green);
-  }
-
-  &__result.has-error {
-    color: color(alert);
   }
 
   &__details {
