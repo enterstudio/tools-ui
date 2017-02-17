@@ -36,12 +36,7 @@ exports[`ShowEmail component should render 1`] = `
                 <h6
                   className="text--left copyPopover__label">
                   <i
-                    className="fa fa-check-circle "
-                    style={
-                      Object {
-                        "transition": "all 200ms ease-out",
-                      }
-                    } />
+                    className="fa fa-check-circle " />
                    Copied to Clipboard!
                 </h6>
                 <p

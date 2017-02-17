@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Table from 'components/table/Table';
 import ResultDetailHeader from './components/ResultDetailHeader';
+import { Row } from './components/SignatureTable';
+import Table from 'components/table/Table';
 import { BackLink } from 'components/button/Button';
 import ApiErrorMessage from 'components/errors/ApiErrorMessage';
 import { DETAIL_ERROR_MESSAGE } from './constants';
@@ -23,14 +24,14 @@ class ResultDetailPage extends Component {
   }
 
   renderDetails() {
-    const { detailTableRows, sigTableHeaders, sigTableRows, error, loggedIn } = this.props;
+    const { detailTableRows, sigTableHeaders, sigTableRows, error, loggedIn, status } = this.props;
     if (error) { return null; }
     return (
       <div>
-        <ResultDetailHeader loggedIn={loggedIn} rows={detailTableRows} />
+        <ResultDetailHeader loggedIn={loggedIn} rows={detailTableRows} status={status} />
         <div className='panel'>
           <div className='panel__body padding--none dkimResultDetailTable'>
-            <Table headers={sigTableHeaders} rows={sigTableRows} />
+            <Table headers={sigTableHeaders} rows={sigTableRows} RowComponent={Row}/>
           </div>
         </div>
       </div>

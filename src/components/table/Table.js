@@ -8,14 +8,15 @@ const Row = ({ values }) => <tr className='table__row'>{values.map((v, i) => <Ce
 /**
  * Produces a standard table with a header row
  * and n regular rows below
+ * Accepts an optional Row component
  */
-const Table = ({ headers, rows }) => (
+const Table = ({ headers, rows, RowComponent = Row }) => (
   <table className='table table--transparent'>
     <thead className='table__head'>
       <tr className='table__row'>{headers.map((h, i) => <HeaderCell value={h} key={`header-${i}`} />)}</tr>
     </thead>
     <tbody className='table__body'>
-      {rows.map((row, i) => <Row values={row} key={`row-${i}`} />)}
+      {rows.map((row, i) => <RowComponent values={row} key={`row-${i}`} />)}
     </tbody>
   </table>
 );

@@ -10,4 +10,4 @@ const mapPropsToClasses = ({ name, size, extras = [] }) => (
   }, extras)
 );
 
-export default (props) => <i className={mapPropsToClasses(props)} style={{ transition: 'all 200ms ease-out' }} />;
+export default (props) => <i className={mapPropsToClasses(props)} />;

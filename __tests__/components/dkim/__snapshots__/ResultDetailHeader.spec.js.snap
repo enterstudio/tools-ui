@@ -20,12 +20,7 @@ exports[`ResultDetailHeader component should render when logged in 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -85,6 +80,19 @@ exports[`ResultDetailHeader component should render when logged in 1`] = `
           bro
         </span>
       </div>
+    </span>
+  </div>
+  <div
+    className="panel__body">
+    <span
+      className="dkimResultDetailHeader__label">
+      status
+    </span>
+    <span
+      className="dkimResultDetailHeader__value has-error">
+      <i
+        className="fa fa-exclamation-circle " />
+       
     </span>
   </div>
 </div>
@@ -125,12 +133,7 @@ exports[`ResultDetailHeader component should render when not logged in 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -192,6 +195,19 @@ exports[`ResultDetailHeader component should render when not logged in 1`] = `
       </div>
     </span>
   </div>
+  <div
+    className="panel__body">
+    <span
+      className="dkimResultDetailHeader__label">
+      status
+    </span>
+    <span
+      className="dkimResultDetailHeader__value has-error">
+      <i
+        className="fa fa-exclamation-circle " />
+       
+    </span>
+  </div>
 </div>
 `;
 
@@ -230,12 +246,7 @@ exports[`ResultDetailHeader component should render with rows 1`] = `
           <h6
             className="text--left copyPopover__label">
             <i
-              className="fa fa-check-circle "
-              style={
-                Object {
-                  "transition": "all 200ms ease-out",
-                }
-              } />
+              className="fa fa-check-circle " />
              Copied to Clipboard!
           </h6>
           <p
@@ -295,6 +306,19 @@ exports[`ResultDetailHeader component should render with rows 1`] = `
           bro
         </span>
       </div>
+    </span>
+  </div>
+  <div
+    className="panel__body">
+    <span
+      className="dkimResultDetailHeader__label">
+      status
+    </span>
+    <span
+      className="dkimResultDetailHeader__value has-error">
+      <i
+        className="fa fa-exclamation-circle " />
+       
     </span>
   </div>
 </div>
