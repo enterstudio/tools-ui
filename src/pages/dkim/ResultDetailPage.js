@@ -31,7 +31,7 @@ class ResultDetailPage extends Component {
         <ResultDetailHeader loggedIn={loggedIn} rows={detailTableRows} status={status} />
         <div className='panel'>
           <div className='panel__body padding--none dkimResultDetailTable'>
-            <Table headers={sigTableHeaders} rows={sigTableRows} TRComponent={Row}/>
+            <Table headers={sigTableHeaders} rows={sigTableRows} RowComponent={Row}/>
           </div>
         </div>
       </div>

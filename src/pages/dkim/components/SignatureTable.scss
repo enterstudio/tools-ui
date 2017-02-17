@@ -1,0 +1,16 @@
+@import "~@sparkpost/styles/src/assets/scss/shared/config";
+@import "~@sparkpost/styles/src/assets/scss/shared/functions";
+
+.sigTable__statusCell {
+  position: relative;
+
+  &.has-error {
+    line-height: rem(54);
+  }
+}
+
+.sigTable__error {
+  position: absolute;
+  left: rem(18);
+  bottom: rem(12);
+}
