@@ -109,7 +109,7 @@ exports[`ResultDetailHeader component should render when not logged in 1`] = `
         className="popover__group popover__hoverTrigger">
         <a
           className="actionLink"
-          href="https://TEST.sparkpost.com/sign-up?return=http://localhost/&src=SP-Tools"
+          href="https://TEST.sparkpost.com/sign-up?return=http://localhost/&src=SP-Tools&sfdcid=701600000019BWh"
           title="Save Results">
           Save Results
         </a>
@@ -222,7 +222,7 @@ exports[`ResultDetailHeader component should render with rows 1`] = `
         className="popover__group popover__hoverTrigger">
         <a
           className="actionLink"
-          href="https://TEST.sparkpost.com/sign-up?return=http://localhost/&src=SP-Tools"
+          href="https://TEST.sparkpost.com/sign-up?return=http://localhost/&src=SP-Tools&sfdcid=701600000019BWh"
           title="Save Results">
           Save Results
         </a>
