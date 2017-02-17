@@ -1,3 +1,5 @@
+import { baseUrl } from 'helpers/getCurrentUrl';
+
 export const INTRO_TEXT = 'Create a Sender Policy Framework record for your domain.';
 
 export const initialValues = {
@@ -39,6 +41,10 @@ export const builderMeta = {
       property: 'og:description',
       content: 'SPF email authentication is important, but hard to grok. This tool from the experts at SparkPost makes it easy to build SPF rules for sending from your domain.'
     },
+    {
+      property: 'og:image',
+      content: `${baseUrl}/images/builder_og.png`
+    },
     // Twitter
     {
       name: 'twitter:title',
@@ -50,7 +56,11 @@ export const builderMeta = {
     },
     {
       name: 'twitter:card',
-      content: 'SPF email authentication is important, but hard to grok. This tool from the experts at SparkPost makes it easy to build SPF rules for sending from your domain.'
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:image',
+      content: `${baseUrl}/images/builder_twitter.png`
     }
   ]
 };

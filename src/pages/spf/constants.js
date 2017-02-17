@@ -1,3 +1,5 @@
+import { baseUrl } from 'helpers/getCurrentUrl';
+
 export const INTRO_TEXT = 'Visualize your SPF records. Identify which servers are authorized to send on behalf of a domain.';
 
 export const inspectorMeta = {
@@ -20,6 +22,10 @@ export const inspectorMeta = {
       property: 'og:description',
       content: 'SPF email authentication is important, but hard to grok. Check SPF rules for sending from your domain with this easy tool from the email experts at SparkPost.'
     },
+    {
+      property: 'og:image',
+      content: `${baseUrl}/images/inspector_og.png`
+    },
     // Twitter
     {
       name: 'twitter:title',
@@ -31,7 +37,11 @@ export const inspectorMeta = {
     },
     {
       name: 'twitter:card',
-      content: 'SPF email authentication is important, but hard to grok. Check SPF rules for sending from your domain with this easy tool from the email experts at SparkPost.'
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:image',
+      content: `${baseUrl}/images/inspector_twitter.png`
     }
   ]
 };
