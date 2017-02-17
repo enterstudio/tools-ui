@@ -19,7 +19,7 @@ const mapPropsToClasses = ({ type, size, accent, fullWidth, icon, states, extraC
   }, states, extraClasses)
 );
 
-const getLoginSignUpQueryParams = (location) => `return=${getCurrentUrl(location)}&src=SP-Tools`;
+const getLoginSignUpQueryParams = (location) => `return=${getCurrentUrl(location)}&src=SP-Tools&sfdcid=701600000019BWh`;
 
 const ActionButton = (props) => {
   const { action = noop, children } = props;
